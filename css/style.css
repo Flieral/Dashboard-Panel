@@ -7700,7 +7700,7 @@ fieldset[disabled] .form-control {
 .login-page {
   background-color: #00BCD4;
   padding-left: 0;
-  max-width: 360px;
+  max-width: 500px;
   margin: 5% auto;
   overflow-x: hidden; }
   .login-page .login-box .msg {
@@ -7730,7 +7730,7 @@ fieldset[disabled] .form-control {
 .signup-page {
   background-color: #00BCD4;
   padding-left: 0;
-  max-width: 360px;
+  max-width: 500px;
   margin: 5% auto;
   overflow-x: hidden; }
   .signup-page .signup-box .msg {
@@ -7760,7 +7760,7 @@ fieldset[disabled] .form-control {
 .fp-page {
   background-color: #00BCD4;
   padding-left: 0;
-  max-width: 360px;
+  max-width: 500px;
   margin: 5% auto;
   overflow-x: hidden; }
   .fp-page .fp-box .msg {
