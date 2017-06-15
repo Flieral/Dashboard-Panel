@@ -1,4 +1,4 @@
-var publisher_url = "http://localhost:3005/api/clients";
+var publisher_url = "http://127.0.0.1:3005/api/clients";
 var announcer_url = "http://127.0.0.1:3000/api/clients";
 
 $(document).ready(function () {
@@ -17,7 +17,7 @@ $(document).ready(function () {
             registrationIPAddress: '192.168.1.1'
         }
         $.ajax({
-            url: announcer_url,
+            url: serviceToRequest,
             data: data,
             type: "POST",
             success: function (result) {
