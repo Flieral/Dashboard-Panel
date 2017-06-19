@@ -9,8 +9,8 @@
         }
     });
 
-    initRealTimeChart();
-    initDonutChart();
+    // initRealTimeChart();
+    // initDonutChart();
     initSparkline();
 });
 
@@ -72,16 +72,16 @@ function initDonutChart() {
     Morris.Donut({
         element: 'donut_chart',
         data: [{
-            label: 'Chrome',
+            label: 'iOS',
             value: 37
         }, {
-            label: 'Firefox',
+            label: 'Android',
             value: 30
         }, {
-            label: 'Safari',
+            label: 'Web',
             value: 18
         }, {
-            label: 'Opera',
+            label: 'Application',
             value: 12
         },
         {

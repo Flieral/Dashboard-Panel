@@ -4,6 +4,7 @@ $(function () {
         normalizeFunction: 'polynomial',
         hoverOpacity: 0.7,
         hoverColor: false,
+        zoomOnScroll: false,
         backgroundColor: 'transparent',
         regionStyle: {
             initial: {
