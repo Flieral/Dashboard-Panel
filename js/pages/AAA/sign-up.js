@@ -2,7 +2,8 @@ var publisher_url = "http://127.0.0.1:3005/api/clients";
 var announcer_url = "http://127.0.0.1:3000/api/clients";
 
 $(document).ready(function () {
-    $("#signup_btn").click(function () {
+    $("#signup_btn").click(function (e) {
+        e.preventDefault();
         if ($('#announcerRadio').attr('checked') == undefined)
             var serviceToRequest = publisher_url ;
         else 
@@ -21,10 +22,11 @@ $(document).ready(function () {
             data: data,
             type: "POST",
             success: function (result) {
-                $("#div1").html(result);
+                localStorage.setItem('successedSignUp', result);
+                window.location.href = 'sign-in.html';
             },
             error: function(result) {
-                $("#div1").html(result);
+                
             }
         });
     });
