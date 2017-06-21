@@ -144,8 +144,8 @@
                     <img src="../../images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
+                    <div id="announcerUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                    <div id="announcerEmail" class="email">john.doe@example.com</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -225,7 +225,7 @@
                 </div>
                 <div class="content">
                     <div class="text">Clicks</div>
-                    <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
+                    <div id="dashboard_click" class="number count-to" data-from="0" data-to="125" data-speed="1500" data-fresh-interval="10"></div>
                 </div>
             </div>
         </div>
@@ -236,29 +236,29 @@
                 </div>
                 <div class="content">
                     <div class="text">Impresseion</div>
-                    <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                    <div id="dashboard_view" class="number count-to" data-from="0" data-to="257" data-speed="1500" data-fresh-interval="10"></div>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="bg-light-green info-box-3 hover-zoom-effect">
                 <div class="icon">
-                    <i class="material-icons">attach_money</i>
+                    <i class="material-icons">report</i>
                 </div>
                 <div class="content">
-                    <div class="text">Total Budget</div>
-                    <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                    <div class="text">Reports</div>
+                    <div id="dashboard_report" class="number count-to" data-from="0" data-to="243" data-speed="1500" data-fresh-interval="10"></div>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="bg-orange info-box-3 hover-zoom-effect">
                 <div class="icon">
-                    <i class="material-icons">money_off</i>
+                    <i class="material-icons">attach_money</i>
                 </div>
                 <div class="content">
-                    <div class="text">Spent</div>
-                    <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                    <div class="text">Remaining Budget</div>
+                    <div id="dashboard_budget" class="number count-to" data-from="0" data-to="1225" data-speed="1500" data-fresh-interval="10"></div>
                 </div>
             </div>
         </div>
@@ -284,7 +284,7 @@
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="card">
                 <div class="body bg-pink">
-                    <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
+                    <div class="sparkline" id="sparkData" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
                             data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
                             data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
                             data-fill-Color="rgba(0, 188, 212, 0)">
@@ -293,15 +293,15 @@
                     <ul class="dashboard-stat-list">
                         <li>
                             TODAY CLICKS
-                            <span class="pull-right"><b>1 200</b> <small>USERS</small></span>
+                            <span class="pull-right"><b id="today_clicks">1 200</b> <small>USERS</small></span>
                         </li>
                         <li>
                             YESTERDAY CLICKS
-                            <span class="pull-right"><b>3 872</b> <small>USERS</small></span>
+                            <span class="pull-right"><b id="yesterday_clicks">3 872</b> <small>USERS</small></span>
                         </li>
                         <li>
                             LAST WEEK CLICKS
-                            <span class="pull-right"><b>26 582</b> <small>USERS</small></span>
+                            <span class="pull-right"><b id="last_week_clicks">26 582</b> <small>USERS</small></span>
                         </li>
                     </ul>
                 </div>
@@ -316,27 +316,27 @@
                     <ul class="dashboard-stat-list">
                         <li>
                             TOTAL CAMPAIGNS
-                            <span class="pull-right"><b>12</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="total_camps">12</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             CREATED CAMPAIGNS
-                            <span class="pull-right"><b>15</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="created_camps">15</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             APPROVED CAMPAIGNS
-                            <span class="pull-right"><b>90</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="approved_camps">90</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             STARTED CAMPAIGNS
-                            <span class="pull-right"><b>342</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="started_camps">342</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             FINISHED CAMPAIGNS
-                            <span class="pull-right"><b>4 225</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="finished_camps">4 225</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             SUSPENDED CAMPAIGNS
-                            <span class="pull-right"><b>8 752</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="suspended_camps">8 752</b> <small>TICKETS</small></span>
                         </li>
                     </ul>
                 </div>
@@ -351,27 +351,27 @@
                     <ul class="dashboard-stat-list">
                         <li>
                             TOTAL SUBCAMPAIGNS
-                            <span class="pull-right"><b>12</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="total_subcamps">12</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             CREATED SUBCAMPAIGNS
-                            <span class="pull-right"><b>15</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="created_subcamps">15</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             APPROVED SUBCAMPAIGNS
-                            <span class="pull-right"><b>90</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="approved_subcamps">90</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             STARTED SUBCAMPAIGNS
-                            <span class="pull-right"><b>342</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="started_subcamps">342</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             FINISHED SUBCAMPAIGNS
-                            <span class="pull-right"><b>4 225</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="finished_subcamps">4 225</b> <small>TICKETS</small></span>
                         </li>
                         <li>
                             SUSPENDED SUBCAMPAIGNS
-                            <span class="pull-right"><b>8 752</b> <small>TICKETS</small></span>
+                            <span class="pull-right"><b id="suspended_subcamps">8 752</b> <small>TICKETS</small></span>
                         </li>
                     </ul>
                 </div>
@@ -424,8 +424,8 @@
 
     <!-- Custom Js -->
     <script src="../../js/admin.js"></script>
-    <script src="../../js/pages/index.js"></script>
-    <script src="../../js/pages/maps/jvectormap.js"></script>
+    <script src="../../js/pages/announcer/dashboard.js"></script>
+
     <!-- Demo Js -->
     <script src="../../js/demo.js"></script>
 </body>
