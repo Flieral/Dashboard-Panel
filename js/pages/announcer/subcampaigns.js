@@ -68,6 +68,14 @@ function dateConvertor(myDate) {
 	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear())
 }
 
+function generateQueryString(data) {
+    var ret = []
+    for (var d in data)
+      if (data[d])
+        ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]))
+    return ret.join("&")
+}
+
 var announcer_url = "http://127.0.0.1:3000/api/";
 var coreEngine_url = "http://127.0.0.1:3015/api/";
 
@@ -331,13 +339,13 @@ $(document).ready(function () {
 	$("#subcampaignEdit").click(function (e) {
 		//fix
         e.preventDefault();
-		var campId
+		var campId, subcampId
 	})
 
 	$("#subcampaignDelete").click(function (e) {
 		//fix
         e.preventDefault();
-		var campId
+		var campId, subcampId
 	})
 
     $("#mySubcampaignsSearch").click(function (e) {
@@ -453,7 +461,46 @@ $(document).ready(function () {
 
 	$("#sendContentButton").click(function (e) {
         e.preventDefault();
-
+		var subcampaignId = $('contentProvidingSelect').val()
+		var campaignId
+		for (var i = 0; i < totalSubcampaignsArray.length; i++)
+			if (totalSubcampaignsArray[i].id === subcampaignId)
+				campaignId = totalSubcampaignsArray[i].campaignId
+		var isStatic = $('#contentProvidingType').find('option:selected').text()
+		var templateId = $('#contentProvidingTemplate').find('option:selected').text()
+		var data = {
+			header: $('#contentProvidingHeader').val(),
+			time: (new Date()).toLocaleString(),
+			holding: $('#contentProvidingHolding').val(),
+			subtitle: $('#contentProvidingSubtitle').val(),
+		}
+		var queryData = {
+			campaignHashId: campaignId,
+			subcampaignHashId: subcampaignId,
+			isStatic: isStatic,
+			templateId: templateId,
+			data: JSON.stringify(data)
+		}
+		var queryString = generateQueryString(queryData)
+		$('.page-loader-wrapper').fadeIn();
+		var subcampaignURL = wrapAccessToken(announcer_url + 'containers/uploadFile?' + queryString, serviceAccessToken);
+		$.ajax({
+			url: subcampaignURL,
+			data: data,
+			type: "POST",
+			success: function (subcampaignResult) {
+				getAccountModel()
+				$("#selectSettingSelect").selectpicker('val', subcampaignResult.name)
+				$("#contentProvidingSelect").selectpicker('val', subcampaignResult.name)
+				$('.page-loader-wrapper').fadeOut();
+				swal("Congrates!", "You have successfuly added a content to a subcampaign.", "success");
+			},
+			error: function(xhr, status, error) {
+				$('.page-loader-wrapper').fadeOut();
+				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
+				alert(xhr.responseText);
+			}
+		});
 	})
 
 	$("#saveSettingButton").click(function (e) {
