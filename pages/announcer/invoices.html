@@ -45,6 +45,9 @@
     <!-- Bootstrap Select Css -->
     <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
+	<!-- Sweetalert Css -->
+	<link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
     <!-- noUISlider Css -->
     <link href="../../plugins/nouislider/nouislider.min.css" rel="stylesheet" />
 
@@ -167,8 +170,8 @@
                     <img src="../../images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
+                    <div id="announcerUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                    <div id="announcerEmail" class="email">john.doe@example.com</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -253,7 +256,7 @@
                             <p>
                                 <b>Status</b>
                             </p>
-                            <select class="form-control show-tick" multiple>
+                            <select id="receiptInformationStatus" class="form-control show-tick" multiple>
                                 <option>Checked</option>
                                 <option>Unchecked</option>
                             </select>
@@ -264,7 +267,7 @@
                             </p>
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
+                                    <input id="receiptInformationBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
                                 </div>
                             </div>
                         </div>
@@ -274,7 +277,7 @@
                             </p>
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" class="datepicker form-control" placeholder="Enter Ending Date">
+                                    <input id="receiptInformationEndingTime" type="text" class="datepicker form-control" placeholder="Enter Ending Date">
                                 </div>
                             </div>
                         </div>
@@ -284,7 +287,7 @@
                             </p>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input type="text" class="form-control text-center" value="10" data-rule="quantity">
+                                    <input id="receiptInformationLimit" type="text" class="form-control text-center" value="10" data-rule="quantity">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -296,117 +299,30 @@
                             <p>
                                 <b></b>
                             </p>
-                            <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
+                            <button type="button" id="receiptInformationSearchButton" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
                         </div>
                         </div>
 
-                        <!-- Exportable Table -->
-                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                            <thead>
-                                <tr>
-                                    <th>Receipt ID</th>
-                                    <th>Date</th>
-                                    <th>Receipt Info</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$30</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$300</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$20</td>
-                                    <td>Unchecked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$30</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$300</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$20</td>
-                                    <td>Unchecked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$300</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$20</td>
-                                    <td>Unchecked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$30</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$300</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$20</td>
-                                    <td>Unchecked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$30</td>
-                                    <td>Checked</td>
-                                </tr>
-                                <tr>
-                                    <td>RID</td>
-                                    <td>2011/04/25</td>
-                                    <td>Sample Receipt Information</td>
-                                    <td>$300</td>
-                                    <td>Checked</td>
-                                </tr>                  
-                            </tbody>
-                        </table>
-                        <!-- #END# Exportable Table -->
+						<div class="row clearfix">
+							<div class="col-md-10 col-md-offset-1">
+                                <!-- Exportable Table -->
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+                                    <thead>
+                                        <tr>
+                                            <th>Receipt ID</th>
+                                            <th>Date</th>
+                                            <th>Receipt Info</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <!-- #END# Exportable Table -->
 
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -450,6 +366,12 @@
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
     <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
     <!-- noUISlider Plugin Js -->
     <script src="../../plugins/nouislider/nouislider.js"></script>
 
@@ -458,8 +380,7 @@
 
     <!-- Custom Js -->
     <script src="../../js/admin.js"></script>
-    <script src="../../js/pages/forms/basic-form-elements.js"></script>
-    <script src="../../js/pages/tables/jquery-datatable.js"></script>
+    <script src="../../js/pages/announcer/invoices.js"></script>
 
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
