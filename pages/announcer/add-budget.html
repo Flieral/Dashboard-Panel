@@ -21,6 +21,9 @@
     <!-- Animation Css -->
     <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Sweetalert Css -->
+    <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="../../css/style.css" rel="stylesheet">
 
@@ -137,8 +140,8 @@
                     <img src="../../images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
+                    <div id="announcerUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+                    <div id="announcerEmail" class="email">john.doe@example.com</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -223,6 +226,12 @@
 							<div class="col-md-6 col-md-offset-3">
 								<div style="line-height: 200%;" class="font-17 align-center m-b-15 m-l-45 m-r-45">You will be navigated to a third-party secure payment gateway to complete the transaction. StartApp does not store your Credit Card or PayPal account information.</div>
 							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="float:right; margin-bottom: 0;">
+								<div class="card" style="margin-bottom: 0;">
+									<div class="header"><h2 id="sharedBudget" class="text-center">Budget: $4500</h2>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="demo-masked-input">
 							<div class="row clearfix">
@@ -233,7 +242,7 @@
 											<i class="material-icons">date_range</i>
 										</span>
 										<div class="form-line disabled">
-											<input type="text" class="form-control datetime" placeholder="Ex: 30/07/2016 23:59" disabled>
+											<input id="addBudgetTime" type="text" class="form-control datetime" placeholder="Ex: 30/07/2016 23:59" disabled>
 										</div>
 									</div>
 								</div>
@@ -246,7 +255,7 @@
 											<i class="material-icons">computer</i>
 										</span>
 										<div class="form-line disabled">
-											<input type="text" class="form-control ip" placeholder="Ex: 255.255.255.255" disabled>
+											<input id="addBudgetIP" type="text" class="form-control ip" placeholder="Ex: 255.255.255.255" disabled>
 										</div>
 									</div>
 								</div>
@@ -259,7 +268,7 @@
 											<i class="material-icons">attach_money</i>
 										</span>
 										<div class="form-line">
-											<input type="text" class="form-control money-dollar" placeholder="Ex: 99,99 $">
+											<input id="AddBudgetMoney" type="text" class="form-control money-dollar" placeholder="Ex: 99,99 $">
 										</div>
 									</div>
 								</div>
@@ -272,14 +281,14 @@
 											<i class="material-icons">vpn_key</i>
 										</span>
 										<div class="form-line">
-											<input type="text" class="form-control key" placeholder="Ex: XXXX-XXXX">
+											<input type="text" class="form-control key" disabled placeholder="Ex: XXXX-XXXX">
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="row clearfix">
 								<div class="col-md-2 col-md-offset-5">
-									<button type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Add Budget</button>
+									<button id="addBudgetButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Add Budget</button>
 								</div>
 							</div>
 						</div>
@@ -303,11 +312,18 @@
     <!-- Slimscroll Plugin Js -->
     <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
     <!-- Waves Effect Plugin Js -->
     <script src="../../plugins/node-waves/waves.js"></script>
 
     <!-- Custom Js -->
     <script src="../../js/admin.js"></script>
+    <script src="../../js/pages/announcer/add-budget.js"></script>
 
     <!-- Demo Js -->
     <script src="../../js/demo.js"></script>
