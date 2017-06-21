@@ -104,8 +104,9 @@ $(document).ready(function () {
             localStorage.setItem('announcerCompanyName', accountResult.companyName);
             localStorage.setItem('announcerEmail', accountResult.email);
 			var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns/getAllSubcampaigns?accountHashId=' + userId, serviceAccessToken)
+            var subcampaignFilterURL = wrapFilter(subcampaignURLWithAT, JSON.stringify({'where':{'clientId': userId}, 'fields': {'settingModel': false}}))
 			$.ajax({
-				url: subcampaignURLWithAT,
+				url: subcampaignFilterURL,
 				type: "GET",
 				success: function (subcampaignResult) {
                     var statisticsURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllStatistics?accountHashId=' + userId, coreAccessToken)
