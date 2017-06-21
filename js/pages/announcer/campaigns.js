@@ -275,8 +275,9 @@ $(document).ready(function () {
 			startStyle : $('#newCampaignStartStyle').find('option:selected').text(),
 			beginningTime : timeConvertor($('#newCampaignBeginningTime').val()),
 			endingTime : timeConvertor($('#newCampaignEndingTime').val()),
-			budget : $('#newCampaignBudget').val()
+			budget : Number($('#newCampaignBudget').val())
 		}
+		console.log(typeof(data.budget));
 		$('.page-loader-wrapper').fadeIn();
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken);
 		$.ajax({
@@ -287,12 +288,11 @@ $(document).ready(function () {
 				getAllCampaigns()
 				$('.page-loader-wrapper').fadeOut();
 				newCampaignId = campaignResult.id
-				$('newCampaignsAddSubcampaign').prop('disabled', false);
+				$('newCampaignsAddSubcampaign').removeClass('disabled');
 				swal("Congrates!", "You have successfuly created a campaign. Lets go for adding subcamapigns.", "success");
 			},
 			error: function(xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
-				$('newCampaignsAddSubcampaign').prop('disabled', true);
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -313,7 +313,7 @@ $(document).ready(function () {
 			name : $('#editCampaignName').val(),
 			beginningTime : timeConvertor($('#editCampaignBeginningTime').val()),
 			endingTime : timeConvertor($('#editCampaignEndingTime').val()),
-			budget : $('#editCampaignBudget').val()
+			budget : Number($('#editCampaignBudget').val())
 		}
 		if ($('#editCampaignStatus').find('option:selected').text() === 'Stop' || $('#editCampaignStatus').find('option:selected').text() === 'Unstop')
 			data.status = $('#editCampaignStatus').find('option:selected').text()

@@ -57,10 +57,10 @@ $(document).ready(function () {
 	$("#addBudgetButton").click(function (e) {
 		e.preventDefault();
 		var data = {
-			budget: $('#AddBudgetMoney').val()
+			budget: Number($('#AddBudgetMoney').val())
 		}
 		$('.page-loader-wrapper').fadeIn();
-		var accountURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/announcerAccountModel', serviceAccessToken);
+		var accountURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/announcerAccount', serviceAccessToken);
 		$.ajax({
 			url: accountURL,
 			data: data,

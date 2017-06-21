@@ -390,7 +390,7 @@ $(document).ready(function () {
 		var campaignId = $('addSubcampaignSelectCampaign').val()
 		var data = {
 			name : $('#addSubcampaignName').val(),
-			minBudget : $('#addSubcampaignMinBudget').val(),
+			minBudget : Number($('#addSubcampaignMinBudget').val()),
 			style : $('#addSubcampaignStyle').find('option:selected').text(),
 			plan : $('#addSubcampaignPlan').find('option:selected').text(),
 			price : $('#addSubcampaignPrice').val()
