@@ -135,6 +135,10 @@ $(document).ready(function () {
 				editableCampaignId = clientCampaignInstance.campaigns[i].id
 				$("#editCampaignName").val(clientCampaignInstance.campaigns[i].name)
 				$("#editCampaignBudget").val(clientCampaignInstance.campaigns[i].budget)
+				if (clientCampaignInstance.campaigns[i].status === 'Stopped')
+					$("#editCampaignStatus").selectpicker('val', 'Stop')
+				else
+					$("#editCampaignStatus").selectpicker('val', 'Unstop')
 				$("#editCampaignBeginningTime").val(dateConvertor(clientCampaignInstance.campaigns[i].beginningTime))
 				$("#editCampaignEndingTime").val(dateConvertor(clientCampaignInstance.campaigns[i].endingTime))
 				break
@@ -150,7 +154,7 @@ $(document).ready(function () {
 		} else if($(e.target).attr('id') === 'nav3' || window.location.hash === '#editCampaign') {
 			if(localStorage.getItem('editableCampaignName')) {
 				var campName = localStorage.getItem('editableCampaignName')
-				$("#editCampaignChoose").selectpicker('val', campName)
+				$("#editCampaignSelect").selectpicker('val', campName)
 				fillEditCampaignFields(campName);
 			}
 			$("#myCampaigns").hide();
@@ -205,7 +209,18 @@ $(document).ready(function () {
 	}
 
 	function fillTable(campaignsArray) {
+		$('#tab_logic>tbody').empty()
 		for (var i = 0; i < campaignsArray.length; i++) {
+			var statusColor
+			if (campaignsArray[i].status === 'Pending') statusColor = 'bg-orange'
+			else if (campaignsArray[i].status === 'Suspend') statusColor = 'bg-red'
+			else if (campaignsArray[i].status === 'Approved')statusColor = 'bg-green'
+			else if (campaignsArray[i].status === 'Created')statusColor = 'bg-grey'
+			else if (campaignsArray[i].status === 'Finished')statusColor = 'bg-indigo'
+			else if (campaignsArray[i].status === 'Started')statusColor = 'bg-blue'
+			else if (campaignsArray[i].status === 'Stopped')statusColor = 'bg-deep-orange'
+			else if (campaignsArray[i].status === 'UnStopped')statusColor = 'bg-teal'
+
 			$('#tab_logic').append('<tr id="addr' + (i) + '"></tr>');
 			$('#addr' + i).html(
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + campaignsArray[i].id + '</td>' +
@@ -214,7 +229,7 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + campaignsArray[i].startStyle + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + campaignsArray[i].budget + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + dateConvertor(campaignsArray[i].beginningTime) + '<br>' + dateConvertor(campaignsArray[i].endingTime) + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 bg-orange">' + campaignsArray[i].status + '</span></td>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 '+ statusColor + '">' + campaignsArray[i].status + '</span></td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' + 
 					'<button type="button" id="campaignEdit" class="m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' + 
 					'<button type="button" id="subcampaignInfo" class="m-l-5 m-r-5 btn bg-amber waves-effect"><i class="material-icons">details</i></button>' +
@@ -226,16 +241,19 @@ $(document).ready(function () {
 	}
 
 	$("#campaignEdit").click(function (e) {
+		//fix
         e.preventDefault();
 		var campId
 	})
 
 	$("#subcampaignInfo").click(function (e) {
+		//fix
         e.preventDefault();
 		var campId
 	})
 
 	$("#campaignDelete").click(function (e) {
+		//fix
         e.preventDefault();
 		var campId
 	})
@@ -302,18 +320,21 @@ $(document).ready(function () {
 			endingTime : timeConvertor($('#newCampaignEndingTime').val()),
 			budget : $('#newCampaignBudget').val()
 		}
+		$('.page-loader-wrapper').fadeIn();
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
 			data: data,
 			type: "POST",
 			success: function (campaignResult) {
+				getAllCampaigns()
+				$('.page-loader-wrapper').fadeOut();
 				newCampaignId = campaignResult.id
 				$('newCampaignsAddSubcampaign').prop('disabled', false);
 				swal("Congrates!", "You have successfuly created a campaign. Lets go for adding subcamapigns.", "success");
-				getAllCampaigns()
 			},
 			error: function(xhr, status, error) {
+				$('.page-loader-wrapper').fadeOut();
 				$('newCampaignsAddSubcampaign').prop('disabled', true);
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
@@ -325,7 +346,8 @@ $(document).ready(function () {
 		e.preventDefault();
 		if (!newCampaignId)
 			return swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
-		window.location.href = '../../../pages/announcer/subcampaign.html#newSubcampaign'
+		localStorage.setItem('newCreatedCampaign', newCampaignId)
+		window.location.href = '../../../pages/announcer/subcampaign.html#addSubcampaign'
 	})
 
     $("#editCampaignsSave").click(function (e) {
@@ -338,16 +360,19 @@ $(document).ready(function () {
 		}
 		if ($('#editCampaignStatus').find('option:selected').text() === 'Stop' || $('#editCampaignStatus').find('option:selected').text() === 'Unstop')
 			data.status = $('#editCampaignStatus').find('option:selected').text()
+		$('.page-loader-wrapper').fadeIn();
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + editableCampaignId, serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
 			data: data,
 			type: "PUT",
 			success: function (coreResult) {
-				swal("Congrates!", "You have successfuly edited a campaign.", "success");
 				getAllCampaigns()
+				$('.page-loader-wrapper').fadeOut();
+				swal("Congrates!", "You have successfuly edited a campaign.", "success");
 			},
 			error: function(xhr, status, error) {
+				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
