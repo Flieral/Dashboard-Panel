@@ -292,4 +292,10 @@ $(document).ready(function () {
 			alert(xhr.responseText);
 		}
 	});
+
+	$("#signOutButton").click(function (e) {
+		e.preventDefault();
+		localStorage.clear()
+		window.location.href = '../AAA/sign-in.html'
+	})
 });

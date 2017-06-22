@@ -418,4 +418,11 @@ $(document).ready(function () {
 			}
 		});
 	})
+
+	$("#signOutButton").click(function (e) {
+		e.preventDefault();
+		localStorage.clear()
+		window.location.href = '../AAA/sign-in.html'
+	})
+
 });
