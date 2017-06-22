@@ -9,6 +9,7 @@ var announcer_url = "http://127.0.0.1:3000/api/";
 var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
+	var refineValue = 0
 	var userId, serviceAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
@@ -79,4 +80,50 @@ $(document).ready(function () {
 			}
 		});
 	})
+
+	$("#refinementButton").click(function (e) {
+		e.preventDefault();
+		var value = $(this).text()
+		if (value === 'Calculate Refinement') {
+			var getRefinement = wrapAccessToken(announcer_url + 'clients/' + userId + '/getRefinement', serviceAccessToken);
+			$.ajax({
+				url: getRefinement,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				type: "POST",
+				success: function (refinementResult) {
+					refineValue = refinementResult.response
+					$("#refinementValue").html('Refine: $' + refinementResult.response);
+					$(this).html('Checkout')
+				},
+				error: function (xhr, status, error) {
+					swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
+					alert(xhr.responseText);
+				}
+			});
+		}
+		else {
+			var checkoutURL = wrapAccessToken(coreEngine_url + 'statistics/announcerCheckout', coreAccessToken);
+			var data = {
+				fakeData: 'Fake Data',
+				price: refineValue
+			}
+			$.ajax({
+				url: checkoutURL,
+				data: JSON.stringify(data),
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				type: "POST",
+				success: function (checkoutResult) {
+					$("#refinementValue").html('Refine: $0');
+					swal("Congrates!", "Checkout Successfuly Done.", "success");
+				},
+				error: function (xhr, status, error) {
+					swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
+					alert(xhr.responseText);
+				}
+			});
+		}
+	})
+
 });
