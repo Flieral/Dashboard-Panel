@@ -313,6 +313,7 @@ $(document).ready(function () {
 			plan = [],
 			campaign = [],
 			limit
+
 		if ($('#mySubcampaignSelectCampaign').val())
 			campaign = $('#mySubcampaignSelectCampaign').val()
 		if ($('#mySubcampaignStatus').val())
@@ -510,10 +511,10 @@ $(document).ready(function () {
 		|| $('#selectSettingCategory').find('option:selected').text().length == 0
 		|| $('#selectSettingCountry').find('option:selected').text().length == 0
 		|| $('#selectSettingLanguage').find('option:selected').text().length == 0
-		|| !$('#selectSettingDevice').find('option:selected').text().length == 0
-		|| !$('#selectSettingOS').find('option:selected').text().length == 0
-		|| !$('#selectSettingUserLabel').find('option:selected').text().length == 0
-		|| !$('#selectSettingConnection').find('option:selected').text().length == 0
+		|| $('#selectSettingDevice').find('option:selected').text().length == 0
+		|| $('#selectSettingOS').find('option:selected').text().length == 0
+		|| $('#selectSettingUserLabel').find('option:selected').text().length == 0
+		|| $('#selectSettingConnection').find('option:selected').text().length == 0
 		)
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 
