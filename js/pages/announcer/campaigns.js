@@ -51,15 +51,15 @@ $(document).ready(function () {
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
-		window.location.href = '../../../pages/AAA/sign-in.html';
+		window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('serviceAccessToken'))
 		serviceAccessToken = localStorage.getItem('serviceAccessToken')
 	else
-		window.location.href = '../../../pages/AAA/sign-in.html';
+		window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
 		coreAccessToken = localStorage.getItem('coreAccessToken')
 	else
-		window.location.href = '../../../pages/AAA/sign-in.html';
+		window.location.href = '../AAA/sign-in.html';
 
 	getAllCampaigns();
 	initDateTimePicker();
@@ -351,7 +351,7 @@ $(document).ready(function () {
 		if (!newCampaignId)
 			return swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 		localStorage.setItem('newCreatedCampaign', newCampaignId)
-		window.location.href = '../../../pages/announcer/subcampaign.html#addSubcampaign'
+		window.location.href = 'subcampaign.html#addSubcampaign'
 	})
 
 	$("#editCampaignsSave").click(function (e) {
