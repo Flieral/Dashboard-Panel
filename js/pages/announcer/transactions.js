@@ -98,7 +98,7 @@ $(document).ready(function () {
 			success: function (campaignResult) {
 				$('#transactionSubcampaign').find('option').remove()
 				for (var i = 0; i < campaignResult.length; i++) {
-					var group = $('<optgroup label=' + campaignResult[i].name + '/>');
+					var group = $('<optgroup label="' + campaignResult[i].name + '"/>');
 					for (j = 0; j < campaignResult[i].subcampaigns.length; j++)
 						$('<option />').html(campaignResult[i].subcampaigns[j].name).appendTo(group);
 					group.appendTo('#transactionSubcampaign');
