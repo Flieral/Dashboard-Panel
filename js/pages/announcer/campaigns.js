@@ -51,15 +51,15 @@ $(document).ready(function () {
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('serviceAccessToken'))
 		serviceAccessToken = localStorage.getItem('serviceAccessToken')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
 		coreAccessToken = localStorage.getItem('coreAccessToken')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 
 	getAllCampaigns();
 	initDateTimePicker();
@@ -234,7 +234,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		var campName = $(this).parent().siblings().eq(1).text()
 		localStorage.setItem('myCampaignSelectSubcampaign', campName)
-		window.location.href = 'subcampaign.html'
+		return window.location.href = 'subcampaign.html'
 	})
 
 	$(document).on("click", ".campaignDelete", function (e) {
@@ -381,7 +381,7 @@ $(document).ready(function () {
 		if (!newCampaignId)
 			return swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 		localStorage.setItem('newCreatedCampaign', newCampaignId)
-		window.location.href = 'subcampaign.html#addSubcampaign'
+		return window.location.href = 'subcampaign.html#addSubcampaign'
 	})
 
 	$("#editCampaignsSave").click(function (e) {
@@ -422,7 +422,7 @@ $(document).ready(function () {
 	$("#signOutButton").click(function (e) {
 		e.preventDefault();
 		localStorage.clear()
-		window.location.href = '../AAA/sign-in.html'
+		return window.location.href = '../AAA/sign-in.html'
 	})
 
 });

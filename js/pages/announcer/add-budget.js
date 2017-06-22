@@ -14,15 +14,15 @@ $(document).ready(function () {
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('serviceAccessToken'))
 		serviceAccessToken = localStorage.getItem('serviceAccessToken')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
 		coreAccessToken = localStorage.getItem('coreAccessToken')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 
 	getAccountBalance()
 
@@ -129,7 +129,7 @@ $(document).ready(function () {
 	$("#signOutButton").click(function (e) {
 		e.preventDefault();
 		localStorage.clear()
-		window.location.href = '../AAA/sign-in.html'
+		return window.location.href = '../AAA/sign-in.html'
 	})
 
 });

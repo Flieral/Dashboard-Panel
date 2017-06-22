@@ -135,15 +135,15 @@ $(document).ready(function () {
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('serviceAccessToken'))
 		serviceAccessToken = localStorage.getItem('serviceAccessToken')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
 		coreAccessToken = localStorage.getItem('coreAccessToken')
 	else
-		window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in.html';
 
 	var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, serviceAccessToken)
 	var accountURL = wrapFilter(accountURLWithAT, '{"include":["announcerAccount", "campaigns"]}')
@@ -318,22 +318,22 @@ $(document).ready(function () {
 	$("#signOutButton").click(function (e) {
 		e.preventDefault();
 		localStorage.clear()
-		window.location.href = '../AAA/sign-in.html'
+		return window.location.href = '../AAA/sign-in.html'
 	})
 
 	$("#checkoutRedirect").click(function (e) {
 		e.preventDefault();
-		window.location.href = 'add-budget.html'
+		return window.location.href = 'add-budget.html'
 	})
 
 	$("#newCampaignRedirect").click(function (e) {
 		e.preventDefault();
-		window.location.href = 'campaign.html#newCampaign'
+		return window.location.href = 'campaign.html#newCampaign'
 	})
 
 	$("#addSubcampaignRedirect").click(function (e) {
 		e.preventDefault();
-		window.location.href = 'subcampaign.html#addSubcampaign'
+		return window.location.href = 'subcampaign.html#addSubcampaign'
 	})
 
 });
