@@ -298,21 +298,27 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + subcampaignsArray[i].price + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + subcampaignsArray[i].status + '</span></td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' +
-				'<button type="button" id="subcampaignEdit" class="m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' +
-				'<button type="button" id="subcampaignDelete" class="m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
+				'<button type="button" class="subcampaignEdit m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' +
+				'<button type="button" class="subcampaignDelete m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
 				'</td>'
 			);
 		}
 		$('.js-basic-example').DataTable();
 	}
 
-	$("#subcampaignEdit").click(function (e) {
-		//fix
+	$(document).on("click", ".subcampaignEdit", function(e) {
 		e.preventDefault();
-		var campId, subcampId
+		var campId = $(this).parent().siblings().eq(1).text()
+		var subcampId = $(this).parent().siblings().eq(0).text()
+		var subcampaignName
+		for (var i = 0; i < totalSubcampaignsArray.length; i++)
+			if (totalSubcampaignsArray[i].id == subcampId)
+				subcampaignName = totalSubcampaignsArray[i].name
+		localStorage.setItem('editableSubcampaignName', subcampaignName)
+		$('.nav-tabs a[id="nav3"]').tab('show');
 	})
 
-	$("#subcampaignDelete").click(function (e) {
+	$(document).on("click", ".subcampaignDelete", function(e) {
 		//fix
 		e.preventDefault();
 		var campId, subcampId
