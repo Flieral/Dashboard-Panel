@@ -191,6 +191,10 @@ $(document).ready(function () {
 								reports = 0,
 								remBudget = 0;
 
+							var campaignsBudget = 0,
+								subcampaignsBudget = 0,
+								remainingBudget = 0;
+
 							totalCamps = accountResult.campaigns.length
 							for (var i = 0; i < totalCamps; i++) {
 								if (accountResult.campaigns[i].status == 'Created')
@@ -203,6 +207,8 @@ $(document).ready(function () {
 									finishedCamps++
 								else if (accountResult.campaigns[i].status == 'Pending')
 									pendingCamps++
+
+								campaignsBudget += accountResult.campaigns[i].budget
 							}
 
 							totalSubcamps = subcampaignResult.length
@@ -217,12 +223,26 @@ $(document).ready(function () {
 									finishedSubcamps++
 								else if (subcampaignResult[i].status == 'Pending')
 									pendingSubcamps++
+
+								subcampaignsBudget += subcampaignResult[i].minBudget
 							}
 
 							clicks = statisticsResult.click.length
 							impressions = statisticsResult.view.length
 							reports = statisticsResult.report.length
 							remBudget = accountResult.announcerAccount.budget
+
+							remainingBudget = remBudget - campaignsBudget
+
+							$("#refineValue").attr({
+								"data-to": remainingBudget
+							});
+							$("#campaignBudget").attr({
+								"data-to": campaignsBudget
+							});
+							$("#subcampaignBudget").attr({
+								"data-to": subcampaignsBudget
+							});
 
 							for (var i = 0; i < statisticsResult.click.length; i++) {
 								if (statisticsResult.click[i].actionInfo.time < nowTime && statisticsResult.click[i].actionInfo.time > todayTime)
@@ -298,4 +318,20 @@ $(document).ready(function () {
 		localStorage.clear()
 		window.location.href = '../AAA/sign-in.html'
 	})
+
+	$("#checkoutRedirect").click(function (e) {
+		e.preventDefault();
+		window.location.href = 'add-budget.html'
+	})
+
+	$("#newCampaignRedirect").click(function (e) {
+		e.preventDefault();
+		window.location.href = 'campaign.html#newCampaign'
+	})
+
+	$("#addSubcampaignRedirect").click(function (e) {
+		e.preventDefault();
+		window.location.href = 'subcampaign.html#addSubcampaign'
+	})
+
 });
