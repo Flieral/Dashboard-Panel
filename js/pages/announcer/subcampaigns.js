@@ -142,6 +142,7 @@ $(document).ready(function () {
 				fillEditSubcampaignFields(subcampName);
 				$("#selectSettingSelect").selectpicker('val', subcampName)
 				fillSettingSubcampaignFields(subcampName);
+				localStorage.removeItem("editableSubcampaignName")
 			}
 			$("#mySubcampaigns").hide();
 			$("#selectSetting").show();
@@ -220,8 +221,6 @@ $(document).ready(function () {
 								text: accountResult.campaigns[i].name
 							})).selectpicker('refresh');
 						}
-						$('#addSubcampaignSelectCampaign').trigger("chosen:updated")
-						$('#mySubcampaignSelectCampaign').trigger("chosen:updated")
 
 						for (var i = 0; i < campaignResult.length; i++) {
 							var group = $('<optgroup label="' + campaignResult[i].name + '"/>');
@@ -253,7 +252,33 @@ $(document).ready(function () {
 						$('#selectSettingSelect').trigger("chosen:updated")
 						$('#contentProvidingSelect').trigger("chosen:updated")
 
+						if (localStorage.getItem("newAddedSubcampaign")) {
+							var subcampName = localStorage.getItem("newAddedSubcampaign")
+							var campaignName = localStorage.getItem("newAddedSubcampaignCampaign")
+							$("#selectSettingSelect").selectpicker('val', subcampName)
+							$("#selectSettingSelect").selectpicker('refresh');
+							$("#contentProvidingSelect").selectpicker('val', subcampName)
+							$("#contentProvidingSelect").selectpicker('refresh');
+							$("#addSubcampaignSelectCampaign").selectpicker('val', campaignName)
+							$("#addSubcampaignSelectCampaign").selectpicker('refresh');
+							$('#selectSettingSelect').selectpicker('render')
+							$('#contentProvidingSelect').selectpicker('render')
+							$('#addSubcampaignSelectCampaign').selectpicker('render')
+							fillSettingSubcampaignFields(subcampName);
+							localStorage.removeItem("newAddedSubcampaignCampaign")
+							localStorage.removeItem("newAddedSubcampaign")
+						}
+
+						$('#addSubcampaignSelectCampaign').trigger("chosen:updated")
+						$('#mySubcampaignSelectCampaign').trigger("chosen:updated")
+
 						fillTable(totalSubcampaignsArray)
+
+						if (localStorage.getItem('myCampaignSelectSubcampaign')) {
+							var campName = localStorage.getItem('myCampaignSelectSubcampaign')
+							$("#mySubcampaignSelectCampaign").selectpicker('val', campName).selectpicker('refresh')
+							localStorage.removeItem("myCampaignSelectSubcampaign")
+						}
 					},
 					error: function (xhr, status, error) {
 						$('.page-loader-wrapper').fadeOut();
@@ -309,10 +334,13 @@ $(document).ready(function () {
 		e.preventDefault();
 		var campId = $(this).parent().siblings().eq(1).text()
 		var subcampId = $(this).parent().siblings().eq(0).text()
-		var subcampaignName
+		var subcampaignName, campaignName
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
 			if (totalSubcampaignsArray[i].id == subcampId)
 				subcampaignName = totalSubcampaignsArray[i].name
+		for (var i = 0; i < clientInstance.campaigns.length; i++)
+			if (clientInstance.campaigns[i].id == campId)
+				campaignName = clientInstance.campaigns[i].name
 		localStorage.setItem('editableSubcampaignName', subcampaignName)
 		$('.nav-tabs a[id="nav3"]').tab('show');
 	})
@@ -481,9 +509,9 @@ $(document).ready(function () {
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (subcampaignResult) {
+				localStorage.setItem("newAddedSubcampaign", subcampaignResult.name)
+				localStorage.setItem('newAddedSubcampaignCampaign', campaignName)
 				getAccountModel()
-				$("#selectSettingSelect").selectpicker('val', subcampaignResult.name)
-				$("#contentProvidingSelect").selectpicker('val', subcampaignResult.name)
 				swal("Congrates!", "You have successfuly created a subcampaign. Lets go for adding setting and content.", "success");
 			},
 			error: function (xhr, status, error) {
