@@ -370,7 +370,9 @@ $(document).ready(function () {
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns/' + subcampaignId, serviceAccessToken);
 		$.ajax({
 			url: settingURL,
-			data: data,
+			data: JSON.stringify(data),
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (subcampaignResult) {
 				getAccountModel()
@@ -399,7 +401,9 @@ $(document).ready(function () {
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns', serviceAccessToken);
 		$.ajax({
 			url: subcampaignURL,
-			data: data,
+			data: JSON.stringify(data),
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (subcampaignResult) {
 				getAccountModel()
@@ -443,7 +447,9 @@ $(document).ready(function () {
 		var subcampaignURL = wrapAccessToken(announcer_url + 'containers/uploadFile?' + queryString, serviceAccessToken);
 		$.ajax({
 			url: subcampaignURL,
-			data: data,
+			data: JSON.stringify(data),
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (subcampaignResult) {
 				getAccountModel()
@@ -477,7 +483,9 @@ $(document).ready(function () {
 		var settingURL = wrapAccessToken(announcer_url + 'subcampaigns/' + subcampaignId + '/setting', serviceAccessToken);
 		$.ajax({
 			url: settingURL,
-			data: data,
+			data: JSON.stringify(data),
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (settingResult) {
 				getAccountModel()

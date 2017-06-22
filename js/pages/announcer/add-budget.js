@@ -59,19 +59,18 @@ $(document).ready(function () {
 		var data = {
 			budget: Number($('#AddBudgetMoney').val())
 		}
-		$('.page-loader-wrapper').fadeIn();
 		var accountURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/announcerAccount', serviceAccessToken);
 		$.ajax({
 			url: accountURL,
-			data: data,
+			data: JSON.stringify(data),
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (accountResult) {
 				$("#sharedBudget").html('Budget: $' + accountResult.budget);
-				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly increated your budget.", "success");
 			},
 			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

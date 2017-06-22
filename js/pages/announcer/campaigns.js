@@ -282,7 +282,9 @@ $(document).ready(function () {
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
-			data: data,
+			data: JSON.stringify(data),
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (campaignResult) {
 				getAllCampaigns()
@@ -321,7 +323,9 @@ $(document).ready(function () {
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + editableCampaignId, serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
-			data: data,
+			data: JSON.stringify(data),
+			dataType : "json",
+			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (coreResult) {
 				getAllCampaigns()
