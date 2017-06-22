@@ -388,7 +388,6 @@ $(document).ready(function () {
 			plan: $('#editSubcampaignPlan').find('option:selected').text(),
 			price: $('#editSubcampaignPrice').val()
 		}
-		$('.page-loader-wrapper').fadeIn();
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns/' + subcampaignId, serviceAccessToken);
 		$.ajax({
 			url: settingURL,
@@ -398,11 +397,9 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (subcampaignResult) {
 				getAccountModel()
-				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly edited a subcampaign.", "success");
 			},
 			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -419,7 +416,6 @@ $(document).ready(function () {
 			plan: $('#addSubcampaignPlan').find('option:selected').text(),
 			price: $('#addSubcampaignPrice').val()
 		}
-		$('.page-loader-wrapper').fadeIn();
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns', serviceAccessToken);
 		$.ajax({
 			url: subcampaignURL,
@@ -431,11 +427,9 @@ $(document).ready(function () {
 				getAccountModel()
 				$("#selectSettingSelect").selectpicker('val', subcampaignResult.name)
 				$("#contentProvidingSelect").selectpicker('val', subcampaignResult.name)
-				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly created a subcampaign. Lets go for adding setting and content.", "success");
 			},
 			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -465,7 +459,6 @@ $(document).ready(function () {
 			data: JSON.stringify(data)
 		}
 		var queryString = generateQueryString(queryData)
-		$('.page-loader-wrapper').fadeIn();
 		var subcampaignURL = wrapAccessToken(announcer_url + 'containers/uploadFile?' + queryString, serviceAccessToken);
 		$.ajax({
 			url: subcampaignURL,
@@ -477,11 +470,9 @@ $(document).ready(function () {
 				getAccountModel()
 				$("#selectSettingSelect").selectpicker('val', subcampaignResult.name)
 				$("#contentProvidingSelect").selectpicker('val', subcampaignResult.name)
-				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly added a content to a subcampaign.", "success");
 			},
 			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -515,7 +506,6 @@ $(document).ready(function () {
 				return this.value
 			}).get()
 		}
-		$('.page-loader-wrapper').fadeIn();
 		var settingURL = wrapAccessToken(announcer_url + 'subcampaigns/' + subcampaignId + '/setting', serviceAccessToken);
 		$.ajax({
 			url: settingURL,
@@ -525,11 +515,9 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (settingResult) {
 				getAccountModel()
-				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly edited the setting of a subcampaign.", "success");
 			},
 			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

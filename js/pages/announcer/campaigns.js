@@ -314,8 +314,6 @@ $(document).ready(function () {
 			endingTime: fullTimeConvertor($('#newCampaignEndingTime').val()),
 			budget: Number($('#newCampaignBudget').val())
 		}
-		console.log(typeof (data.budget));
-		$('.page-loader-wrapper').fadeIn();
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
@@ -325,13 +323,11 @@ $(document).ready(function () {
 			type: "POST",
 			success: function (campaignResult) {
 				getAllCampaigns()
-				$('.page-loader-wrapper').fadeOut();
 				newCampaignId = campaignResult.id
 				$('newCampaignsAddSubcampaign').removeClass('disabled');
 				swal("Congrates!", "You have successfuly created a campaign. Lets go for adding subcamapigns.", "success");
 			},
 			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -356,7 +352,6 @@ $(document).ready(function () {
 		}
 		if ($('#editCampaignStatus').find('option:selected').text() === 'Stop' || $('#editCampaignStatus').find('option:selected').text() === 'Unstop')
 			data.status = $('#editCampaignStatus').find('option:selected').text()
-		$('.page-loader-wrapper').fadeIn();
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + editableCampaignId, serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
@@ -366,11 +361,9 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (coreResult) {
 				getAllCampaigns()
-				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly edited a campaign.", "success");
 			},
 			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
