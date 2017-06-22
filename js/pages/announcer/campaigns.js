@@ -324,7 +324,6 @@ $(document).ready(function () {
 			success: function (campaignResult) {
 				getAllCampaigns()
 				newCampaignId = campaignResult.id
-				$('newCampaignsAddSubcampaign').removeClass('disabled');
 				swal("Congrates!", "You have successfuly created a campaign. Lets go for adding subcamapigns.", "success");
 			},
 			error: function (xhr, status, error) {
@@ -350,7 +349,7 @@ $(document).ready(function () {
 			endingTime: fullTimeConvertor($('#editCampaignEndingTime').val()),
 			budget: Number($('#editCampaignBudget').val())
 		}
-		if ($('#editCampaignStatus').find('option:selected').text() === 'Stop' || $('#editCampaignStatus').find('option:selected').text() === 'Unstop')
+		if ($('#editCampaignStatus').find('option:selected').text() === 'Stoped' || $('#editCampaignStatus').find('option:selected').text() === 'Unstoped')
 			data.status = $('#editCampaignStatus').find('option:selected').text()
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + editableCampaignId, serviceAccessToken);
 		$.ajax({
