@@ -87,6 +87,8 @@ $(document).ready(function () {
 	$("#announcerUsername").html(localStorage.getItem('announcerCompanyName'));
 	$("#announcerEmail").html(localStorage.getItem('announcerEmail'));
 
+	$('.page-loader-wrapper').fadeOut();
+
 	function getAccountModel() {
 		var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken)
 		var campaignURL = wrapFilter(campaignURLWithAT, '{"include":["subcampaigns"]}')

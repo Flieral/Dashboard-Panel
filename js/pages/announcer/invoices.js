@@ -83,6 +83,8 @@ $(document).ready(function () {
 	$("#announcerUsername").html(localStorage.getItem('announcerCompanyName'));
 	$("#announcerEmail").html(localStorage.getItem('announcerEmail'));
 
+	$('.page-loader-wrapper').fadeOut();
+
 	function fillTable(receiptsArray) {
 		$('#tab_logic>tbody').empty()
 		for (var i = 0; i < campaignsArray.length; i++) {
