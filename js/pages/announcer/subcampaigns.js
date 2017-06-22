@@ -128,7 +128,7 @@ $(document).ready(function () {
 		}
 	}
 
-	function tabHandler (e) {
+	function tabHandler(e) {
 		if ($(e.target).attr('id') === 'nav1') {
 			$("#mySubcampaigns").show();
 			$("#editSubcampaign").hide();
@@ -172,8 +172,7 @@ $(document).ready(function () {
 		$("#addSubcampaign").hide();
 		$("#contentProviding").hide();
 		$("#selectSetting").hide();
-	}
-	else if (window.location.hash === '#addSubcampaign')
+	} else if (window.location.hash === '#addSubcampaign')
 		$('.nav-tabs a[id="nav2"]').tab('show');
 	else if (window.location.hash === '#editSubcampaign')
 		$('.nav-tabs a[id="nav3"]').tab('show');
@@ -306,7 +305,7 @@ $(document).ready(function () {
 		$('.js-basic-example').DataTable();
 	}
 
-	$(document).on("click", ".subcampaignEdit", function(e) {
+	$(document).on("click", ".subcampaignEdit", function (e) {
 		e.preventDefault();
 		var campId = $(this).parent().siblings().eq(1).text()
 		var subcampId = $(this).parent().siblings().eq(0).text()
@@ -318,10 +317,38 @@ $(document).ready(function () {
 		$('.nav-tabs a[id="nav3"]').tab('show');
 	})
 
-	$(document).on("click", ".subcampaignDelete", function(e) {
-		//fix
+	$(document).on("click", ".subcampaignDelete", function (e) {
 		e.preventDefault();
-		var campId, subcampId
+		var campId = $(this).parent().siblings().eq(1).text()
+		var subcampId = $(this).parent().siblings().eq(0).text()
+		swal({
+			title: "Are You Sure?",
+			text: "You won't be able to recover the subcampaign after removing it.",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, Cancel!",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		}, function (isConfirm) {
+			if (isConfirm) {
+				var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'campaigns/' + campId + '/subcampaigns/' + subcampId, serviceAccessToken)
+				$.ajax({
+					url: subcampaignURLWithAT,
+					type: "DELETE",
+					success: function (subcampaignResult) {
+						swal("Deleted!", "Your subcampaign successfuly has been deleted.", "success");
+						getAccountModel()
+					},
+					error: function (xhr, status, error) {
+						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
+						alert(xhr.responseText);
+					}
+				});
+			}
+		});
+
 	})
 
 	$("#mySubcampaignsSearch").click(function (e) {
@@ -478,8 +505,8 @@ $(document).ready(function () {
 		if (!campaignId || !subcampaignName || !subcampaignId || !$('#contentProvidingHeader').val() || !$('#contentProvidingHolding').val() || !$('#contentProvidingSubtitle').val() || !$('#contentProvidingTemplate').find('option:selected').text() || !$('#contentProvidingType').find('option:selected').text())
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var isStatic = false
-			if ($('#contentProvidingType').find('option:selected').text() === 'Static')
-				isStatic = true
+		if ($('#contentProvidingType').find('option:selected').text() === 'Static')
+			isStatic = true
 		var templateId = $('#contentProvidingTemplate').find('option:selected').text()
 		var data = {
 			header: $('#contentProvidingHeader').val(),
@@ -524,15 +551,15 @@ $(document).ready(function () {
 				campaignId = totalSubcampaignsArray[i].campaignId
 				subcampaignId = totalSubcampaignsArray[i].id
 			}
-		if (!campaignId || !subcampaignName || !subcampaignId
-		|| !$('#selectSettingPriority').find('option:selected').text()
-		|| $('#selectSettingCategory').find('option:selected').text().length == 0
-		|| $('#selectSettingCountry').find('option:selected').text().length == 0
-		|| $('#selectSettingLanguage').find('option:selected').text().length == 0
-		|| $('#selectSettingDevice').find('option:selected').text().length == 0
-		|| $('#selectSettingOS').find('option:selected').text().length == 0
-		|| $('#selectSettingUserLabel').find('option:selected').text().length == 0
-		|| $('#selectSettingConnection').find('option:selected').text().length == 0
+		if (!campaignId || !subcampaignName || !subcampaignId ||
+			!$('#selectSettingPriority').find('option:selected').text() ||
+			$('#selectSettingCategory').find('option:selected').text().length == 0 ||
+			$('#selectSettingCountry').find('option:selected').text().length == 0 ||
+			$('#selectSettingLanguage').find('option:selected').text().length == 0 ||
+			$('#selectSettingDevice').find('option:selected').text().length == 0 ||
+			$('#selectSettingOS').find('option:selected').text().length == 0 ||
+			$('#selectSettingUserLabel').find('option:selected').text().length == 0 ||
+			$('#selectSettingConnection').find('option:selected').text().length == 0
 		)
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 
