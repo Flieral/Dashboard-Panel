@@ -128,14 +128,14 @@ $(document).ready(function () {
 		}
 	}
 
-	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		if ($(e.target).attr('id') === 'nav1' || window.location.hash === '#mySubcampaigns') {
+	function tabHandler (e) {
+		if ($(e.target).attr('id') === 'nav1') {
 			$("#mySubcampaigns").show();
 			$("#editSubcampaign").hide();
 			$("#addSubcampaign").hide();
 			$("#contentProviding").hide();
 			$("#selectSetting").hide();
-		} else if ($(e.target).attr('id') === 'nav3' || window.location.hash === '#editSubcampaign') {
+		} else if ($(e.target).attr('id') === 'nav3') {
 			if (localStorage.getItem('editableSubcampaignName')) {
 				var subcampName = localStorage.getItem('editableSubcampaignName')
 				$("#editSubcampaignSelect").selectpicker('val', subcampName)
@@ -148,7 +148,7 @@ $(document).ready(function () {
 			$("#contentProviding").hide();
 			$("#editSubcampaign").show();
 			$("#addSubcampaign").hide();
-		} else if ($(e.target).attr('id') === 'nav2' || window.localStorage.hash === '#addSubcampaign') {
+		} else if ($(e.target).attr('id') === 'nav2') {
 			if (localStorage.getItem('newCreatedCampaign')) {
 				var campName = localStorage.getItem('newCreatedCampaign')
 				$("#addSubcampaignSelectCampaign").selectpicker('val', campName)
@@ -160,13 +160,25 @@ $(document).ready(function () {
 			$("#contentProviding").show();
 			$("#selectSetting").show();
 		}
+	}
+
+	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+		tabHandler(e)
 	});
 
-	$("#mySubcampaigns").show();
-	$("#editSubcampaign").hide();
-	$("#addSubcampaign").hide();
-	$("#contentProviding").hide();
-	$("#selectSetting").hide();
+	if (!window.location.hash) {
+		$("#mySubcampaigns").show();
+		$("#editSubcampaign").hide();
+		$("#addSubcampaign").hide();
+		$("#contentProviding").hide();
+		$("#selectSetting").hide();
+	}
+	else if (window.location.hash === '#addSubcampaign')
+		$('.nav-tabs a[id="nav2"]').tab('show');
+	else if (window.location.hash === '#editSubcampaign')
+		$('.nav-tabs a[id="nav3"]').tab('show');
+	else if (window.location.hash === '#mySubcampaigns')
+		$('.nav-tabs a[id="nav1"]').tab('show');
 
 	$('#editSubcampaignSelect').on('changed.bs.select', function (e, clickedIndex, newValue, oldValue) {
 		var selected = $(this).find('option').eq(clickedIndex).text()

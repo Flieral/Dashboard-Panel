@@ -116,12 +116,12 @@ $(document).ready(function () {
 		}
 	}
 
-	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		if ($(e.target).attr('id') === 'nav1' || window.location.hash === '#myCampaigns') {
+	function tabHandler(e) {
+		if ($(e.target).attr('id') === 'nav1') {
 			$("#myCampaigns").show();
 			$("#editCampaign").hide();
 			$("#newCampaign").hide();
-		} else if ($(e.target).attr('id') === 'nav3' || window.location.hash === '#editCampaign') {
+		} else if ($(e.target).attr('id') === 'nav3') {
 			if (localStorage.getItem('editableCampaignName')) {
 				var campName = localStorage.getItem('editableCampaignName')
 				$("#editCampaignSelect").selectpicker('val', campName)
@@ -130,16 +130,28 @@ $(document).ready(function () {
 			$("#myCampaigns").hide();
 			$("#editCampaign").show();
 			$("#newCampaign").hide();
-		} else if ($(e.target).attr('id') === 'nav2' || window.localStorage.hash === '#newCampaign') {
+		} else if ($(e.target).attr('id') === 'nav2') {
 			$("#myCampaigns").hide();
 			$("#editCampaign").hide();
 			$("#newCampaign").show();
 		}
+	}
+
+	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+		tabHandler(e)
 	});
 
-	$("#myCampaigns").show();
-	$("#editCampaign").hide();
-	$("#newCampaign").hide();
+	if (!window.location.hash) {
+		$("#myCampaigns").show();
+		$("#editCampaign").hide();
+		$("#newCampaign").hide();
+	}
+	else if (window.location.hash === '#newCampaign')
+		$('.nav-tabs a[id="nav2"]').tab('show');
+	else if (window.location.hash === '#editCampaign')
+		$('.nav-tabs a[id="nav3"]').tab('show');
+	else if (window.location.hash === '#myCampaigns')
+		$('.nav-tabs a[id="nav1"]').tab('show');
 
 	$('#editCampaignSelect').on('changed.bs.select', function (e, clickedIndex, newValue, oldValue) {
 		var selected = $(this).find('option').eq(clickedIndex).text()
