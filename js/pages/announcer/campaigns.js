@@ -124,8 +124,9 @@ $(document).ready(function () {
 		} else if ($(e.target).attr('id') === 'nav3') {
 			if (localStorage.getItem('editableCampaignName')) {
 				var campName = localStorage.getItem('editableCampaignName')
-				$("#editCampaignSelect").selectpicker('val', campName)
+				$("#editCampaignSelect").selectpicker('val', campName).selectpicker('refresh')
 				fillEditCampaignFields(campName);
+				localStorage.removeItem('editableCampaignName')
 			}
 			$("#myCampaigns").hide();
 			$("#editCampaign").show();
@@ -213,31 +214,60 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + dateConvertor(campaignsArray[i].beginningTime) + '<br>' + dateConvertor(campaignsArray[i].endingTime) + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + campaignsArray[i].status + '</span></td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' +
-				'<button type="button" id="campaignEdit" class="m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' +
-				'<button type="button" id="subcampaignInfo" class="m-l-5 m-r-5 btn bg-amber waves-effect"><i class="material-icons">details</i></button>' +
-				'<button type="button" id="campaignDelete" class="m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
+				'<button type="button" class="campaignEdit m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' +
+				'<button type="button" class="subcampaignInfo m-l-5 m-r-5 btn bg-amber waves-effect"><i class="material-icons">details</i></button>' +
+				'<button type="button" class="campaignDelete m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
 				'</td>'
 			);
 		}
 		$('.js-basic-example').DataTable();
 	}
 
-	$("#campaignEdit").click(function (e) {
-		//fix
+	$(document).on("click", ".campaignEdit", function (e) {
 		e.preventDefault();
-		var campId
+		var campName = $(this).parent().siblings().eq(1).text()
+		localStorage.setItem('editableCampaignName', campName)
+		$('.nav-tabs a[id="nav3"]').tab('show');
 	})
 
-	$("#subcampaignInfo").click(function (e) {
-		//fix
+	$(document).on("click", ".subcampaignInfo", function (e) {
 		e.preventDefault();
-		var campId
+		var campName = $(this).parent().siblings().eq(1).text()
+		localStorage.setItem('myCampaignSelectSubcampaign', campName)
+		window.location.href = 'subcampaign.html'
 	})
 
-	$("#campaignDelete").click(function (e) {
-		//fix
+	$(document).on("click", ".campaignDelete", function (e) {
 		e.preventDefault();
-		var campId
+		var campId = $(this).parent().siblings().eq(0).text()
+		swal({
+			title: "Are You Sure?",
+			text: "You won't be able to recover the campaign after removing it.",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, Cancel!",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		}, function (isConfirm) {
+			if (isConfirm) {
+				var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + campId, serviceAccessToken)
+				$.ajax({
+					url: subcampaignURLWithAT,
+					type: "DELETE",
+					success: function (subcampaignResult) {
+						swal("Deleted!", "Your campaign successfuly has been deleted.", "success");
+						getAllCampaigns()
+					},
+					error: function (xhr, status, error) {
+						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
+						alert(xhr.responseText);
+					}
+				});
+			}
+		});
+
 	})
 
 	$("#myCampaignsSearch").click(function (e) {
