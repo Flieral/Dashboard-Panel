@@ -104,12 +104,12 @@ $(document).ready(function () {
 	}
 
 	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		if($(e.target).attr('id') === 'nav1' || window.location.hash === '#myCampaigns') {
+		if ($(e.target).attr('id') === 'nav1' || window.location.hash === '#myCampaigns') {
 			$("#myCampaigns").show();
 			$("#editCampaign").hide();
 			$("#newCampaign").hide();
-		} else if($(e.target).attr('id') === 'nav3' || window.location.hash === '#editCampaign') {
-			if(localStorage.getItem('editableCampaignName')) {
+		} else if ($(e.target).attr('id') === 'nav3' || window.location.hash === '#editCampaign') {
+			if (localStorage.getItem('editableCampaignName')) {
 				var campName = localStorage.getItem('editableCampaignName')
 				$("#editCampaignSelect").selectpicker('val', campName)
 				fillEditCampaignFields(campName);
@@ -117,7 +117,7 @@ $(document).ready(function () {
 			$("#myCampaigns").hide();
 			$("#editCampaign").show();
 			$("#newCampaign").hide();
-		} else if($(e.target).attr('id') === 'nav2' || window.localStorage.hash === '#newCampaign') {
+		} else if ($(e.target).attr('id') === 'nav2' || window.localStorage.hash === '#newCampaign') {
 			$("#myCampaigns").hide();
 			$("#editCampaign").hide();
 			$("#newCampaign").show();
@@ -135,7 +135,7 @@ $(document).ready(function () {
 
 	function getAllCampaigns() {
 		var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, serviceAccessToken)
-		var accountURL = wrapFilter(accountURLWithAT,'{"include":["announcerAccount", "campaigns"]}')
+		var accountURL = wrapFilter(accountURLWithAT, '{"include":["announcerAccount", "campaigns"]}')
 		$.ajax({
 			url: accountURL,
 			type: "GET",
@@ -158,7 +158,7 @@ $(document).ready(function () {
 				$("#sharedBudget").html('Budget: $' + accountResult.announcerAccount.budget);
 				$('.page-loader-wrapper').fadeOut();
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -171,12 +171,12 @@ $(document).ready(function () {
 			var statusColor
 			if (campaignsArray[i].status === 'Pending') statusColor = 'bg-orange'
 			else if (campaignsArray[i].status === 'Suspend') statusColor = 'bg-red'
-			else if (campaignsArray[i].status === 'Approved')statusColor = 'bg-green'
-			else if (campaignsArray[i].status === 'Created')statusColor = 'bg-grey'
-			else if (campaignsArray[i].status === 'Finished')statusColor = 'bg-indigo'
-			else if (campaignsArray[i].status === 'Started')statusColor = 'bg-blue'
-			else if (campaignsArray[i].status === 'Stopped')statusColor = 'bg-deep-orange'
-			else if (campaignsArray[i].status === 'UnStopped')statusColor = 'bg-teal'
+			else if (campaignsArray[i].status === 'Approved') statusColor = 'bg-green'
+			else if (campaignsArray[i].status === 'Created') statusColor = 'bg-grey'
+			else if (campaignsArray[i].status === 'Finished') statusColor = 'bg-indigo'
+			else if (campaignsArray[i].status === 'Started') statusColor = 'bg-blue'
+			else if (campaignsArray[i].status === 'Stopped') statusColor = 'bg-deep-orange'
+			else if (campaignsArray[i].status === 'UnStopped') statusColor = 'bg-teal'
 
 			$('#tab_logic').append('<tr id="addr' + (i) + '"></tr>');
 			$('#addr' + i).html(
@@ -186,11 +186,11 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + campaignsArray[i].startStyle + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + campaignsArray[i].budget + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + dateConvertor(campaignsArray[i].beginningTime) + '<br>' + dateConvertor(campaignsArray[i].endingTime) + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 '+ statusColor + '">' + campaignsArray[i].status + '</span></td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' + 
-					'<button type="button" id="campaignEdit" class="m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' + 
-					'<button type="button" id="subcampaignInfo" class="m-l-5 m-r-5 btn bg-amber waves-effect"><i class="material-icons">details</i></button>' +
-					'<button type="button" id="campaignDelete" class="m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + campaignsArray[i].status + '</span></td>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' +
+				'<button type="button" id="campaignEdit" class="m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' +
+				'<button type="button" id="subcampaignInfo" class="m-l-5 m-r-5 btn bg-amber waves-effect"><i class="material-icons">details</i></button>' +
+				'<button type="button" id="campaignDelete" class="m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
 				'</td>'
 			);
 		}
@@ -199,25 +199,28 @@ $(document).ready(function () {
 
 	$("#campaignEdit").click(function (e) {
 		//fix
-        e.preventDefault();
+		e.preventDefault();
 		var campId
 	})
 
 	$("#subcampaignInfo").click(function (e) {
 		//fix
-        e.preventDefault();
+		e.preventDefault();
 		var campId
 	})
 
 	$("#campaignDelete").click(function (e) {
 		//fix
-        e.preventDefault();
+		e.preventDefault();
 		var campId
 	})
 
-    $("#myCampaignsSearch").click(function (e) {
-        e.preventDefault();
-		var status = [], mediaStyle = [], startStyle = [], beginningTime, endingTime, limit
+	$("#myCampaignsSearch").click(function (e) {
+		e.preventDefault();
+		var status = [],
+			mediaStyle = [],
+			startStyle = [],
+			beginningTime, endingTime, limit
 		if ($('#myCampaignsStatus').val())
 			status = $('#myCampaignsStatus').val()
 		if ($('#myCampaignsMediaStyle').val())
@@ -238,18 +241,38 @@ $(document).ready(function () {
 			filter.where = {}
 			filter.where.and = []
 			if (status.length > 0)
-				filter.where.and.push({'status': { 'inq': status }})
+				filter.where.and.push({
+					'status': {
+						'inq': status
+					}
+				})
 			if (mediaStyle.length > 0)
-				filter.where.and.push({'mediaStyle': { 'inq': mediaStyle }})
+				filter.where.and.push({
+					'mediaStyle': {
+						'inq': mediaStyle
+					}
+				})
 			if (startStyle.length > 0)
-				filter.where.and.push({'startStyle': { 'inq': startStyle }})
+				filter.where.and.push({
+					'startStyle': {
+						'inq': startStyle
+					}
+				})
 			if (beginningTime)
-				filter.where.and.push({'beginningTime': { 'gte': beginningTime }})
+				filter.where.and.push({
+					'beginningTime': {
+						'gte': beginningTime
+					}
+				})
 			if (endingTime)
-				filter.where.and.push({'endingTime': { 'lte': endingTime }})
+				filter.where.and.push({
+					'endingTime': {
+						'lte': endingTime
+					}
+				})
 		}
 		filter.limit = limit
-		
+
 		var campURLwithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken)
 		var campaignURL = wrapFilter(campURLwithAT, JSON.stringify(filter))
 		$('.page-loader-wrapper').fadeIn();
@@ -260,30 +283,30 @@ $(document).ready(function () {
 				fillTable(campaignResult)
 				$('.page-loader-wrapper').fadeOut();
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
 		});
 	})
 
-    $("#newCampaignsAddCampaign").click(function (e) {
-        e.preventDefault();
+	$("#newCampaignsAddCampaign").click(function (e) {
+		e.preventDefault();
 		var data = {
-			name : $('#newCampaignName').val(),
-			mediaStyle : $('#newCampaignMediaStyle').find('option:selected').text(),
-			startStyle : $('#newCampaignStartStyle').find('option:selected').text(),
-			beginningTime : timeConvertor($('#newCampaignBeginningTime').val()),
-			endingTime : timeConvertor($('#newCampaignEndingTime').val()),
-			budget : Number($('#newCampaignBudget').val())
+			name: $('#newCampaignName').val(),
+			mediaStyle: $('#newCampaignMediaStyle').find('option:selected').text(),
+			startStyle: $('#newCampaignStartStyle').find('option:selected').text(),
+			beginningTime: timeConvertor($('#newCampaignBeginningTime').val()),
+			endingTime: timeConvertor($('#newCampaignEndingTime').val()),
+			budget: Number($('#newCampaignBudget').val())
 		}
-		console.log(typeof(data.budget));
+		console.log(typeof (data.budget));
 		$('.page-loader-wrapper').fadeIn();
 		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
 			data: JSON.stringify(data),
-			dataType : "json",
+			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (campaignResult) {
@@ -293,7 +316,7 @@ $(document).ready(function () {
 				$('newCampaignsAddSubcampaign').removeClass('disabled');
 				swal("Congrates!", "You have successfuly created a campaign. Lets go for adding subcamapigns.", "success");
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
@@ -301,7 +324,7 @@ $(document).ready(function () {
 		});
 	})
 
-    $("#newCampaignsAddSubcampaign").click(function (e) {
+	$("#newCampaignsAddSubcampaign").click(function (e) {
 		e.preventDefault();
 		if (!newCampaignId)
 			return swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
@@ -309,13 +332,13 @@ $(document).ready(function () {
 		window.location.href = '../../../pages/announcer/subcampaign.html#addSubcampaign'
 	})
 
-    $("#editCampaignsSave").click(function (e) {
-        e.preventDefault();
+	$("#editCampaignsSave").click(function (e) {
+		e.preventDefault();
 		var data = {
-			name : $('#editCampaignName').val(),
-			beginningTime : timeConvertor($('#editCampaignBeginningTime').val()),
-			endingTime : timeConvertor($('#editCampaignEndingTime').val()),
-			budget : Number($('#editCampaignBudget').val())
+			name: $('#editCampaignName').val(),
+			beginningTime: timeConvertor($('#editCampaignBeginningTime').val()),
+			endingTime: timeConvertor($('#editCampaignEndingTime').val()),
+			budget: Number($('#editCampaignBudget').val())
 		}
 		if ($('#editCampaignStatus').find('option:selected').text() === 'Stop' || $('#editCampaignStatus').find('option:selected').text() === 'Unstop')
 			data.status = $('#editCampaignStatus').find('option:selected').text()
@@ -324,7 +347,7 @@ $(document).ready(function () {
 		$.ajax({
 			url: campaignURL,
 			data: JSON.stringify(data),
-			dataType : "json",
+			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (coreResult) {
@@ -332,7 +355,7 @@ $(document).ready(function () {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly edited a campaign.", "success");
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);

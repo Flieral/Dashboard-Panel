@@ -63,7 +63,7 @@ $(document).ready(function () {
 		$.ajax({
 			url: accountURL,
 			data: JSON.stringify(data),
-			dataType : "json",
+			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (accountResult) {

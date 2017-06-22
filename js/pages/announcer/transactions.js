@@ -89,7 +89,7 @@ $(document).ready(function () {
 
 	function getAccountModel() {
 		var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken)
-		var campaignURL = wrapFilter(campaignURLWithAT,'{"include":["subcampaigns"]}')
+		var campaignURL = wrapFilter(campaignURLWithAT, '{"include":["subcampaigns"]}')
 		$.ajax({
 			url: campaignURL,
 			type: "GET",
@@ -104,7 +104,7 @@ $(document).ready(function () {
 				}
 				$('#transactionSubcampaign').trigger("chosen:updated")
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -126,20 +126,20 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + dateConvertor(transactionArray[i].time) + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + transactionArray[i].event + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + transactionArray[i].price + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 '+ statusColor + '">' + transactionArray[i].status + '</span></td>'
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + transactionArray[i].status + '</span></td>'
 			);
 		}
 		$('.js-basic-example').DataTable();
 	}
 
-    $("#transactionSearchButton").click(function (e) {
-        e.preventDefault();
+	$("#transactionSearchButton").click(function (e) {
+		e.preventDefault();
 		var status = []
 		var events = []
 		var subcampaignFilter = []
 		var beginningTime
 		var endingTime
-		
+
 		if ($('#transactionStatus').val())
 			status = $('#transactionStatus').val()
 
@@ -159,7 +159,13 @@ $(document).ready(function () {
 
 		var transactionURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllTransactions?accountHashId=' + userId + '&isAnnouncer=true', serviceAccessToken)
 		if (events.length > 0)
-			transactionURLWithAT = wrapFilter(transactionURLWithAT, {'where':{'event': {inq: events}}})
+			transactionURLWithAT = wrapFilter(transactionURLWithAT, {
+				'where': {
+					'event': {
+						inq: events
+					}
+				}
+			})
 		$.ajax({
 			url: transactionURLWithAT,
 			type: "GET",
@@ -173,33 +179,26 @@ $(document).ready(function () {
 							if (beginningTime && endingTime) {
 								if (time >= beginningTime && time <= endingTime)
 									responseArray.push(receiptResult[i])
-							}
-							else if (beginningTime) {
+							} else if (beginningTime) {
 								if (time >= beginningTime)
 									responseArray.push(receiptResult[i])
-							}
-							else if (endingTime) {
+							} else if (endingTime) {
 								if (time <= endingTime)
 									responseArray.push(receiptResult[i])
-							}
-							else
+							} else
 								responseArray.push(receiptResult[i])
 						}
-					}
-					else {
+					} else {
 						if (beginningTime && endingTime) {
 							if (time >= beginningTime && time <= endingTime)
 								responseArray.push(receiptResult[i])
-						}
-						else if (beginningTime) {
+						} else if (beginningTime) {
 							if (time >= beginningTime)
 								responseArray.push(receiptResult[i])
-						}
-						else if (endingTime) {
+						} else if (endingTime) {
 							if (time <= endingTime)
 								responseArray.push(receiptResult[i])
-						}
-						else
+						} else
 							responseArray.push(receiptResult[i])
 					}
 				}
@@ -217,10 +216,10 @@ $(document).ready(function () {
 				fillTable(finalResult)
 				$('.page-loader-wrapper').fadeOut();
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
 		});
-    })
+	})
 });

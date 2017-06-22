@@ -26,11 +26,11 @@ function dateConvertor(myDate) {
 }
 
 function generateQueryString(data) {
-    var ret = []
-    for (var d in data)
-      if (data[d])
-        ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]))
-    return ret.join("&")
+	var ret = []
+	for (var d in data)
+		if (data[d])
+			ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]))
+	return ret.join("&")
 }
 
 var announcer_url = "http://127.0.0.1:3000/api/";
@@ -129,14 +129,14 @@ $(document).ready(function () {
 	}
 
 	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		if($(e.target).attr('id') === 'nav1' || window.location.hash === '#mySubcampaigns') {
+		if ($(e.target).attr('id') === 'nav1' || window.location.hash === '#mySubcampaigns') {
 			$("#mySubcampaigns").show();
 			$("#editSubcampaign").hide();
 			$("#addSubcampaign").hide();
 			$("#contentProviding").hide();
 			$("#selectSetting").hide();
-		} else if($(e.target).attr('id') === 'nav3' || window.location.hash === '#editSubcampaign') {
-			if(localStorage.getItem('editableSubcampaignName')) {
+		} else if ($(e.target).attr('id') === 'nav3' || window.location.hash === '#editSubcampaign') {
+			if (localStorage.getItem('editableSubcampaignName')) {
 				var subcampName = localStorage.getItem('editableSubcampaignName')
 				$("#editSubcampaignSelect").selectpicker('val', subcampName)
 				fillEditSubcampaignFields(subcampName);
@@ -148,8 +148,8 @@ $(document).ready(function () {
 			$("#contentProviding").hide();
 			$("#editSubcampaign").show();
 			$("#addSubcampaign").hide();
-		} else if($(e.target).attr('id') === 'nav2' || window.localStorage.hash === '#addSubcampaign') {
-			if(localStorage.getItem('newCreatedCampaign')) {
+		} else if ($(e.target).attr('id') === 'nav2' || window.localStorage.hash === '#addSubcampaign') {
+			if (localStorage.getItem('newCreatedCampaign')) {
 				var campName = localStorage.getItem('newCreatedCampaign')
 				$("#addSubcampaignSelectCampaign").selectpicker('val', campName)
 				localStorage.removeItem("newCreatedCampaign")
@@ -180,14 +180,14 @@ $(document).ready(function () {
 
 	function getAccountModel() {
 		var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, serviceAccessToken)
-		var accountURL = wrapFilter(accountURLWithAT,'{"include":["announcerAccount", "campaigns"]}')
+		var accountURL = wrapFilter(accountURLWithAT, '{"include":["announcerAccount", "campaigns"]}')
 		$.ajax({
 			url: accountURL,
 			type: "GET",
 			success: function (accountResult) {
 				clientInstance = accountResult
 				var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken)
-				var campaignURL = wrapFilter(campaignURLWithAT,'{"include":["subcampaigns"]}')
+				var campaignURL = wrapFilter(campaignURLWithAT, '{"include":["subcampaigns"]}')
 				$.ajax({
 					url: campaignURL,
 					type: "GET",
@@ -243,7 +243,7 @@ $(document).ready(function () {
 
 						fillTable(totalSubcampaignsArray)
 					},
-					error: function(xhr, status, error) {
+					error: function (xhr, status, error) {
 						$('.page-loader-wrapper').fadeOut();
 						alert(xhr.responseText);
 					}
@@ -254,7 +254,7 @@ $(document).ready(function () {
 				$("#sharedBudget").html('Budget: $' + accountResult.announcerAccount.budget);
 				$('.page-loader-wrapper').fadeOut();
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -267,12 +267,12 @@ $(document).ready(function () {
 			var statusColor
 			if (subcampaignsArray[i].status === 'Pending') statusColor = 'bg-orange'
 			else if (subcampaignsArray[i].status === 'Suspend') statusColor = 'bg-red'
-			else if (subcampaignsArray[i].status === 'Approved')statusColor = 'bg-green'
-			else if (subcampaignsArray[i].status === 'Created')statusColor = 'bg-grey'
-			else if (subcampaignsArray[i].status === 'Finished')statusColor = 'bg-indigo'
-			else if (subcampaignsArray[i].status === 'Started')statusColor = 'bg-blue'
-			else if (subcampaignsArray[i].status === 'Stopped')statusColor = 'bg-deep-orange'
-			else if (subcampaignsArray[i].status === 'UnStopped')statusColor = 'bg-teal'
+			else if (subcampaignsArray[i].status === 'Approved') statusColor = 'bg-green'
+			else if (subcampaignsArray[i].status === 'Created') statusColor = 'bg-grey'
+			else if (subcampaignsArray[i].status === 'Finished') statusColor = 'bg-indigo'
+			else if (subcampaignsArray[i].status === 'Started') statusColor = 'bg-blue'
+			else if (subcampaignsArray[i].status === 'Stopped') statusColor = 'bg-deep-orange'
+			else if (subcampaignsArray[i].status === 'UnStopped') statusColor = 'bg-teal'
 
 			$('#tab_logic').append('<tr id="addr' + (i) + '"></tr>');
 			$('#addr' + i).html(
@@ -283,10 +283,10 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + subcampaignsArray[i].minBudget + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + subcampaignsArray[i].plan + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + subcampaignsArray[i].price + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 '+ statusColor + '">' + subcampaignsArray[i].status + '</span></td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' + 
-					'<button type="button" id="subcampaignEdit" class="m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' + 
-					'<button type="button" id="subcampaignDelete" class="m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + subcampaignsArray[i].status + '</span></td>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' +
+				'<button type="button" id="subcampaignEdit" class="m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' +
+				'<button type="button" id="subcampaignDelete" class="m-l-5 m-r-5 btn bg-red waves-effect"><i class="material-icons">clear</i></button>' +
 				'</td>'
 			);
 		}
@@ -295,19 +295,23 @@ $(document).ready(function () {
 
 	$("#subcampaignEdit").click(function (e) {
 		//fix
-        e.preventDefault();
+		e.preventDefault();
 		var campId, subcampId
 	})
 
 	$("#subcampaignDelete").click(function (e) {
 		//fix
-        e.preventDefault();
+		e.preventDefault();
 		var campId, subcampId
 	})
 
-    $("#mySubcampaignsSearch").click(function (e) {
-        e.preventDefault();
-		var status = [], style = [], plan = [], campaign = [], limit
+	$("#mySubcampaignsSearch").click(function (e) {
+		e.preventDefault();
+		var status = [],
+			style = [],
+			plan = [],
+			campaign = [],
+			limit
 		if ($('#mySubcampaignSelectCampaign').val())
 			campaign = $('#mySubcampaignSelectCampaign').val()
 		if ($('#mySubcampaignStatus').val())
@@ -324,17 +328,35 @@ $(document).ready(function () {
 			filter.where = {}
 			filter.where.and = []
 			if (status.length > 0)
-				filter.where.and.push({'status': { 'inq': status }})
+				filter.where.and.push({
+					'status': {
+						'inq': status
+					}
+				})
 			if (style.length > 0)
-				filter.where.and.push({'style': { 'inq': style }})
+				filter.where.and.push({
+					'style': {
+						'inq': style
+					}
+				})
 			if (plan.length > 0)
-				filter.where.and.push({'plan': { 'inq': plan }})
+				filter.where.and.push({
+					'plan': {
+						'inq': plan
+					}
+				})
 			if (campaign.length > 0)
-				filter.where.and.push({'campaignId': { 'inq': campaign }})
+				filter.where.and.push({
+					'campaignId': {
+						'inq': campaign
+					}
+				})
 		}
 		filter.limit = limit
-		filter.fields = {'settingModel': false}
-		
+		filter.fields = {
+			'settingModel': false
+		}
+
 		var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns/getAllSubcampaigns?accountHashId=' + userId, serviceAccessToken)
 		var subcampaignFilterURL = wrapFilter(subcampaignURLWithAT, JSON.stringify(filter))
 		$('.page-loader-wrapper').fadeIn();
@@ -345,7 +367,7 @@ $(document).ready(function () {
 				fillTable(subcampaignResult)
 				$('.page-loader-wrapper').fadeOut();
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -353,25 +375,25 @@ $(document).ready(function () {
 	})
 
 	$("#editSubcamapignButton").click(function (e) {
-        e.preventDefault();
+		e.preventDefault();
 		var subcampaignId = $('editSubcampaignSelect').val()
 		var campaignId
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
 			if (totalSubcampaignsArray[i].id === subcampaignId)
 				campaignId = totalSubcampaignsArray[i].campaignId
 		var data = {
-			name : $('#editSubcampaignName').val(),
-			minBudget : $('#editSubcampaignMinBudget').val(),
-			style : $('#editSubcampaignStyle').find('option:selected').text(),
-			plan : $('#editSubcampaignPlan').find('option:selected').text(),
-			price : $('#editSubcampaignPrice').val()
+			name: $('#editSubcampaignName').val(),
+			minBudget: $('#editSubcampaignMinBudget').val(),
+			style: $('#editSubcampaignStyle').find('option:selected').text(),
+			plan: $('#editSubcampaignPlan').find('option:selected').text(),
+			price: $('#editSubcampaignPrice').val()
 		}
 		$('.page-loader-wrapper').fadeIn();
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns/' + subcampaignId, serviceAccessToken);
 		$.ajax({
 			url: settingURL,
 			data: JSON.stringify(data),
-			dataType : "json",
+			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (subcampaignResult) {
@@ -379,7 +401,7 @@ $(document).ready(function () {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly edited a subcampaign.", "success");
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
@@ -388,21 +410,21 @@ $(document).ready(function () {
 	})
 
 	$("#addSubcamapignButton").click(function (e) {
-        e.preventDefault();
+		e.preventDefault();
 		var campaignId = $('addSubcampaignSelectCampaign').val()
 		var data = {
-			name : $('#addSubcampaignName').val(),
-			minBudget : Number($('#addSubcampaignMinBudget').val()),
-			style : $('#addSubcampaignStyle').find('option:selected').text(),
-			plan : $('#addSubcampaignPlan').find('option:selected').text(),
-			price : $('#addSubcampaignPrice').val()
+			name: $('#addSubcampaignName').val(),
+			minBudget: Number($('#addSubcampaignMinBudget').val()),
+			style: $('#addSubcampaignStyle').find('option:selected').text(),
+			plan: $('#addSubcampaignPlan').find('option:selected').text(),
+			price: $('#addSubcampaignPrice').val()
 		}
 		$('.page-loader-wrapper').fadeIn();
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns', serviceAccessToken);
 		$.ajax({
 			url: subcampaignURL,
 			data: JSON.stringify(data),
-			dataType : "json",
+			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (subcampaignResult) {
@@ -412,7 +434,7 @@ $(document).ready(function () {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly created a subcampaign. Lets go for adding setting and content.", "success");
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
@@ -421,7 +443,7 @@ $(document).ready(function () {
 	})
 
 	$("#sendContentButton").click(function (e) {
-        e.preventDefault();
+		e.preventDefault();
 		var subcampaignId = $('contentProvidingSelect').val()
 		var campaignId
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
@@ -448,7 +470,7 @@ $(document).ready(function () {
 		$.ajax({
 			url: subcampaignURL,
 			data: JSON.stringify(data),
-			dataType : "json",
+			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (subcampaignResult) {
@@ -458,7 +480,7 @@ $(document).ready(function () {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly added a content to a subcampaign.", "success");
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
@@ -467,24 +489,38 @@ $(document).ready(function () {
 	})
 
 	$("#saveSettingButton").click(function (e) {
-        e.preventDefault();
+		e.preventDefault();
 		var subcampaignId = $('selectSettingSelect').val()
 		var data = {
-			priority : $('#selectSettingPriority').find('option:selected').text(),
-			category : $('#selectSettingCategory').find('option:selected').map(function(){return this.value}).get(),
-			country : $('#selectSettingCountry').find('option:selected').map(function(){return this.value}).get(),
-			language : $('#selectSettingLanguage').find('option:selected').map(function(){return this.value}).get(),
-			device : $('#selectSettingDevice').find('option:selected').map(function(){return this.value}).get(),
-			os: $('#selectSettingOS').find('option:selected').map(function(){return this.value}).get(),
-			userLabel: $('#selectSettingUserLabel').find('option:selected').map(function(){return this.value}).get(),
-			connection: $('#selectSettingConnection').find('option:selected').map(function(){return this.value}).get()
+			priority: $('#selectSettingPriority').find('option:selected').text(),
+			category: $('#selectSettingCategory').find('option:selected').map(function () {
+				return this.value
+			}).get(),
+			country: $('#selectSettingCountry').find('option:selected').map(function () {
+				return this.value
+			}).get(),
+			language: $('#selectSettingLanguage').find('option:selected').map(function () {
+				return this.value
+			}).get(),
+			device: $('#selectSettingDevice').find('option:selected').map(function () {
+				return this.value
+			}).get(),
+			os: $('#selectSettingOS').find('option:selected').map(function () {
+				return this.value
+			}).get(),
+			userLabel: $('#selectSettingUserLabel').find('option:selected').map(function () {
+				return this.value
+			}).get(),
+			connection: $('#selectSettingConnection').find('option:selected').map(function () {
+				return this.value
+			}).get()
 		}
 		$('.page-loader-wrapper').fadeIn();
 		var settingURL = wrapAccessToken(announcer_url + 'subcampaigns/' + subcampaignId + '/setting', serviceAccessToken);
 		$.ajax({
 			url: settingURL,
 			data: JSON.stringify(data),
-			dataType : "json",
+			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (settingResult) {
@@ -492,12 +528,11 @@ $(document).ready(function () {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Congrates!", "You have successfuly edited the setting of a subcampaign.", "success");
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
 		});
 	})
-
 })

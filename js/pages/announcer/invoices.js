@@ -95,14 +95,14 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + dateConvertor(receiptsArray[i].time) + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 20%;">' + JSON.stringify(receiptsArray[i].data) + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + receiptsArray[i].data.price + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 '+ statusColor + '">' + receiptsArray[i].status + '</span></td>'
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + receiptsArray[i].status + '</span></td>'
 			);
 		}
 		$('.js-basic-example').DataTable();
 	}
 
-    $("#receiptInformationSearchButton").click(function (e) {
-        e.preventDefault();
+	$("#receiptInformationSearchButton").click(function (e) {
+		e.preventDefault();
 		var status
 		var beginningTime
 		var endingTime
@@ -134,33 +134,26 @@ $(document).ready(function () {
 							if (beginningTime && endingTime) {
 								if (time >= beginningTime && time <= endingTime)
 									responseArray.push(receiptResult[i])
-							}
-							else if (beginningTime) {
+							} else if (beginningTime) {
 								if (time >= beginningTime)
 									responseArray.push(receiptResult[i])
-							}
-							else if (endingTime) {
+							} else if (endingTime) {
 								if (time <= endingTime)
 									responseArray.push(receiptResult[i])
-							}
-							else
+							} else
 								responseArray.push(receiptResult[i])
 						}
-					}
-					else {
+					} else {
 						if (beginningTime && endingTime) {
 							if (time >= beginningTime && time <= endingTime)
 								responseArray.push(receiptResult[i])
-						}
-						else if (beginningTime) {
+						} else if (beginningTime) {
 							if (time >= beginningTime)
 								responseArray.push(receiptResult[i])
-						}
-						else if (endingTime) {
+						} else if (endingTime) {
 							if (time <= endingTime)
 								responseArray.push(receiptResult[i])
-						}
-						else
+						} else
 							responseArray.push(receiptResult[i])
 					}
 				}
@@ -168,10 +161,10 @@ $(document).ready(function () {
 				fillTable(responseArray)
 				$('.page-loader-wrapper').fadeOut();
 			},
-			error: function(xhr, status, error) {
+			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
 		});
-    })
+	})
 });
