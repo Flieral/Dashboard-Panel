@@ -118,7 +118,7 @@ $(document).ready(function () {
 
 		var limit = $('#receiptInformationLimit').val()
 
-		var receiptURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllReceipts' + userId, serviceAccessToken)
+		var receiptURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllReceipts?accountHashId=' + userId, serviceAccessToken)
 		$.ajax({
 			url: receiptURL,
 			type: "GET",
