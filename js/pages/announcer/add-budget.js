@@ -56,6 +56,9 @@ $(document).ready(function () {
 
 	$("#addBudgetButton").click(function (e) {
 		e.preventDefault();
+		if (!$('#AddBudgetMoney').val())
+			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+
 		var data = {
 			budget: Number($('#AddBudgetMoney').val())
 		}

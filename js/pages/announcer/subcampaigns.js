@@ -384,6 +384,8 @@ $(document).ready(function () {
 				campaignId = totalSubcampaignsArray[i].campaignId
 				subcampaignId = totalSubcampaignsArray[i].id
 			}
+		if (!campaignId || !subcampaignId || !subcampaignName || !$('#editSubcampaignName').val() || !$('#editSubcampaignMinBudget').val() || !$('#editSubcampaignPrice').val() || !$('#editSubcampaignStyle').find('option:selected').text() || !$('#editSubcampaignPlan').find('option:selected').text())
+			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
 			name: $('#editSubcampaignName').val(),
 			minBudget: $('#editSubcampaignMinBudget').val(),
@@ -416,6 +418,8 @@ $(document).ready(function () {
 		for (var i = 0; i < clientInstance.campaigns.length; i++)
 			if (clientInstance.campaigns[i].name === campaignName)
 				campaignId = clientInstance.campaigns[i].id
+		if (!campaignId || !campaignName || !$('#addSubcampaignName').val() || !$('#addSubcampaignMinBudget').val() || !$('#addSubcampaignPrice').val() || !$('#addSubcampaignStyle').find('option:selected').text() || !$('#addSubcampaignPlan').find('option:selected').text())
+			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
 			name: $('#addSubcampaignName').val(),
 			minBudget: Number($('#addSubcampaignMinBudget').val()),
@@ -452,7 +456,8 @@ $(document).ready(function () {
 				campaignId = totalSubcampaignsArray[i].campaignId
 				subcampaignId = totalSubcampaignsArray[i].id
 			}
-
+		if (!campaignId || !subcampaignName || !subcampaignId || !$('#contentProvidingHeader').val() || !$('#contentProvidingHolding').val() || !$('#contentProvidingSubtitle').val() || !$('#contentProvidingTemplate').find('option:selected').text() || !$('#contentProvidingType').find('option:selected').text())
+			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var isStatic = false
 			if ($('#contentProvidingType').find('option:selected').text() === 'Static')
 				isStatic = true
@@ -500,6 +505,18 @@ $(document).ready(function () {
 				campaignId = totalSubcampaignsArray[i].campaignId
 				subcampaignId = totalSubcampaignsArray[i].id
 			}
+		if (!campaignId || !subcampaignName || !subcampaignId
+		|| !$('#selectSettingPriority').find('option:selected').text()
+		|| $('#selectSettingCategory').find('option:selected').text().length == 0
+		|| $('#selectSettingCountry').find('option:selected').text().length == 0
+		|| $('#selectSettingLanguage').find('option:selected').text().length == 0
+		|| !$('#selectSettingDevice').find('option:selected').text().length == 0
+		|| !$('#selectSettingOS').find('option:selected').text().length == 0
+		|| !$('#selectSettingUserLabel').find('option:selected').text().length == 0
+		|| !$('#selectSettingConnection').find('option:selected').text().length == 0
+		)
+			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+
 		var data = {
 			priority: $('#selectSettingPriority').find('option:selected').text(),
 			category: $('#selectSettingCategory').find('option:selected').map(function () {

@@ -44,7 +44,6 @@ var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
 	var clientCampaignInstance;
-	var campaignsArray = []
 	var editableCampaignId
 	var newCampaignId
 
@@ -306,6 +305,8 @@ $(document).ready(function () {
 
 	$("#newCampaignsAddCampaign").click(function (e) {
 		e.preventDefault();
+		if (!$('#newCampaignName').val() || !$('#newCampaignBeginningTime').val() || !$('#newCampaignEndingTime').val() || !$('#newCampaignBudget').val() || !$('#newCampaignMediaStyle').find('option:selected').text() || !$('#newCampaignStartStyle').find('option:selected').text())
+			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
 			name: $('#newCampaignName').val(),
 			mediaStyle: $('#newCampaignMediaStyle').find('option:selected').text(),
@@ -343,6 +344,13 @@ $(document).ready(function () {
 
 	$("#editCampaignsSave").click(function (e) {
 		e.preventDefault();
+		var campaignName = $('#editCampaignSelect').find('option:selected').text()
+		var campaignId
+		for (var i = 0; clientCampaignInstance.campaigns.length; i++)
+			if (clientCampaignInstance.campaigns[i].name === campaignName)
+				campaignId = clientCampaignInstance.campaigns[i].id
+		if (!campaignName || !campaignId || !$('#editCampaignName').val() || !$('#editCampaignBeginningTime').val() || !$('#editCampaignEndingTime').val() || !$('#editCampaignBudget').val() || !$('#editCampaignStatus').find('option:selected').text())
+			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
 			name: $('#editCampaignName').val(),
 			beginningTime: fullTimeConvertor($('#editCampaignBeginningTime').val()),
@@ -351,7 +359,7 @@ $(document).ready(function () {
 		}
 		if ($('#editCampaignStatus').find('option:selected').text() === 'Stoped' || $('#editCampaignStatus').find('option:selected').text() === 'Unstoped')
 			data.status = $('#editCampaignStatus').find('option:selected').text()
-		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + editableCampaignId, serviceAccessToken);
+		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + campaignId, serviceAccessToken);
 		$.ajax({
 			url: campaignURL,
 			data: JSON.stringify(data),
