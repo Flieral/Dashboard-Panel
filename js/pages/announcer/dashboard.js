@@ -244,6 +244,8 @@ $(document).ready(function () {
 								"data-to": subcampaignsBudget
 							});
 
+							$("#userGreeting").html("Welcome, " + accountResult.username.charAt(0).toUpperCase() + accountResult.username.slice(1) + "!");
+
 							for (var i = 0; i < statisticsResult.click.length; i++) {
 								if (statisticsResult.click[i].actionInfo.time < nowTime && statisticsResult.click[i].actionInfo.time > todayTime)
 									todayClicks++
