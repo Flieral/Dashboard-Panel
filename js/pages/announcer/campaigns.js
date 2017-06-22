@@ -18,11 +18,25 @@ function timeConvertor(myDate) {
 	return Math.floor((new Date(parseInt(parts[3]), months.indexOf(parts[2]), parseInt(parts[1]))).getTime())
 }
 
+function fullTimeConvertor(myDate) {
+	var parts = myDate.split(" ")
+	var doublePart = parts[5].split(":")
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	return Math.floor((new Date(parseInt(parts[3]), months.indexOf(parts[2]), parseInt(parts[1]), parseInt(doublePart[0]), parseInt(doublePart[1]))).getTime())
+}
+
 function dateConvertor(myDate) {
 	var d = new Date(myDate)
 	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear())
+}
+
+function fullDateConvertor(myDate) {
+	var d = new Date(myDate)
+	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes())
 }
 
 var announcer_url = "http://127.0.0.1:3000/api/";
@@ -96,8 +110,8 @@ $(document).ready(function () {
 					$("#editCampaignStatus").selectpicker('val', 'Stop')
 				else
 					$("#editCampaignStatus").selectpicker('val', 'Unstop')
-				$("#editCampaignBeginningTime").val(dateConvertor(clientCampaignInstance.campaigns[i].beginningTime))
-				$("#editCampaignEndingTime").val(dateConvertor(clientCampaignInstance.campaigns[i].endingTime))
+				$("#editCampaignBeginningTime").val(fullDateConvertor(clientCampaignInstance.campaigns[i].beginningTime))
+				$("#editCampaignEndingTime").val(fullDateConvertor(clientCampaignInstance.campaigns[i].endingTime))
 				break
 			}
 		}
@@ -296,8 +310,8 @@ $(document).ready(function () {
 			name: $('#newCampaignName').val(),
 			mediaStyle: $('#newCampaignMediaStyle').find('option:selected').text(),
 			startStyle: $('#newCampaignStartStyle').find('option:selected').text(),
-			beginningTime: timeConvertor($('#newCampaignBeginningTime').val()),
-			endingTime: timeConvertor($('#newCampaignEndingTime').val()),
+			beginningTime: fullTimeConvertor($('#newCampaignBeginningTime').val()),
+			endingTime: fullTimeConvertor($('#newCampaignEndingTime').val()),
 			budget: Number($('#newCampaignBudget').val())
 		}
 		console.log(typeof (data.budget));
@@ -336,8 +350,8 @@ $(document).ready(function () {
 		e.preventDefault();
 		var data = {
 			name: $('#editCampaignName').val(),
-			beginningTime: timeConvertor($('#editCampaignBeginningTime').val()),
-			endingTime: timeConvertor($('#editCampaignEndingTime').val()),
+			beginningTime: fullTimeConvertor($('#editCampaignBeginningTime').val()),
+			endingTime: fullTimeConvertor($('#editCampaignEndingTime').val()),
 			budget: Number($('#editCampaignBudget').val())
 		}
 		if ($('#editCampaignStatus').find('option:selected').text() === 'Stop' || $('#editCampaignStatus').find('option:selected').text() === 'Unstop')
