@@ -176,13 +176,13 @@ $(document).ready(function () {
 								approvedCamps = 0,
 								startedCamps = 0,
 								finishedCamps = 0,
-								suspendedCamps = 0;
+								pendingCamps = 0;
 							var totalSubcamps = 0,
 								createdSubcamps = 0,
 								approvedSubcamps = 0,
 								startedSubcamps = 0,
 								finishedSubcamps = 0,
-								suspendedSubcamps = 0;
+								pendingSubcamps = 0;
 							var todayClicks = 0,
 								yesterdayClicks = 0,
 								lastWeekClicks = 0;
@@ -201,8 +201,8 @@ $(document).ready(function () {
 									startedCamps++
 								else if (accountResult.campaigns[i].status == 'Finished')
 									finishedCamps++
-								else if (accountResult.campaigns[i].status == 'Suspended')
-									suspendedCamps++
+								else if (accountResult.campaigns[i].status == 'Pending')
+									pendingCamps++
 							}
 
 							totalSubcamps = subcampaignResult.length
@@ -215,8 +215,8 @@ $(document).ready(function () {
 									startedSubcamps++
 								else if (subcampaignResult[i].status == 'Finished')
 									finishedSubcamps++
-								else if (subcampaignResult[i].status == 'Suspended')
-									suspendedSubcamps++
+								else if (subcampaignResult[i].status == 'Pending')
+									pendingSubcamps++
 							}
 
 							clicks = statisticsResult.click.length
@@ -242,14 +242,14 @@ $(document).ready(function () {
 							$("#approved_camps").html(approvedCamps);
 							$("#started_camps").html(startedCamps);
 							$("#finished_camps").html(finishedCamps);
-							$("#suspended_camps").html(suspendedCamps);
+							$("#pending_camps").html(pendingCamps);
 
 							$("#total_subcamps").html(totalSubcamps);
 							$("#created_subcamps").html(createdSubcamps);
 							$("#approved_subcamps").html(approvedSubcamps);
 							$("#started_subcamps").html(startedSubcamps);
 							$("#finished_subcamps").html(finishedSubcamps);
-							$("#suspended_subcamps").html(suspendedSubcamps);
+							$("#pending_subcamps").html(pendingSubcamps);
 
 							$("#announcerUsername").html(accountResult.companyName);
 							$("#announcerEmail").html(accountResult.email);
