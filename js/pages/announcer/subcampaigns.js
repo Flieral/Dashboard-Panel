@@ -192,6 +192,7 @@ $(document).ready(function () {
 					url: campaignURL,
 					type: "GET",
 					success: function (campaignResult) {
+						totalSubcampaignsArray = []
 						fullCampaignResult = campaignResult
 						$('#addSubcampaignSelectCampaign').find('option').remove()
 						$('#mySubcampaignSelectCampaign').find('option').remove()
@@ -376,11 +377,13 @@ $(document).ready(function () {
 
 	$("#editSubcamapignButton").click(function (e) {
 		e.preventDefault();
-		var subcampaignId = $('editSubcampaignSelect').val()
-		var campaignId
+		var subcampaignName = $('#editSubcampaignSelect').find('option:selected').text()
+		var campaignId, subcampaignId
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
-			if (totalSubcampaignsArray[i].id === subcampaignId)
+			if (totalSubcampaignsArray[i].name === subcampaignName) {
 				campaignId = totalSubcampaignsArray[i].campaignId
+				subcampaignId = totalSubcampaignsArray[i].id
+			}
 		var data = {
 			name: $('#editSubcampaignName').val(),
 			minBudget: $('#editSubcampaignMinBudget').val(),
@@ -390,7 +393,7 @@ $(document).ready(function () {
 		}
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns/' + subcampaignId, serviceAccessToken);
 		$.ajax({
-			url: settingURL,
+			url: subcampaignURL,
 			data: JSON.stringify(data),
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",
@@ -408,7 +411,11 @@ $(document).ready(function () {
 
 	$("#addSubcamapignButton").click(function (e) {
 		e.preventDefault();
-		var campaignId = $('addSubcampaignSelectCampaign').val()
+		var campaignName = $('#addSubcampaignSelectCampaign').find('option:selected').text()
+		var campaignId
+		for (var i = 0; i < clientInstance.campaigns.length; i++)
+			if (clientInstance.campaigns[i].name === campaignName)
+				campaignId = clientInstance.campaigns[i].id
 		var data = {
 			name: $('#addSubcampaignName').val(),
 			minBudget: Number($('#addSubcampaignMinBudget').val()),
@@ -438,12 +445,17 @@ $(document).ready(function () {
 
 	$("#sendContentButton").click(function (e) {
 		e.preventDefault();
-		var subcampaignId = $('contentProvidingSelect').val()
-		var campaignId
+		var subcampaignName = $('#contentProvidingSelect').find('option:selected').text()
+		var campaignId, subcampaignId
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
-			if (totalSubcampaignsArray[i].id === subcampaignId)
+			if (totalSubcampaignsArray[i].name === subcampaignName) {
 				campaignId = totalSubcampaignsArray[i].campaignId
-		var isStatic = $('#contentProvidingType').find('option:selected').text()
+				subcampaignId = totalSubcampaignsArray[i].id
+			}
+
+		var isStatic = false
+			if ($('#contentProvidingType').find('option:selected').text() === 'Static')
+				isStatic = true
 		var templateId = $('#contentProvidingTemplate').find('option:selected').text()
 		var data = {
 			header: $('#contentProvidingHeader').val(),
@@ -481,7 +493,13 @@ $(document).ready(function () {
 
 	$("#saveSettingButton").click(function (e) {
 		e.preventDefault();
-		var subcampaignId = $('selectSettingSelect').val()
+		var subcampaignName = $('#selectSettingSelect').find('option:selected').text()
+		var campaignId, subcampaignId
+		for (var i = 0; i < totalSubcampaignsArray.length; i++)
+			if (totalSubcampaignsArray[i].name === subcampaignName) {
+				campaignId = totalSubcampaignsArray[i].campaignId
+				subcampaignId = totalSubcampaignsArray[i].id
+			}
 		var data = {
 			priority: $('#selectSettingPriority').find('option:selected').text(),
 			category: $('#selectSettingCategory').find('option:selected').map(function () {
