@@ -327,7 +327,9 @@ $(document).ready(function () {
 				'</td>'
 			);
 		}
-		$('.js-basic-example').DataTable();
+		$('.js-basic-example').DataTable({
+			"scrollX": true
+		});
 	}
 
 	$(document).on("click", ".subcampaignEdit", function (e) {
