@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<title>Placement</title>
+	<!-- Favicon-->
+	<link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+	<!-- Bootstrap Core Css -->
+	<link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<!-- Waves Effect Css -->
+	<link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+
+	<!-- Animation Css -->
+	<link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+	<!-- Colorpicker Css -->
+	<link href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
+	<!-- Dropzone Css -->
+	<link href="../../plugins/dropzone/dropzone.css" rel="stylesheet">
+
+	<!-- Bootstrap Material Datetime Picker Css -->
+	<link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+	<!-- Wait Me Css -->
+	<link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+	<!-- Multi Select Css -->
+	<link href="../../plugins/multi-select/css/multi-select.css" rel="stylesheet">
+
+	<!-- Bootstrap Spinner Css -->
+	<link href="../../plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
+
+	<!-- Bootstrap Tagsinput Css -->
+	<link href="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+	<!-- Bootstrap Select Css -->
+	<link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+	<!-- noUISlider Css -->
+	<link href="../../plugins/nouislider/nouislider.min.css" rel="stylesheet" />
+
+	<!-- JQuery DataTable Css -->
+	<link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+	<!-- Sweetalert Css -->
+	<link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+	<!-- Custom Css -->
+	<link href="../../css/style.css" rel="stylesheet">
+
+	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+	<link href="../../css/themes/theme-pink.css" rel="stylesheet" />
+</head>
+
+<body class="theme-pink">
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-pink">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+			<p>Please Wait</p>
+		</div>
+	</div>
+	<!-- #END# Page Loader -->
+	<!-- Overlay For Sidebars -->
+	<div class="overlay"></div>
+	<!-- #END# Overlay For Sidebars -->
+	<!-- Top Bar -->
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+				<a href="javascript:void(0);" class="bars"></a>
+				<a class="navbar-brand" href="dashboard.html"><b>Flieral Inc.</b> Publisher Dashboard</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<!-- Notifications -->
+					<li class="dropdown">
+						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+							<i class="label"> Notifications</i>
+							<i class="material-icons">notifications</i>
+							<span class="label-count">0</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="header">NOTIFICATIONS</li>
+							<li class="body">
+								<ul class="menu">
+									<li>
+										<a href="javascript:void(0);">
+											<div class="icon-circle bg-light-green">
+												<i class="material-icons">person_add</i>
+											</div>
+											<div class="menu-info">
+												<h4>12 new members joined</h4>
+												<p>
+													<i class="material-icons">access_time</i> 14 mins ago
+												</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="footer">
+								<a href="javascript:void(0);">View All Notifications</a>
+							</li>
+						</ul>
+					</li>
+					<!-- #END# Notifications -->
+					<!-- Tasks -->
+					<li class="dropdown">
+						<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+							<i class="label"> Tasks</i>
+							<i class="material-icons">flag</i>
+							<span class="label-count">0</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="header">TASKS</li>
+							<li class="body">
+								<ul class="menu tasks">
+									<li>
+										<a href="javascript:void(0);">
+											<h4>
+												Footer display issue
+												<small>32%</small>
+											</h4>
+											<div class="progress">
+												<div class="progress-bar bg-pink" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="footer">
+								<a href="javascript:void(0);">View All Tasks</a>
+							</li>
+						</ul>
+					</li>
+					<!-- #END# Tasks -->
+					<li><a href="javascript:void(0);"><i class="label"> Support CRM</i><i class="material-icons">supervisor_account</i></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- #Top Bar -->
+	<section>
+		<!-- Left Sidebar -->
+		<aside id="leftsidebar" class="sidebar">
+			<!-- User Info -->
+			<div class="user-info">
+				<div class="image">
+					<img src="../../images/user.png" width="48" height="48" alt="User" />
+				</div>
+				<div class="info-container">
+					<div id="publisherUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+					<div id="publisherEmail" class="email">john.doe@example.com</div>
+					<div class="btn-group user-helper-dropdown">
+						<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+							<li role="seperator" class="divider"></li>
+							<li><a href="javascript:void(0);"><i class="material-icons">language</i>Language</a></li>
+							<li role="seperator" class="divider"></li>
+							<li><a href="javascript:void(0);" id="signOutButton"><i class="material-icons">input</i>Sign Out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- #User Info -->
+			<!-- Menu -->
+			<div class="menu">
+				<ul class="list">
+					<li>
+						<a href="dashboard.html">
+							<i class="material-icons col-red">home</i>
+							<span>Dashboard</span>
+						</a>
+					</li>
+					<li>
+						<a href="application.html">
+							<i class="material-icons col-amber">notifications_active</i>
+							<span>Applications</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="placement.html">
+							<i class="material-icons col-deep-purple">notifications_active</i>
+							<span>Placements</span>
+						</a>
+					</li>
+					<li>
+						<a href="activity-monitor.html">
+							<i class="material-icons col-light-green" >insert_chart</i>
+							<span>Activity Monitor</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="menu-toggle">
+							<i class="material-icons col-light-blue">monetization_on</i>
+							<span>Credits & Funds</span>
+						</a>
+						<ul class="ml-menu">
+							<li>
+								<a href="checkout.html">Checkout</a>
+							</li>
+							<li>
+								<a href="invoices.html">Invoices</a>
+							</li>
+							<li>
+								<a href="transactions.html">Transactions</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- #Menu -->
+			<!-- Footer -->
+			<div class="legal">
+				<div class="copyright">
+					&copy; 2016 <a href="javascript:void(0);">Flieral Incorporation</a>.
+				</div>
+				<div class="version">
+					Electronic Software Distribution Service
+				</div>
+			</div>
+			<!-- #Footer -->
+		</aside>
+		<!-- #END# Left Sidebar -->
+	</section>
+
+	<section class="content">
+
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="body">
+						<div class="row clearfix">
+							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-offset-3">
+								<ul class="nav nav-tabs nav-justified tab-col-pink" role="tablist">
+									<li role="presentation" class="active">
+										<a href="#home_md_col_1" id="nav1" data-toggle="tab">My Placements</a>
+									</li>
+									<li role="presentation">
+										<a href="#profile_md_col_1" id="nav2" data-toggle="tab">New Placement</a>
+									</li>
+									<li role="presentation">
+										<a href="#messages_md_col_1" id="nav3" data-toggle="tab">Edit Placement</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="myPlacements" class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+							My Placements
+						</h2>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<div class="col-sm-3 col-md-offset-1">
+								<p>
+									<b>Select your Preferd Applications</b>
+								</p>
+								<select id="myPlacementsSelectApplication" data-live-search="true" class="form-control show-tick" multiple title="Nothing selected">
+								</select>
+							</div>
+							<div class="col-md-4">
+								<p>
+									<b>Placement Style</b>
+								</p>
+								<select id="myPlacementsStyle" class="form-control show-tick" title="Nothing selected" multiple>
+									<option>Banner: Small</option>
+									<option>Banner: Medium</option>
+									<option>Banner: Large</option>
+									<option>Interstitial</option>
+									<option>Overlay</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Load Priority</b>
+								</p>
+								<select id="myPlacementsPriority" class="form-control show-tick" title="Nothing selected">
+									<option>Low</option>
+									<option>Average</option>
+									<option>High</option>
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-3 col-md-offset-1">
+								<p>
+									<b>Show Beginning Time</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="myPlacementsBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Show Ending Time</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="myPlacementsEndingTime" type="text" class="datepicker form-control" placeholder="Enter Ending Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Limit Result</b>
+								</p>
+								<div class="input-group spinner" data-trigger="spinner">
+									<div class="form-line">
+										<input id="myPlacementssLimit" type="text" class="form-control text-center" value="10" data-rule="quantity">
+									</div>
+									<span class="input-group-addon">
+										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-1 col-md-offset-1">
+								<p>
+									<b></b>
+								</p>
+								<button id="myPlacementsSearch" type="button" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-12">
+								<!-- Exportable Table -->
+								<table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="tab_logic" style="vertical-align:middle;">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Application ID</th>
+											<th>Name</th>
+											<th>Style</th>
+											<th>Priorty</th>
+											<th>Period</th>
+											<th>Capacity</th>
+											<th>Status</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<!-- #END# Exportable Table -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="addPlacement" class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+							Add Placement
+						</h2>
+						<br>
+						<small>In this step you can add the basic information of placement related to application.</small>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<br>
+							<div class="col-sm-6 col-md-offset-3">
+								<p>
+									<b>Select your Preferd Application</b>
+								</p>
+								<select id="addApplicationSelectApplication" data-live-search="true" class="form-control show-tick" title="Nothing selected">
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-4 col-md-offset-1">
+								<p>
+									<b>Placement Name</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input id="addPlacementName" type="text" class="form-control key" placeholder="Ex: My Sample Placement Name">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Placement Style</b>
+								</p>
+								<select id="addPlacementStyle" class="form-control show-tick" title="Nothing selected">
+									<option>Banner: Small</option>
+									<option>Banner: Medium</option>
+									<option>Banner: Large</option>
+									<option>Interstitial</option>
+									<option>Overlay</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Online Capacity</b>
+								</p>
+								<div class="input-group spinner" data-trigger="spinner">
+									<div class="form-line">
+										<input id="addPlacementOnlineCapacity" type="text" class="form-control text-center" value="3" data-rule="count">
+									</div>
+									<span class="input-group-addon">
+										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Offline Capacity</b>
+								</p>
+								<div class="input-group spinner" data-trigger="spinner">
+									<div class="form-line">
+										<input id="addPlacementOfflineCapacity" type="text" class="form-control text-center" value="3" data-rule="count">
+									</div>
+									<span class="input-group-addon">
+										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row clearfix">
+							<div class="col-md-3 col-md-offset-2">
+								<p>
+									<b>Show Beginning Time</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="addPlacementBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Show Ending Time</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="addPlacementEndingTime" type="text" class="datepicker form-control" placeholder="Enter Ending Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Load Priority</b>
+								</p>
+								<select id="addPlacementPriority" class="form-control show-tick" title="Nothing selected">
+									<option>Low</option>
+									<option>Average</option>
+									<option>High</option>
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-2 col-md-offset-5">
+								<button id="addPlacementButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Add Placement</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="editPlacement" class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+							Edit Placement
+						</h2>
+						<br>
+						<small>In this step you can edit the basic information of placement related to application.</small>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<br>
+							<div class="col-sm-6 col-md-offset-3">
+								<p>
+									<b>Select your Preferd placement</b>
+								</p>
+								<select id="editPlacementSelect" data-size=5 data-live-search="true" class="form-control show-tick" title="Nothing selected">
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-4 col-md-offset-1">
+								<p>
+									<b>Placement Name</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input id="editPlacementName" type="text" class="form-control key" placeholder="Ex: My Sample Placement Name">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Placement Style</b>
+								</p>
+								<select id="editPlacementStyle" class="form-control show-tick" title="Nothing selected">
+									<option>Banner: Small</option>
+									<option>Banner: Medium</option>
+									<option>Banner: Large</option>
+									<option>Interstitial</option>
+									<option>Overlay</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Online Capacity</b>
+								</p>
+								<div class="input-group spinner" data-trigger="spinner">
+									<div class="form-line">
+										<input id="editPlacementOnlineCapacity" type="text" class="form-control text-center" value="3" data-rule="count">
+									</div>
+									<span class="input-group-addon">
+										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Offline Capacity</b>
+								</p>
+								<div class="input-group spinner" data-trigger="spinner">
+									<div class="form-line">
+										<input id="editPlacementOfflineCapacity" type="text" class="form-control text-center" value="3" data-rule="count">
+									</div>
+									<span class="input-group-addon">
+										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-3 col-md-offset-2">
+								<p>
+									<b>Show Beginning Time</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="editPlacementBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Show Ending Time</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="editPlacementEndingTime" type="text" class="datepicker form-control" placeholder="Enter Ending Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Load Priority</b>
+								</p>
+								<select id="editPlacementPriority" class="form-control show-tick" title="Nothing selected">
+									<option>Low</option>
+									<option>Average</option>
+									<option>High</option>
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-2 col-md-offset-5">
+								<button id="editPlacementButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Edit Placement</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="selectSetting" class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+							Select Setting
+						</h2>
+						<br>
+						<small>In this step you can add the basic information of setting related to placement</small>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<br>
+							<div class="col-sm-6 col-md-offset-3">
+								<p>
+									<b>Select your Preferd Placement</b>
+								</p>
+								<select id="selectSettingSelect" data-size=5 data-live-search="true" class="form-control show-tick" title="Nothing selected">
+
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-sm-4 col-md-offset-4">
+								<p>
+									<b>User Label Types</b>
+								</p>
+								<select id="selectSettingUserLabel" class="form-control show-tick" multiple title="Nothing selected">
+									<option value="General">General</option>
+									<option value="Average">Average</option>
+									<option value="Advance">Advance</option>
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-8 col-md-offset-2">
+								<p>
+									<b>Category Types</b>
+								</p>
+								<select id="selectSettingCategory" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=7
+								data-actionsBox=true multiple title="Nothing selected">
+								<option value="Sports">Sports</option>
+								<option value="Health & Fitness">Health & Fitness</option>
+								<option value="Education">Education</option>
+								<option value="Photo & Video">Photo & Video</option>
+								<option value="Travel">Travel</option>
+								<option value="Music">Music</option>
+								<option value="Lifestyle">Lifestyle</option>
+								<option value="Productivity">Productivity</option>
+								<option value="Food & Drink">Food & Drink</option>
+								<option value="Social Networking">Social Networking</option>
+								<option value="Business">Business</option>
+								<option value="Entertainment">Entertainment</option>
+								<option value="News">News</option>
+								<option value="Utilities">Utilities</option>
+								<option value="Weather">Weather</option>
+								<option value="Navigation">Navigation</option>
+								<option value="Finance">Finance</option>
+								<option value="Medical">Medical</option>
+								<option value="Reference">Reference</option>
+								<option value="Catalogues">Catalogues</option>
+								<option value="Books">Books</option>
+								<option value="Newsstand">Newsstand</option>
+								<option value="Games">Games</option>
+								<option value="Kids">Kids</option>
+							</select>
+						</div>
+					</div>
+					<div class="row clearfix">
+						<br>
+						<div class="col-md-8 col-md-offset-2">
+							<p>
+								<b>Country Types</b>
+							</p>
+							<select id="selectSettingCountry" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
+							data-actionsBox=true multiple title="Nothing selected">
+							<option value="AF">Afghanistan</option>
+							<option value="AX">Åland Islands</option>
+							<option value="AL">Albania</option>
+							<option value="DZ">Algeria</option>
+							<option value="AS">American Samoa</option>
+							<option value="AD">AndorrA</option>
+							<option value="AO">Angola</option>
+							<option value="AI">Anguilla</option>
+							<option value="AQ">Antarctica</option>
+							<option value="AG">Antigua and Barbuda</option>
+							<option value="AR">Argentina</option>
+							<option value="AM">Armenia</option>
+							<option value="AW">Aruba</option>
+							<option value="AU">Australia</option>
+							<option value="AT">Austria</option>
+							<option value="AZ">Azerbaijan</option>
+							<option value="BS">Bahamas</option>
+							<option value="BH">Bahrain</option>
+							<option value="BD">Bangladesh</option>
+							<option value="BB">Barbados</option>
+							<option value="BY">Belarus</option>
+							<option value="BE">Belgium</option>
+							<option value="BZ">Belize</option>
+							<option value="BJ">Benin</option>
+							<option value="BM">Bermuda</option>
+							<option value="BT">Bhutan</option>
+							<option value="BO">Bolivia</option>
+							<option value="BA">Bosnia and Herzegovina</option>
+							<option value="BW">Botswana</option>
+							<option value="BV">Bouvet Island</option>
+							<option value="BR">Brazil</option>
+							<option value="IO">British Indian Ocean Territory</option>
+							<option value="BN">Brunei Darussalam</option>
+							<option value="BG">Bulgaria</option>
+							<option value="BF">Burkina Faso</option>
+							<option value="BI">Burundi</option>
+							<option value="KH">Cambodia</option>
+							<option value="CM">Cameroon</option>
+							<option value="CA">Canada</option>
+							<option value="CV">Cape Verde</option>
+							<option value="KY">Cayman Islands</option>
+							<option value="CF">Central African Republic</option>
+							<option value="TD">Chad</option>
+							<option value="CL">Chile</option>
+							<option value="CN">China</option>
+							<option value="CX">Christmas Island</option>
+							<option value="CC">Cocos (Keeling) Islands</option>
+							<option value="CO">Colombia</option>
+							<option value="KM">Comoros</option>
+							<option value="CG">Congo</option>
+							<option value="CD">Congo, The Democratic Republic of the</option>
+							<option value="CK">Cook Islands</option>
+							<option value="CR">Costa Rica</option>
+							<option value="CI">Cote D'Ivoire</option>
+							<option value="HR">Croatia</option>
+							<option value="CU">Cuba</option>
+							<option value="CY">Cyprus</option>
+							<option value="CZ">Czech Republic</option>
+							<option value="DK">Denmark</option>
+							<option value="DJ">Djibouti</option>
+							<option value="DM">Dominica</option>
+							<option value="DO">Dominican Republic</option>
+							<option value="EC">Ecuador</option>
+							<option value="EG">Egypt</option>
+							<option value="SV">El Salvador</option>
+							<option value="GQ">Equatorial Guinea</option>
+							<option value="ER">Eritrea</option>
+							<option value="EE">Estonia</option>
+							<option value="ET">Ethiopia</option>
+							<option value="FK">Falkland Islands (Malvinas)</option>
+							<option value="FO">Faroe Islands</option>
+							<option value="FJ">Fiji</option>
+							<option value="FI">Finland</option>
+							<option value="FR">France</option>
+							<option value="GF">French Guiana</option>
+							<option value="PF">French Polynesia</option>
+							<option value="TF">French Southern Territories</option>
+							<option value="GA">Gabon</option>
+							<option value="GM">Gambia</option>
+							<option value="GE">Georgia</option>
+							<option value="DE">Germany</option>
+							<option value="GH">Ghana</option>
+							<option value="GI">Gibraltar</option>
+							<option value="GR">Greece</option>
+							<option value="GL">Greenland</option>
+							<option value="GD">Grenada</option>
+							<option value="GP">Guadeloupe</option>
+							<option value="GU">Guam</option>
+							<option value="GT">Guatemala</option>
+							<option value="GG">Guernsey</option>
+							<option value="GN">Guinea</option>
+							<option value="GW">Guinea-Bissau</option>
+							<option value="GY">Guyana</option>
+							<option value="HT">Haiti</option>
+							<option value="HM">Heard Island and Mcdonald Islands</option>
+							<option value="VA">Holy See (Vatican City State)</option>
+							<option value="HN">Honduras</option>
+							<option value="HK">Hong Kong</option>
+							<option value="HU">Hungary</option>
+							<option value="IS">Iceland</option>
+							<option value="IN">India</option>
+							<option value="ID">Indonesia</option>
+							<option value="IR">Iran, Islamic Republic Of</option>
+							<option value="IQ">Iraq</option>
+							<option value="IE">Ireland</option>
+							<option value="IM">Isle of Man</option>
+							<option value="IL">Israel</option>
+							<option value="IT">Italy</option>
+							<option value="JM">Jamaica</option>
+							<option value="JP">Japan</option>
+							<option value="JE">Jersey</option>
+							<option value="JO">Jordan</option>
+							<option value="KZ">Kazakhstan</option>
+							<option value="KE">Kenya</option>
+							<option value="KI">Kiribati</option>
+							<option value="KP">Korea, Democratic People'S Republic of</option>
+							<option value="KR">Korea, Republic of</option>
+							<option value="KW">Kuwait</option>
+							<option value="KG">Kyrgyzstan</option>
+							<option value="LA">Lao People'S Democratic Republic</option>
+							<option value="LV">Latvia</option>
+							<option value="LB">Lebanon</option>
+							<option value="LS">Lesotho</option>
+							<option value="LR">Liberia</option>
+							<option value="LY">Libyan Arab Jamahiriya</option>
+							<option value="LI">Liechtenstein</option>
+							<option value="LT">Lithuania</option>
+							<option value="LU">Luxembourg</option>
+							<option value="MO">Macao</option>
+							<option value="MK">Macedonia, The Former Yugoslav Republic of</option>
+							<option value="MG">Madagascar</option>
+							<option value="MW">Malawi</option>
+							<option value="MY">Malaysia</option>
+							<option value="MV">Maldives</option>
+							<option value="ML">Mali</option>
+							<option value="MT">Malta</option>
+							<option value="MH">Marshall Islands</option>
+							<option value="MQ">Martinique</option>
+							<option value="MR">Mauritania</option>
+							<option value="MU">Mauritius</option>
+							<option value="YT">Mayotte</option>
+							<option value="MX">Mexico</option>
+							<option value="FM">Micronesia, Federated States of</option>
+							<option value="MD">Moldova, Republic of</option>
+							<option value="MC">Monaco</option>
+							<option value="MN">Mongolia</option>
+							<option value="MS">Montserrat</option>
+							<option value="MA">Morocco</option>
+							<option value="MZ">Mozambique</option>
+							<option value="MM">Myanmar</option>
+							<option value="NA">Namibia</option>
+							<option value="NR">Nauru</option>
+							<option value="NP">Nepal</option>
+							<option value="NL">Netherlands</option>
+							<option value="AN">Netherlands Antilles</option>
+							<option value="NC">New Caledonia</option>
+							<option value="NZ">New Zealand</option>
+							<option value="NI">Nicaragua</option>
+							<option value="NE">Niger</option>
+							<option value="NG">Nigeria</option>
+							<option value="NU">Niue</option>
+							<option value="NF">Norfolk Island</option>
+							<option value="MP">Northern Mariana Islands</option>
+							<option value="NO">Norway</option>
+							<option value="OM">Oman</option>
+							<option value="PK">Pakistan</option>
+							<option value="PW">Palau</option>
+							<option value="PS">Palestinian Territory, Occupied</option>
+							<option value="PA">Panama</option>
+							<option value="PG">Papua New Guinea</option>
+							<option value="PY">Paraguay</option>
+							<option value="PE">Peru</option>
+							<option value="PH">Philippines</option>
+							<option value="PN">Pitcairn</option>
+							<option value="PL">Poland</option>
+							<option value="PT">Portugal</option>
+							<option value="PR">Puerto Rico</option>
+							<option value="QA">Qatar</option>
+							<option value="RE">Reunion</option>
+							<option value="RO">Romania</option>
+							<option value="RU">Russian Federation</option>
+							<option value="RW">RWANDA</option>
+							<option value="SH">Saint Helena</option>
+							<option value="KN">Saint Kitts and Nevis</option>
+							<option value="LC">Saint Lucia</option>
+							<option value="PM">Saint Pierre and Miquelon</option>
+							<option value="VC">Saint Vincent and the Grenadines</option>
+							<option value="WS">Samoa</option>
+							<option value="SM">San Marino</option>
+							<option value="ST">Sao Tome and Principe</option>
+							<option value="SA">Saudi Arabia</option>
+							<option value="SN">Senegal</option>
+							<option value="CS">Serbia and Montenegro</option>
+							<option value="SC">Seychelles</option>
+							<option value="SL">Sierra Leone</option>
+							<option value="SG">Singapore</option>
+							<option value="SK">Slovakia</option>
+							<option value="SI">Slovenia</option>
+							<option value="SB">Solomon Islands</option>
+							<option value="SO">Somalia</option>
+							<option value="ZA">South Africa</option>
+							<option value="GS">South Georgia and the South Sandwich Islands</option>
+							<option value="ES">Spain</option>
+							<option value="LK">Sri Lanka</option>
+							<option value="SD">Sudan</option>
+							<option value="SR">Suriname</option>
+							<option value="SJ">Svalbard and Jan Mayen</option>
+							<option value="SZ">Swaziland</option>
+							<option value="SE">Sweden</option>
+							<option value="CH">Switzerland</option>
+							<option value="SY">Syrian Arab Republic</option>
+							<option value="TW">Taiwan, Province of China</option>
+							<option value="TJ">Tajikistan</option>
+							<option value="TZ">Tanzania, United Republic of</option>
+							<option value="TH">Thailand</option>
+							<option value="TL">Timor-Leste</option>
+							<option value="TG">Togo</option>
+							<option value="TK">Tokelau</option>
+							<option value="TO">Tonga</option>
+							<option value="TT">Trinidad and Tobago</option>
+							<option value="TN">Tunisia</option>
+							<option value="TR">Turkey</option>
+							<option value="TM">Turkmenistan</option>
+							<option value="TC">Turks and Caicos Islands</option>
+							<option value="TV">Tuvalu</option>
+							<option value="UG">Uganda</option>
+							<option value="UA">Ukraine</option>
+							<option value="AE">United Arab Emirates</option>
+							<option value="GB">United Kingdom</option>
+							<option value="US">United States</option>
+							<option value="UM">United States Minor Outlying Islands</option>
+							<option value="UY">Uruguay</option>
+							<option value="UZ">Uzbekistan</option>
+							<option value="VU">Vanuatu</option>
+							<option value="VE">Venezuela</option>
+							<option value="VN">Viet Nam</option>
+							<option value="VG">Virgin Islands, British</option>
+							<option value="VI">Virgin Islands, U.S.</option>
+							<option value="WF">Wallis and Futuna</option>
+							<option value="EH">Western Sahara</option>
+							<option value="YE">Yemen</option>
+							<option value="ZM">Zambia</option>
+							<option value="ZW">Zimbabwe</option>
+						</select>
+					</div>
+				</div>
+
+			<div class="row clearfix">
+				<br>
+				<div class="col-md-2 col-md-offset-5">
+					<button id="saveSettingButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Save Setting</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+</section>
+
+<!-- Jquery Core Js -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core Js -->
+<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+
+<!-- Select Plugin Js -->
+<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Slimscroll Plugin Js -->
+<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+<!-- Bootstrap Colorpicker Js -->
+<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+<!-- Dropzone Plugin Js -->
+<script src="../../plugins/dropzone/dropzone.js"></script>
+
+<!-- Input Mask Plugin Js -->
+<script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+<!-- Multi Select Plugin Js -->
+<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
+
+<!-- Jquery Spinner Plugin Js -->
+<script src="../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+<!-- Bootstrap Tags Input Plugin Js -->
+<script src="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+<!-- Moment Plugin Js -->
+<script src="../../plugins/momentjs/moment.js"></script>
+
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+<!-- noUISlider Plugin Js -->
+<script src="../../plugins/nouislider/nouislider.js"></script>
+
+<!-- Jquery Validation Plugin Css -->
+<script src="../../plugins/jquery-validation/jquery.validate.js"></script>
+
+<!-- JQuery Steps Plugin Js -->
+<script src="../../plugins/jquery-steps/jquery.steps.js"></script>
+
+<!-- Sweet Alert Plugin Js -->
+<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+
+<!-- Bootstrap Notify Plugin Js -->
+<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
+<!-- Sweet Alert Plugin Js -->
+<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="../../plugins/node-waves/waves.js"></script>
+
+<!-- Custom Js -->
+<script src="../../js/admin.js"></script>
+<script src="../../js/pages/announcer/subcampaigns.js"></script>
+
+<!-- Jquery DataTable Plugin Js -->
+<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+<script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+<script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+<script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+<script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+<script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+<!-- Demo Js -->
+<script src="../../js/demo.js"></script>
+
+<!-- Autosize Plugin Js -->
+<script src="../../plugins/autosize/autosize.js"></script>
+</body>
+
+</html>
