@@ -442,5 +442,5 @@ $(function () {
     $.AdminBSB.select.activate();
     $.AdminBSB.search.activate();
 
-    // setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 2050);
+    setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 500);
 });

@@ -147,7 +147,8 @@ $(document).ready(function () {
 		$("#myCampaigns").show();
 		$("#editCampaign").hide();
 		$("#newCampaign").hide();
-	} else if (window.location.hash === '#newCampaign')
+	}
+	else if (window.location.hash === '#newCampaign')
 		$('.nav-tabs a[id="nav2"]').tab('show');
 	else if (window.location.hash === '#editCampaign')
 		$('.nav-tabs a[id="nav3"]').tab('show');
@@ -220,6 +221,7 @@ $(document).ready(function () {
 				'</td>'
 			);
 		}
+		$('.js-basic-example').DataTable();
 	}
 
 	$(document).on("click", ".campaignEdit", function (e) {
