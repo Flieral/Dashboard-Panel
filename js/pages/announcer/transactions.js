@@ -159,7 +159,7 @@ $(document).ready(function () {
 
 		var limit = $('#transactionLimit').val()
 
-		var transactionURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllTransactions?accountHashId=' + userId + '&isAnnouncer=true', announcerAccessToken)
+		var transactionURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllTransactions?accountHashId=' + userId + '&isAnnouncer=true', coreAccessToken)
 		if (events.length > 0)
 			transactionURLWithAT = wrapFilter(transactionURLWithAT, {
 				'where': {
