@@ -25,17 +25,17 @@ function dateConvertor(myDate) {
 	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear())
 }
 
-var announcer_url = "http://127.0.0.1:3000/api/";
+var publisher_url = "http://127.0.0.1:3005/api/";
 var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
-	var userId, announcerAccessToken, coreAccessToken
+	var userId, publisherAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
 		return window.location.href = '../AAA/sign-in.html';
-	if (localStorage.getItem('announcerAccessToken'))
-		announcerAccessToken = localStorage.getItem('announcerAccessToken')
+	if (localStorage.getItem('publisherAccessToken'))
+		publisherAccessToken = localStorage.getItem('publisherAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
@@ -80,8 +80,8 @@ $(document).ready(function () {
 		});
 	}
 
-	$("#announcerUsername").html(localStorage.getItem('announcerCompanyName'));
-	$("#announcerEmail").html(localStorage.getItem('announcerEmail'));
+	$("#publisherUsername").html(localStorage.getItem('publisherCompanyName'));
+	$("#publisherEmail").html(localStorage.getItem('publisherEmail'));
 
 	$('.page-loader-wrapper').fadeOut();
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
 		var limit = $('#receiptInformationLimit').val()
 
-		var receiptURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllReceipts?accountHashId=' + userId, announcerAccessToken)
+		var receiptURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllReceipts?accountHashId=' + userId, publisherAccessToken)
 		$.ajax({
 			url: receiptURL,
 			type: "GET",
