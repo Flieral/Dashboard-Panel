@@ -85,7 +85,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		var value = $(this).text()
 		if (value === 'Calculate Refinement') {
-			var getRefinement = wrapAccessToken(announcer_url + 'clients/' + userId + '/getRefinement', serviceAccessToken);
+			var getRefinement = wrapAccessToken(announcer_url + 'clients/' + userId + '/getRefinement?accountHashId=' + userId, serviceAccessToken);
 			$.ajax({
 				url: getRefinement,
 				dataType: "json",

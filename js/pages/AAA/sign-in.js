@@ -80,7 +80,7 @@ $(document).ready(function () {
 						if ($('#announcerRadio').is(':checked') == true)
 							window.location.href = '../announcer/dashboard.html'
 						else
-							window.location.href = '#'
+							window.location.href = '../publisher/dashboard.html'
 					},
 					error: function (xhr, status, error) {
 						showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');

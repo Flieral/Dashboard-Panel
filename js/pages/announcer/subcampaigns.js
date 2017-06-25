@@ -462,10 +462,10 @@ $(document).ready(function () {
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
 			name: $('#editSubcampaignName').val(),
-			minBudget: $('#editSubcampaignMinBudget').val(),
+			minBudget: Number($('#editSubcampaignMinBudget').val()),
 			style: $('#editSubcampaignStyle').find('option:selected').text(),
 			plan: $('#editSubcampaignPlan').find('option:selected').text(),
-			price: $('#editSubcampaignPrice').val()
+			price: Number($('#editSubcampaignPrice').val())
 		}
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns/' + subcampaignId, serviceAccessToken);
 		$.ajax({
@@ -499,7 +499,7 @@ $(document).ready(function () {
 			minBudget: Number($('#addSubcampaignMinBudget').val()),
 			style: $('#addSubcampaignStyle').find('option:selected').text(),
 			plan: $('#addSubcampaignPlan').find('option:selected').text(),
-			price: $('#addSubcampaignPrice').val()
+			price: Number($('#addSubcampaignPrice').val())
 		}
 		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns', serviceAccessToken);
 		$.ajax({
