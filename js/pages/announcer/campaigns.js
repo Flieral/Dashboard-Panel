@@ -91,13 +91,12 @@ $(document).ready(function () {
 
 	function initJQueryTable() {
 		//Exportable table
-		if ($.fn.dataTable.isDataTable('#tab_logic')) {
-			return;
-		} else {
-			$('#tab_logic').DataTable({
-				"scrollX": true
-			});
-		}
+		$('.js-exportable').DataTable({
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'csv', 'excel', 'pdf', 'print'
+			]
+		});
 	}
 
 	function fillEditCampaignFields(selected) {
@@ -221,7 +220,9 @@ $(document).ready(function () {
 				'</td>'
 			);
 		}
-		$('.js-basic-example').DataTable();
+		$('.js-basic-example').DataTable({
+			"scrollX": true
+		});
 	}
 
 	$(document).on("click", ".campaignEdit", function (e) {

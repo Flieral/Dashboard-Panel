@@ -72,13 +72,12 @@ $(document).ready(function () {
 
 	function initJQueryTable() {
 		//Exportable table
-		if ($.fn.dataTable.isDataTable('#tab_logic')) {
-			return;
-		} else {
-			$('#tab_logic').DataTable({
-				"scrollX": true,
-			});
-		}
+		$('.js-exportable').DataTable({
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'csv', 'excel', 'pdf', 'print'
+			]
+		});
 	}
 
 	$("#announcerUsername").html(localStorage.getItem('announcerCompanyName'));
@@ -101,6 +100,7 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + receiptsArray[i].status + '</span></td>'
 			);
 		}
+		$('.js-basic-example').DataTable();
 	}
 
 	$("#receiptInformationSearchButton").click(function (e) {

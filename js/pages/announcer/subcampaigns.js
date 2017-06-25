@@ -89,13 +89,12 @@ $(document).ready(function () {
 
 	function initJQueryTable() {
 		//Exportable table
-		if ($.fn.dataTable.isDataTable('#tab_logic')) {
-			return;
-		} else {
-			$('#tab_logic').DataTable({
-				"scrollX": true,
-			});
-		}
+		$('.js-exportable').DataTable({
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'csv', 'excel', 'pdf', 'print'
+			]
+		});
 	}
 
 	function fillEditSubcampaignFields(selected) {
@@ -328,7 +327,9 @@ $(document).ready(function () {
 				'</td>'
 			);
 		}
-		$('.js-basic-example').DataTable();
+		$('.js-basic-example').DataTable({
+			"scrollX": true
+		});
 	}
 
 	$(document).on("click", ".subcampaignEdit", function (e) {
@@ -513,7 +514,6 @@ $(document).ready(function () {
 				localStorage.setItem("newAddedSubcampaign", subcampaignResult.name)
 				localStorage.setItem('newAddedSubcampaignCampaign', campaignName)
 				getAccountModel()
-				$("#addSubcampaignSelectCampaign").selectpicker('val', campaignName)
 				swal("Congrates!", "You have successfuly created a subcampaign. Lets go for adding setting and content.", "success");
 			},
 			error: function (xhr, status, error) {
