@@ -47,13 +47,13 @@ $(document).ready(function () {
 	var editableCampaignId
 	var newCampaignId
 
-	var userId, serviceAccessToken, coreAccessToken
+	var userId, announcerAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
 		return window.location.href = '../AAA/sign-in.html';
-	if (localStorage.getItem('serviceAccessToken'))
-		serviceAccessToken = localStorage.getItem('serviceAccessToken')
+	if (localStorage.getItem('announcerAccessToken'))
+		announcerAccessToken = localStorage.getItem('announcerAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
@@ -160,7 +160,7 @@ $(document).ready(function () {
 	});
 
 	function getAllCampaigns() {
-		var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, serviceAccessToken)
+		var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, announcerAccessToken)
 		var accountURL = wrapFilter(accountURLWithAT, '{"include":["announcerAccount", "campaigns"]}')
 		$.ajax({
 			url: accountURL,
@@ -254,7 +254,7 @@ $(document).ready(function () {
 			closeOnCancel: true
 		}, function (isConfirm) {
 			if (isConfirm) {
-				var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + campId, serviceAccessToken)
+				var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + campId, announcerAccessToken)
 				$.ajax({
 					url: subcampaignURLWithAT,
 					type: "DELETE",
@@ -330,7 +330,7 @@ $(document).ready(function () {
 		}
 		filter.limit = limit
 
-		var campURLwithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken)
+		var campURLwithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', announcerAccessToken)
 		var campaignURL = wrapFilter(campURLwithAT, JSON.stringify(filter))
 		$('.page-loader-wrapper').fadeIn();
 		$.ajax({
@@ -359,7 +359,7 @@ $(document).ready(function () {
 			endingTime: fullTimeConvertor($('#newCampaignEndingTime').val()),
 			budget: Number($('#newCampaignBudget').val())
 		}
-		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken);
+		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', announcerAccessToken);
 		$.ajax({
 			url: campaignURL,
 			data: JSON.stringify(data),
@@ -403,7 +403,7 @@ $(document).ready(function () {
 		}
 		if ($('#editCampaignStatus').find('option:selected').text() === 'Stoped' || $('#editCampaignStatus').find('option:selected').text() === 'Unstoped')
 			data.status = $('#editCampaignStatus').find('option:selected').text()
-		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + campaignId, serviceAccessToken);
+		var campaignURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns/' + campaignId, announcerAccessToken);
 		$.ajax({
 			url: campaignURL,
 			data: JSON.stringify(data),

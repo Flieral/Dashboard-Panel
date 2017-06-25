@@ -45,13 +45,13 @@ $(document).ready(function () {
 	var editableSettingId
 	var prefredSubcampaign
 
-	var userId, serviceAccessToken, coreAccessToken
+	var userId, announcerAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
 		return window.location.href = '../AAA/sign-in.html';
-	if (localStorage.getItem('serviceAccessToken'))
-		serviceAccessToken = localStorage.getItem('serviceAccessToken')
+	if (localStorage.getItem('announcerAccessToken'))
+		announcerAccessToken = localStorage.getItem('announcerAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
@@ -191,14 +191,14 @@ $(document).ready(function () {
 	});
 
 	function getAccountModel() {
-		var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, serviceAccessToken)
+		var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, announcerAccessToken)
 		var accountURL = wrapFilter(accountURLWithAT, '{"include":["announcerAccount", "campaigns"]}')
 		$.ajax({
 			url: accountURL,
 			type: "GET",
 			success: function (accountResult) {
 				clientInstance = accountResult
-				var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken)
+				var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', announcerAccessToken)
 				var campaignURL = wrapFilter(campaignURLWithAT, '{"include":["subcampaigns"]}')
 				$.ajax({
 					url: campaignURL,
@@ -363,7 +363,7 @@ $(document).ready(function () {
 			closeOnCancel: true
 		}, function (isConfirm) {
 			if (isConfirm) {
-				var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'campaigns/' + campId + '/subcampaigns/' + subcampId, serviceAccessToken)
+				var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'campaigns/' + campId + '/subcampaigns/' + subcampId, announcerAccessToken)
 				$.ajax({
 					url: subcampaignURLWithAT,
 					type: "DELETE",
@@ -434,7 +434,7 @@ $(document).ready(function () {
 			'settingModel': false
 		}
 
-		var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns/getAllSubcampaigns?accountHashId=' + userId, serviceAccessToken)
+		var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns/getAllSubcampaigns?accountHashId=' + userId, announcerAccessToken)
 		var subcampaignFilterURL = wrapFilter(subcampaignURLWithAT, JSON.stringify(filter))
 		$('.page-loader-wrapper').fadeIn();
 		$.ajax({
@@ -469,7 +469,7 @@ $(document).ready(function () {
 			plan: $('#editSubcampaignPlan').find('option:selected').text(),
 			price: Number($('#editSubcampaignPrice').val())
 		}
-		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns/' + subcampaignId, serviceAccessToken);
+		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns/' + subcampaignId, announcerAccessToken);
 		$.ajax({
 			url: subcampaignURL,
 			data: JSON.stringify(data),
@@ -503,7 +503,7 @@ $(document).ready(function () {
 			plan: $('#addSubcampaignPlan').find('option:selected').text(),
 			price: Number($('#addSubcampaignPrice').val())
 		}
-		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns', serviceAccessToken);
+		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns', announcerAccessToken);
 		$.ajax({
 			url: subcampaignURL,
 			data: JSON.stringify(data),
@@ -552,7 +552,7 @@ $(document).ready(function () {
 			data: JSON.stringify(data)
 		}
 		var queryString = generateQueryString(queryData)
-		var subcampaignURL = wrapAccessToken(announcer_url + 'containers/uploadFile?' + queryString, serviceAccessToken);
+		var subcampaignURL = wrapAccessToken(announcer_url + 'containers/uploadFile?' + queryString, announcerAccessToken);
 		$.ajax({
 			url: subcampaignURL,
 			data: JSON.stringify(data),
@@ -617,7 +617,7 @@ $(document).ready(function () {
 				return this.value
 			}).get()
 		}
-		var settingURL = wrapAccessToken(announcer_url + 'subcampaigns/' + subcampaignId + '/setting', serviceAccessToken);
+		var settingURL = wrapAccessToken(announcer_url + 'subcampaigns/' + subcampaignId + '/setting', announcerAccessToken);
 		$.ajax({
 			url: settingURL,
 			data: JSON.stringify(data),

@@ -32,13 +32,13 @@ $(document).ready(function () {
 	var totalTransactions = []
 	var totalSubcampaignArray = []
 
-	var userId, serviceAccessToken, coreAccessToken
+	var userId, announcerAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
 		return window.location.href = '../AAA/sign-in.html';
-	if (localStorage.getItem('serviceAccessToken'))
-		serviceAccessToken = localStorage.getItem('serviceAccessToken')
+	if (localStorage.getItem('announcerAccessToken'))
+		announcerAccessToken = localStorage.getItem('announcerAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
@@ -90,7 +90,7 @@ $(document).ready(function () {
 	$('.page-loader-wrapper').fadeOut();
 
 	function getAccountModel() {
-		var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', serviceAccessToken)
+		var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', announcerAccessToken)
 		var campaignURL = wrapFilter(campaignURLWithAT, '{"include":["subcampaigns"]}')
 		$.ajax({
 			url: campaignURL,
@@ -159,7 +159,7 @@ $(document).ready(function () {
 
 		var limit = $('#transactionLimit').val()
 
-		var transactionURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllTransactions?accountHashId=' + userId + '&isAnnouncer=true', serviceAccessToken)
+		var transactionURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllTransactions?accountHashId=' + userId + '&isAnnouncer=true', announcerAccessToken)
 		if (events.length > 0)
 			transactionURLWithAT = wrapFilter(transactionURLWithAT, {
 				'where': {

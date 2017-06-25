@@ -131,13 +131,13 @@ $(document).ready(function () {
 	var yesterdayTime = todayTime - 86400000
 	var lastWeekTime = nowTime - 604800000
 
-	var userId, serviceAccessToken, coreAccessToken
+	var userId, announcerAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
 		return window.location.href = '../AAA/sign-in.html';
-	if (localStorage.getItem('serviceAccessToken'))
-		serviceAccessToken = localStorage.getItem('serviceAccessToken')
+	if (localStorage.getItem('announcerAccessToken'))
+		announcerAccessToken = localStorage.getItem('announcerAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
@@ -145,7 +145,7 @@ $(document).ready(function () {
 	else
 		return window.location.href = '../AAA/sign-in.html';
 
-	var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, serviceAccessToken)
+	var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, announcerAccessToken)
 	var accountURL = wrapFilter(accountURLWithAT, '{"include":["announcerAccount", "campaigns"]}')
 	$.ajax({
 		url: accountURL,
@@ -153,7 +153,7 @@ $(document).ready(function () {
 		success: function (accountResult) {
 			localStorage.setItem('announcerCompanyName', accountResult.companyName);
 			localStorage.setItem('announcerEmail', accountResult.email);
-			var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns/getAllSubcampaigns?accountHashId=' + userId, serviceAccessToken)
+			var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns/getAllSubcampaigns?accountHashId=' + userId, announcerAccessToken)
 			var subcampaignFilterURL = wrapFilter(subcampaignURLWithAT, JSON.stringify({
 				'where': {
 					'clientId': userId

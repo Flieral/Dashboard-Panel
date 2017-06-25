@@ -29,13 +29,13 @@ var announcer_url = "http://127.0.0.1:3000/api/";
 var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
-	var userId, serviceAccessToken, coreAccessToken
+	var userId, announcerAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
 		return window.location.href = '../AAA/sign-in.html';
-	if (localStorage.getItem('serviceAccessToken'))
-		serviceAccessToken = localStorage.getItem('serviceAccessToken')
+	if (localStorage.getItem('announcerAccessToken'))
+		announcerAccessToken = localStorage.getItem('announcerAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
 		var limit = $('#receiptInformationLimit').val()
 
-		var receiptURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllReceipts?accountHashId=' + userId, serviceAccessToken)
+		var receiptURLWithAT = wrapAccessToken(coreEngine_url + 'statistics/getAllReceipts?accountHashId=' + userId, announcerAccessToken)
 		$.ajax({
 			url: receiptURL,
 			type: "GET",

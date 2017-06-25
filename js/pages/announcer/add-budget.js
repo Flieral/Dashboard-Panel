@@ -10,13 +10,13 @@ var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
 	var refineValue = 0
-	var userId, serviceAccessToken, coreAccessToken
+	var userId, announcerAccessToken, coreAccessToken
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
 		return window.location.href = '../AAA/sign-in.html';
-	if (localStorage.getItem('serviceAccessToken'))
-		serviceAccessToken = localStorage.getItem('serviceAccessToken')
+	if (localStorage.getItem('announcerAccessToken'))
+		announcerAccessToken = localStorage.getItem('announcerAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in.html';
 	if (localStorage.getItem('coreAccessToken'))
@@ -33,7 +33,7 @@ $(document).ready(function () {
 			type: "GET",
 			success: function (result) {
 				ipAddress = result.query + ' (' + result.country + ')'
-				var accountURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/announcerAccount', serviceAccessToken);
+				var accountURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/announcerAccount', announcerAccessToken);
 				$.ajax({
 					url: accountURL,
 					type: "GET",
@@ -63,7 +63,7 @@ $(document).ready(function () {
 		var data = {
 			budget: Number($('#AddBudgetMoney').val())
 		}
-		var accountURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/announcerAccount', serviceAccessToken);
+		var accountURL = wrapAccessToken(announcer_url + 'clients/' + userId + '/announcerAccount', announcerAccessToken);
 		$.ajax({
 			url: accountURL,
 			data: JSON.stringify(data),
@@ -85,7 +85,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		var value = $(this).text()
 		if (value === 'Calculate Refinement') {
-			var getRefinement = wrapAccessToken(announcer_url + 'clients/' + userId + '/getRefinement?accountHashId=' + userId, serviceAccessToken);
+			var getRefinement = wrapAccessToken(announcer_url + 'clients/' + userId + '/getRefinement?accountHashId=' + userId, announcerAccessToken);
 			$.ajax({
 				url: getRefinement,
 				dataType: "json",

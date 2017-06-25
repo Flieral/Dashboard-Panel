@@ -61,26 +61,40 @@ $(document).ready(function () {
 			data.username = $('#username').val().toLowerCase();
 
 		$.ajax({
-			url: serviceToRequest,
+			url: publisher_url,
 			data: JSON.stringify(data),
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
-			success: function (serviceResult) {
-				localStorage.setItem('userId', serviceResult.userId);
-				localStorage.setItem('serviceAccessToken', serviceResult.id);
+			success: function (publisherResult) {
 				$.ajax({
-					url: coreEngine_url,
+					url: announcer_url,
 					data: JSON.stringify(data),
 					dataType: "json",
 					contentType: "application/json; charset=utf-8",
 					type: "POST",
-					success: function (coreResult) {
-						localStorage.setItem('coreAccessToken', coreResult.id);
-						if ($('#announcerRadio').is(':checked') == true)
-							window.location.href = '../announcer/dashboard.html'
-						else
-							window.location.href = '../publisher/dashboard.html'
+					success: function (announcerResult) {
+						localStorage.setItem('userId', announcerResult.userId);
+						localStorage.setItem('announcerAccessToken', announcerResult.id);
+						localStorage.setItem('publisherAccessToken', publisherResult.id);
+						$.ajax({
+							url: coreEngine_url,
+							data: JSON.stringify(data),
+							dataType: "json",
+							contentType: "application/json; charset=utf-8",
+							type: "POST",
+							success: function (coreResult) {
+								localStorage.setItem('coreAccessToken', coreResult.id);
+								if ($('#announcerRadio').is(':checked') == true)
+									window.location.href = '../announcer/dashboard.html'
+								else
+									window.location.href = '../publisher/dashboard.html'
+							},
+							error: function (xhr, status, error) {
+								showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
+								// alert(xhr.responseText);
+							}
+						});
 					},
 					error: function (xhr, status, error) {
 						showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
