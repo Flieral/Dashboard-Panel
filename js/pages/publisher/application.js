@@ -203,9 +203,7 @@ $(document).ready(function () {
 				'</td>'
 			);
 		}
-		$('.js-basic-example').DataTable({
-			"scrollX": true
-		});
+		$('.js-basic-example').DataTable();
 	}
 
 	$(document).on("click", ".applicationEdit", function (e) {
