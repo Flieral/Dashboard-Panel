@@ -215,9 +215,27 @@ $(document).ready(function () {
 
 	$(document).on("click", ".placementInfo", function (e) {
 		e.preventDefault();
-		var appName = $(this).parent().siblings().eq(1).text()
-		localStorage.setItem('myApplicationSelectPlacement', appName)
-		return window.location.href = 'placement.html'
+		var appId = $(this).parent().siblings().eq(0).text()
+		var jsonData = {
+			accountHashId: userId,
+			applicationHashId: appId
+		}
+		jsonData.placements = []
+		var placementURLWithAT = wrapAccessToken(publisher_url + 'applications/' + appId + '/placements', publisherAccessToken)
+		$.ajax({
+			url: placementURLWithAT,
+			type: "GET",
+			success: function (placementResult) {
+				for (var i = 0; i < placementResult.length; i++)
+					jsonData.placements.push(placementResult[i].id)
+				$('#defaultModal .modal-content').removeAttr('class').addClass('modal-content');
+				$('#defaultModalLabelText').html(JSON.stringify(jsonData, undefined, 2));
+				$('#defaultModal').modal('show');	
+			},
+			error: function (xhr, status, error) {
+				alert(xhr.responseText);
+			}
+		});
 	})
 
 	$(document).on("click", ".applicationDelete", function (e) {
@@ -340,13 +358,15 @@ $(document).ready(function () {
 		var appName = $('#editApplicationSelect').find('option:selected').text()
 		var appId
 		for (var i = 0; clientApplicationInstance.applications.length; i++)
-			if (clientApplicationInstance.applications[i].name === appName)
+			if (clientApplicationInstance.applications[i].name === appName) {
 				appId = clientApplicationInstance.applications[i].id
+				break
+			}
 		if (!appName || !appId || !$('#editApplicationName').val() || !$('#editApplicationStatusSelect').find('option:selected').text())
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
 			name: $('#editApplicationName').val(),
-			status: $('#editApplicationStatusSelect').val().find('option:selected').text()
+			status: $('#editApplicationStatusSelect').find('option:selected').text()
 		}
 		var appURL = wrapAccessToken(publisher_url + 'clients/' + userId + '/applications/' + appId, publisherAccessToken);
 		$.ajax({
