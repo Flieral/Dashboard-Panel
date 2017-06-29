@@ -46,6 +46,9 @@ $(document).ready(function () {
 						$("#cgeckoutTime").val((new Date()).toLocaleString());
 						priceValue = accountResult.payable
 						transactionIds = accountResult.transactionIds
+						if (priceValue == undefined) {
+							priceValue = 0
+						}
 						$("#sharedCredit").html('Publisher Payable Credit: $' + priceValue);
 						$('.page-loader-wrapper').fadeOut();
 					},
