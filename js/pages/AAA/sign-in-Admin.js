@@ -80,10 +80,8 @@ $(document).ready(function () {
 							type: "POST",
 							success: function (coreResult) {
 								localStorage.setItem('coreAccessToken', coreResult.id);
-								if ($('#announcerRadio').is(':checked') == true)
-									window.location.href = '../announcer/dashboard.html'
-								else
-									window.location.href = '../publisher/dashboard.html'
+									window.location.href = '../Admin/campaign.html'
+							
 							},
 							error: function (xhr, status, error) {
 								showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
