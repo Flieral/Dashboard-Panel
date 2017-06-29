@@ -25,8 +25,8 @@ function dateConvertor(myDate) {
 	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear())
 }
 
-var announcer_url = "http://127.0.0.1:3000/api/";
-var coreEngine_url = "http://127.0.0.1:3015/api/";
+var announcer_url = "http://149.202.30.89:3000/api/";
+var coreEngine_url = "http://149.202.30.89:3015/api/";
 
 $(document).ready(function () {
 	var totalTransactions = []

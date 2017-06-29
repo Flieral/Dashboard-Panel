@@ -1,5 +1,5 @@
-var publisher_url = "http://127.0.0.1:3005/api/clients/reset";
-var announcer_url = "http://127.0.0.1:3000/api/clients/reset";
+var publisher_url = "http://149.202.30.89:3005/api/clients/reset";
+var announcer_url = "http://149.202.30.89:3000/api/clients/reset";
 
 $(document).ready(function () {
 	$("#reset_btn").click(function () {

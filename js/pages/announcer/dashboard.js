@@ -122,8 +122,8 @@ function wrapFilter(url, filter) {
 		return url + '?filter=' + filter
 }
 
-var announcer_url = "http://127.0.0.1:3000/api/";
-var coreEngine_url = "http://127.0.0.1:3015/api/";
+var announcer_url = "http://149.202.30.89:3000/api/";
+var coreEngine_url = "http://149.202.30.89:3015/api/";
 
 $(document).ready(function () {
 	var nowTime = Math.floor((new Date).getTime())

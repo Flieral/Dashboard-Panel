@@ -1,6 +1,6 @@
-var publisher_url = "http://127.0.0.1:3005/api/clients/login";
-var announcer_url = "http://127.0.0.1:3000/api/clients/login";
-var coreEngine_url = "http://127.0.0.1:3015/api/clients/login";
+var publisher_url = "http://149.202.30.89:3005/api/clients/login";
+var announcer_url = "http://149.202.30.89:3000/api/clients/login";
+var coreEngine_url = "http://149.202.30.89:3015/api/clients/login";
 
 $(document).ready(function () {
 	function showNotification(colorName, text, placementFrom, placementAlign, animateEnter, animateExit) {
