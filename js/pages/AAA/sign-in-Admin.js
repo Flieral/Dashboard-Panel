@@ -69,7 +69,7 @@ $(document).ready(function () {
 					contentType: "application/json; charset=utf-8",
 					type: "POST",
 					success: function (announcerResult) {
-						localStorage.setItem('userId', announcerResult.userId);
+						localStorage.setItem('adminId', announcerResult.userId);
 						localStorage.setItem('announcerAccessToken', announcerResult.id);
 						localStorage.setItem('publisherAccessToken', publisherResult.id);
 						$.ajax({
@@ -80,8 +80,7 @@ $(document).ready(function () {
 							type: "POST",
 							success: function (coreResult) {
 								localStorage.setItem('coreAccessToken', coreResult.id);
-									window.location.href = '../Admin/campaign.html'
-							
+									window.location.href = '../Admin/users.html'
 							},
 							error: function (xhr, status, error) {
 								showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
