@@ -18,11 +18,25 @@ function timeConvertor(myDate) {
 	return Math.floor((new Date(parseInt(parts[3]), months.indexOf(parts[2]), parseInt(parts[1]))).getTime())
 }
 
+function fullTimeConvertor(myDate) {
+	var parts = myDate.split(" ")
+	var doublePart = parts[5].split(":")
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	return Math.floor((new Date(parseInt(parts[3]), months.indexOf(parts[2]), parseInt(parts[1]), parseInt(doublePart[0]), parseInt(doublePart[1]))).getTime())
+}
+
 function dateConvertor(myDate) {
 	var d = new Date(myDate)
 	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear())
+}
+
+function fullDateConvertor(myDate) {
+	var d = new Date(myDate)
+	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes())
 }
 
 function generateQueryString(data) {
@@ -100,8 +114,8 @@ $(document).ready(function () {
 				$("#editPlacementStyle").selectpicker('val', totalPlacementsArray[i].style)
 				$("#editPlacementOnlineCapacity").val(totalPlacementsArray[i].onlineCapacity)
 				$("#editPlacementOfflineCapacity").val(totalPlacementsArray[i].offlineCapacity)
-				$("#editPlacementBeginningTime").val(totalPlacementsArray[i].beginningTime)
-				$("#editPlacementEndingTime").val(totalPlacementsArray[i].endingTime)
+				$("#editPlacementBeginningTime").val(fullDateConvertor(totalPlacementsArray[i].beginningTime))
+				$("#editPlacementEndingTime").val(fullDateConvertor(totalPlacementsArray[i].endingTime))
 				$("#editPlacementPriority").selectpicker('val', totalPlacementsArray[i].priority)
 				break
 			}
@@ -273,7 +287,7 @@ $(document).ready(function () {
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].style + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + placementsArray[i].minCredit + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].priority + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + dateConvertor(placementsArray[i].beginningTime) + '<br>' + dateConvertor(placementsArray[i].endingTime) + '</td>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + fullDateConvertor(placementsArray[i].beginningTime) + '<br>' + fullDateConvertor(placementsArray[i].endingTime) + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].onlineCapacity + '<br>' + placementsArray[i].offlineCapacity + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + placementsArray[i].status + '</span></td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' +
@@ -334,44 +348,50 @@ $(document).ready(function () {
 
 	})
 
-	$("#myPlacementSearch").click(function (e) {
+	$("#myPlacementsSearch").click(function (e) {
 		e.preventDefault();
 		var style = [],
 			priority = [],
+			application = [],
 			limit,
 			beginningTime,
 			endingTime
-
-			myPlacementsEndingTime
-			myPlacementsBeginningTime
 
 		if ($('#myPlacementsStyle').val())
 			style = $('#myPlacementsStyle').val()
 		if ($('#myPlacementsPriority').val())
 			priority = $('#myPlacementsPriority').val()
+		if ($('#myPlacementsSelectApplication').val())
+			application = $('#myPlacementsSelectApplication').val()
 
 		if ($('#myPlacementsBeginningTime').val())
-			beginningTime = timeConvertor($('#myPlacementsBeginningTime').val())
+			beginningTime = fullTimeConvertor($('#myPlacementsBeginningTime').val())
 
 		if ($('#myPlacementsEndingTime').val())
-			endingTime = timeConvertor($('#myPlacementsEndingTime').val())
+			endingTime = fullTtimeConvertor($('#myPlacementsEndingTime').val())
 
 		var limit = $('#myPlacementssLimit').val()
 
 		var filter = {}
-		if (priority.length > 0 || style.length > 0 || beginningTime || endingTime) {
+		if (priority.length > 0 || style.length > 0  || application.length > 0 || beginningTime || endingTime) {
 			filter.where = {}
 			filter.where.and = []
-			if (status.length > 0)
+			if (style.length > 0)
 				filter.where.and.push({
 					'style': {
 						'inq': style
 					}
 				})
-			if (style.length > 0)
+			if (priority.length > 0)
 				filter.where.and.push({
 					'priority': {
 						'inq': priority
+					}
+				})
+			if (application.length > 0)
+				filter.where.and.push({
+					'applicationId': {
+						'inq': application
 					}
 				})
 			if (beginningTime)
