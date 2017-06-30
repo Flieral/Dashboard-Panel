@@ -48,6 +48,7 @@ $(document).ready(function () {
 
 	$("#login_btn").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		if ($('#announcerRadio').is(':checked') == false)
 			var serviceToRequest = publisher_url;
 		else
@@ -85,24 +86,28 @@ $(document).ready(function () {
 							type: "POST",
 							success: function (coreResult) {
 								localStorage.setItem('coreAccessToken', coreResult.id);
+								NProgress.done();
 								if ($('#announcerRadio').is(':checked') == true)
 									window.location.href = '../announcer/dashboard.html'
 								else
 									window.location.href = '../publisher/dashboard.html'
 							},
 							error: function (xhr, status, error) {
+								NProgress.done();
 								showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 								// alert(xhr.responseText);
 							}
 						});
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 						// alert(xhr.responseText);
 					}
 				});
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 				// alert(xhr.responseText);
 			}

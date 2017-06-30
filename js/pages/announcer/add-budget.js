@@ -57,8 +57,11 @@ $(document).ready(function () {
 
 	$("#addBudgetButton").click(function (e) {
 		e.preventDefault();
-		if (!$('#AddBudgetMoney').val())
+		NProgress.start();
+		if (!$('#AddBudgetMoney').val()){
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 
 		var data = {
 			budget: Number($('#AddBudgetMoney').val())
@@ -72,9 +75,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (accountResult) {
 				$("#sharedBudget").html('Budget: $' + accountResult.budget);
+				NProgress.done();
 				swal("Congrates!", "You have successfuly increated your budget.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -83,6 +88,7 @@ $(document).ready(function () {
 
 	$("#refinementButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var value = $(this).text()
 		if (value === 'Calculate Refinement') {
 			var getRefinement = wrapAccessToken(announcer_url + 'clients/' + userId + '/getRefinement?accountHashId=' + userId, announcerAccessToken);
@@ -95,8 +101,10 @@ $(document).ready(function () {
 					refineValue = refinementResult.response
 					$("#refinementValue").html('Refine: $' + refinementResult.response);
 					$(this).html('Checkout')
+					NProgress.done();
 				},
 				error: function (xhr, status, error) {
+					NProgress.done();
 					swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 					alert(xhr.responseText);
 				}
@@ -116,9 +124,11 @@ $(document).ready(function () {
 				type: "POST",
 				success: function (checkoutResult) {
 					$("#refinementValue").html('Refine: $0');
+					NProgress.done();
 					swal("Congrates!", "Checkout Successfuly Done.", "success");
 				},
 				error: function (xhr, status, error) {
+					NProgress.done();
 					swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 					alert(xhr.responseText);
 				}

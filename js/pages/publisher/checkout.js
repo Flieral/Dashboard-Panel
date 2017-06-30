@@ -63,6 +63,7 @@ $(document).ready(function () {
 
 	$("#refinementButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var checkoutURL = wrapAccessToken(coreEngine_url + 'statistics/publisherCheckout?accessTokenId=' + publisherAccessToken + '&accountHashId=' + userId, coreAccessToken);
 		var receiptData = {
 			fakeData: 'Fake Data',
@@ -80,9 +81,11 @@ $(document).ready(function () {
 			type: "POST",
 			success: function (checkoutResult) {
 				$("#sharedCredit").html('Publisher Payable Credit: $0');
+				NProgress.done();
 				swal("Congrates!", "Checkout Successfuly Done.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

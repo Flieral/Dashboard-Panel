@@ -138,8 +138,7 @@ $(document).ready(function () {
 		$("#myApplications").show();
 		$("#editApplication").hide();
 		$("#newApplication").hide();
-	}
-	else if (window.location.hash === '#newApplication')
+	} else if (window.location.hash === '#newApplication')
 		$('.nav-tabs a[id="nav2"]').tab('show');
 	else if (window.location.hash === '#editApplication')
 		$('.nav-tabs a[id="nav3"]').tab('show');
@@ -215,6 +214,7 @@ $(document).ready(function () {
 
 	$(document).on("click", ".placementInfo", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var appId = $(this).parent().siblings().eq(0).text()
 		var jsonData = {
 			accountHashId: userId,
@@ -230,9 +230,11 @@ $(document).ready(function () {
 					jsonData.placements.push(placementResult[i].id)
 				$('#defaultModal .modal-content').removeAttr('class').addClass('modal-content');
 				$('#defaultModalLabelText').html(JSON.stringify(jsonData, undefined, 2));
-				$('#defaultModal').modal('show');	
+				$('#defaultModal').modal('show');
+				NProgress.done();
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				alert(xhr.responseText);
 			}
 		});
@@ -240,6 +242,7 @@ $(document).ready(function () {
 
 	$(document).on("click", ".applicationDelete", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var appId = $(this).parent().siblings().eq(0).text()
 		swal({
 			title: "Are You Sure?",
@@ -260,19 +263,23 @@ $(document).ready(function () {
 					success: function (applicationResult) {
 						swal("Deleted!", "Your application successfuly has been deleted.", "success");
 						getAllApplications()
+						NProgress.done();
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 						alert(xhr.responseText);
 					}
 				});
-			}
+			} else
+				NProgress.done();
 		});
 
 	})
 
 	$("#myApplicationsSearch").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var status = [],
 			os = []
 		if ($('#myApplicationsStatus').val())
@@ -309,9 +316,11 @@ $(document).ready(function () {
 			type: "GET",
 			success: function (appResult) {
 				fillTable(appResult)
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -320,6 +329,7 @@ $(document).ready(function () {
 
 	$("#newApplicationAddApplication").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		if (!$('#newApplicationName').val() || !$('#newApplicationOSSelect').find('option:selected').text())
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
@@ -336,9 +346,11 @@ $(document).ready(function () {
 			success: function (appResult) {
 				getAllApplications()
 				newApplicationId = appResult.id
+				NProgress.done();
 				swal("Congrates!", "You have successfuly created an application. Lets go for adding placement.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -355,6 +367,7 @@ $(document).ready(function () {
 
 	$("#editApplicationSave").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var appName = $('#editApplicationSelect').find('option:selected').text()
 		var appId
 		for (var i = 0; clientApplicationInstance.applications.length; i++)
@@ -377,9 +390,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (appResult) {
 				getAllApplications()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly edited an application.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

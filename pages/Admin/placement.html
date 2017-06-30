@@ -59,6 +59,8 @@
 
 	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 	<link href="../../css/themes/theme-pink.css" rel="stylesheet" />
+	<!-- Nprogress bar for top in Ajax call-->
+	<link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
 </head>
 
 <body class="theme-pink">
@@ -654,7 +656,7 @@
 									<b>Category Types</b>
 								</p>
 								<select id="selectSettingCategory" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=7
-								data-actionsBox=true multiple title="Nothing selected">
+								    data-actionsBox=true multiple title="Nothing selected">
 								<option value="Sports">Sports</option>
 								<option value="Health & Fitness">Health & Fitness</option>
 								<option value="Education">Education</option>
@@ -680,16 +682,16 @@
 								<option value="Games">Games</option>
 								<option value="Kids">Kids</option>
 							</select>
+							</div>
 						</div>
-					</div>
-					<div class="row clearfix">
-						<br>
-						<div class="col-md-8 col-md-offset-2">
-							<p>
-								<b>Country Types</b>
-							</p>
-							<select id="selectSettingCountry" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
-							data-actionsBox=true multiple title="Nothing selected">
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-8 col-md-offset-2">
+								<p>
+									<b>Country Types</b>
+								</p>
+								<select id="selectSettingCountry" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
+								    data-actionsBox=true multiple title="Nothing selected">
 							<option value="AF">Afghanistan</option>
 							<option value="AX">Åland Islands</option>
 							<option value="AL">Albania</option>
@@ -934,99 +936,101 @@
 							<option value="ZM">Zambia</option>
 							<option value="ZW">Zimbabwe</option>
 						</select>
-					</div>
-				</div>
+							</div>
+						</div>
 
-			<div class="row clearfix">
-				<br>
-				<div class="col-md-2 col-md-offset-5">
-					<button id="saveSettingButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Save Setting</button>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-2 col-md-offset-5">
+								<button id="saveSettingButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Save Setting</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</div>
 
-</section>
+	</section>
 
-<!-- Jquery Core Js -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Jquery Core Js -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core Js -->
-<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
-<!-- Select Plugin Js -->
-<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+	<!-- Select Plugin Js -->
+	<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-<!-- Slimscroll Plugin Js -->
-<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-<!-- Bootstrap Colorpicker Js -->
-<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+	<!-- Bootstrap Colorpicker Js -->
+	<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 
-<!-- Dropzone Plugin Js -->
-<script src="../../plugins/dropzone/dropzone.js"></script>
+	<!-- Dropzone Plugin Js -->
+	<script src="../../plugins/dropzone/dropzone.js"></script>
 
-<!-- Input Mask Plugin Js -->
-<script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+	<!-- Input Mask Plugin Js -->
+	<script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 
-<!-- Multi Select Plugin Js -->
-<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
+	<!-- Multi Select Plugin Js -->
+	<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
 
-<!-- Jquery Spinner Plugin Js -->
-<script src="../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
+	<!-- Jquery Spinner Plugin Js -->
+	<script src="../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
 
-<!-- Bootstrap Tags Input Plugin Js -->
-<script src="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+	<!-- Bootstrap Tags Input Plugin Js -->
+	<script src="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
-<!-- Moment Plugin Js -->
-<script src="../../plugins/momentjs/moment.js"></script>
+	<!-- Moment Plugin Js -->
+	<script src="../../plugins/momentjs/moment.js"></script>
 
-<!-- Bootstrap Material Datetime Picker Plugin Js -->
-<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+	<!-- Bootstrap Material Datetime Picker Plugin Js -->
+	<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
-<!-- noUISlider Plugin Js -->
-<script src="../../plugins/nouislider/nouislider.js"></script>
+	<!-- noUISlider Plugin Js -->
+	<script src="../../plugins/nouislider/nouislider.js"></script>
 
-<!-- Jquery Validation Plugin Css -->
-<script src="../../plugins/jquery-validation/jquery.validate.js"></script>
+	<!-- Jquery Validation Plugin Css -->
+	<script src="../../plugins/jquery-validation/jquery.validate.js"></script>
 
-<!-- JQuery Steps Plugin Js -->
-<script src="../../plugins/jquery-steps/jquery.steps.js"></script>
+	<!-- JQuery Steps Plugin Js -->
+	<script src="../../plugins/jquery-steps/jquery.steps.js"></script>
 
-<!-- Sweet Alert Plugin Js -->
-<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
-<!-- Bootstrap Notify Plugin Js -->
-<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
-<!-- Sweet Alert Plugin Js -->
-<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
-<!-- Waves Effect Plugin Js -->
-<script src="../../plugins/node-waves/waves.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="../../plugins/node-waves/waves.js"></script>
 
-<!-- Custom Js -->
-<script src="../../js/admin.js"></script>
-<script src="../../js/pages/publisher/placement.js"></script>
+	<!-- Custom Js -->
+	<script src="../../js/admin.js"></script>
+	<script src="../../js/pages/publisher/placement.js"></script>
 
-<!-- Jquery DataTable Plugin Js -->
-<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+	<!-- Jquery DataTable Plugin Js -->
+	<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
-<!-- Demo Js -->
-<script src="../../js/demo.js"></script>
+	<!-- Demo Js -->
+	<script src="../../js/demo.js"></script>
 
-<!-- Autosize Plugin Js -->
-<script src="../../plugins/autosize/autosize.js"></script>
+	<!-- Autosize Plugin Js -->
+	<script src="../../plugins/autosize/autosize.js"></script>
+	<!-- Nprogress Plugin Js -->
+	<script src="../../plugins/nprogress/nprogress.js"></script>
 </body>
 
 </html>

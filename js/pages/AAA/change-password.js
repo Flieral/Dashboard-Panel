@@ -2,6 +2,7 @@ var publisher_url = "http://127.0.0.1:3005/api/clients/change-password";
 var announcer_url = "http://127.0.0.1:3000/api/clients/change-password";
 
 $(document).ready(function () {
+	NProgress.start();
 	$("#chng_btn").click(function () {
 		var data = {
 			oldPassword: $('#password').val(),
@@ -14,9 +15,11 @@ $(document).ready(function () {
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (result) {
+				NProgress.done();
 				$("#div1").html(result);
 			},
 			error: function (result) {
+				NProgress.done();
 				$("#div1").html(result);
 			}
 		});

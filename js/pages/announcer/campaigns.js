@@ -146,8 +146,7 @@ $(document).ready(function () {
 		$("#myCampaigns").show();
 		$("#editCampaign").hide();
 		$("#newCampaign").hide();
-	}
-	else if (window.location.hash === '#newCampaign')
+	} else if (window.location.hash === '#newCampaign')
 		$('.nav-tabs a[id="nav2"]').tab('show');
 	else if (window.location.hash === '#editCampaign')
 		$('.nav-tabs a[id="nav3"]').tab('show');
@@ -239,6 +238,7 @@ $(document).ready(function () {
 
 	$(document).on("click", ".campaignDelete", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var campId = $(this).parent().siblings().eq(0).text()
 		swal({
 			title: "Are You Sure?",
@@ -259,13 +259,16 @@ $(document).ready(function () {
 					success: function (subcampaignResult) {
 						swal("Deleted!", "Your campaign successfuly has been deleted.", "success");
 						getAllCampaigns()
+						NProgress.done();
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 						alert(xhr.responseText);
 					}
 				});
-			}
+			} else
+				NProgress.done();
 		});
 
 	})
@@ -350,8 +353,11 @@ $(document).ready(function () {
 
 	$("#newCampaignsAddCampaign").click(function (e) {
 		e.preventDefault();
-		if (!$('#newCampaignName').val() || !$('#newCampaignBeginningTime').val() || !$('#newCampaignEndingTime').val() || !$('#newCampaignBudget').val() || !$('#newCampaignMediaStyle').find('option:selected').text() || !$('#newCampaignStartStyle').find('option:selected').text())
+		NProgress.start();
+		if (!$('#newCampaignName').val() || !$('#newCampaignBeginningTime').val() || !$('#newCampaignEndingTime').val() || !$('#newCampaignBudget').val() || !$('#newCampaignMediaStyle').find('option:selected').text() || !$('#newCampaignStartStyle').find('option:selected').text()) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 		var data = {
 			name: $('#newCampaignName').val(),
 			mediaStyle: $('#newCampaignMediaStyle').find('option:selected').text(),
@@ -369,10 +375,12 @@ $(document).ready(function () {
 			type: "POST",
 			success: function (campaignResult) {
 				getAllCampaigns()
+				NProgress.done();
 				newCampaignId = campaignResult.id
 				swal("Congrates!", "You have successfuly created a campaign. Lets go for adding subcamapigns.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -389,13 +397,16 @@ $(document).ready(function () {
 
 	$("#editCampaignsSave").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var campaignName = $('#editCampaignSelect').find('option:selected').text()
 		var campaignId
 		for (var i = 0; clientCampaignInstance.campaigns.length; i++)
 			if (clientCampaignInstance.campaigns[i].name === campaignName)
 				campaignId = clientCampaignInstance.campaigns[i].id
-		if (!campaignName || !campaignId || !$('#editCampaignName').val() || !$('#editCampaignBeginningTime').val() || !$('#editCampaignEndingTime').val() || !$('#editCampaignBudget').val() || !$('#editCampaignStatus').find('option:selected').text())
+		if (!campaignName || !campaignId || !$('#editCampaignName').val() || !$('#editCampaignBeginningTime').val() || !$('#editCampaignEndingTime').val() || !$('#editCampaignBudget').val() || !$('#editCampaignStatus').find('option:selected').text()) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 		var data = {
 			name: $('#editCampaignName').val(),
 			beginningTime: fullTimeConvertor($('#editCampaignBeginningTime').val()),
@@ -413,9 +424,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (coreResult) {
 				getAllCampaigns()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly edited a campaign.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

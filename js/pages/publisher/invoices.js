@@ -105,6 +105,7 @@ $(document).ready(function () {
 
 	$("#receiptInformationSearchButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var status
 		var beginningTime
 		var endingTime
@@ -161,9 +162,11 @@ $(document).ready(function () {
 				}
 
 				fillTable(responseArray)
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}

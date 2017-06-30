@@ -33,6 +33,9 @@
 
 	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 	<link href="../../css/themes/theme-pink.css" rel="stylesheet" />
+
+	<!-- Nprogress bar for top in Ajax call-->
+	<link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
 </head>
 
 <body class="theme-pink">
@@ -313,28 +316,28 @@
 							</div>
 						</div>
 						<div class="row clearfix">
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<div class="info-box-4 hover-expand-effect">
-								<div class="icon">
-									<i class="material-icons">check</i>
-								</div>
-								<div class="content">
-									<div class="text">Checkout</div>
-									<div id="checkoutTransactions" class="number count-to" data-from="0" data-to="125" data-speed="1500" data-fresh-interval="10"></div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<div class="info-box-4 hover-expand-effect">
-								<div class="icon">
-									<i class="material-icons">refresh</i>
-								</div>
-								<div class="content">
-									<div class="text">Open</div>
-									<div id="openTransactions" class="number count-to" data-from="0" data-to="125" data-speed="1500" data-fresh-interval="10"></div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div class="info-box-4 hover-expand-effect">
+									<div class="icon">
+										<i class="material-icons">check</i>
+									</div>
+									<div class="content">
+										<div class="text">Checkout</div>
+										<div id="checkoutTransactions" class="number count-to" data-from="0" data-to="125" data-speed="1500" data-fresh-interval="10"></div>
+									</div>
 								</div>
 							</div>
-						</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div class="info-box-4 hover-expand-effect">
+									<div class="icon">
+										<i class="material-icons">refresh</i>
+									</div>
+									<div class="content">
+										<div class="text">Open</div>
+										<div id="openTransactions" class="number count-to" data-from="0" data-to="125" data-speed="1500" data-fresh-interval="10"></div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="row clearfix m-b--10">
 							<div class="col-md-6">
@@ -353,60 +356,60 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 				<div class="row clearfix">
-						<!-- Browser Usage -->
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-							<div class="card">
-								<div class="header">
-									<h2>Device Transparency</h2>
-								</div>
-								<div class="body">
-									<div id="donut_device" class="dashboard-donut-chart"></div>
-								</div>
+					<!-- Browser Usage -->
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="header">
+								<h2>Device Transparency</h2>
+							</div>
+							<div class="body">
+								<div id="donut_device" class="dashboard-donut-chart"></div>
 							</div>
 						</div>
-						<!-- #END# Browser Usage -->
-						<!-- Browser Usage -->
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-							<div class="card">
-								<div class="header">
-									<h2>OS Transparency</h2>
-								</div>
-								<div class="body">
-									<div id="donut_os" class="dashboard-donut-chart"></div>
-								</div>
+					</div>
+					<!-- #END# Browser Usage -->
+					<!-- Browser Usage -->
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="header">
+								<h2>OS Transparency</h2>
+							</div>
+							<div class="body">
+								<div id="donut_os" class="dashboard-donut-chart"></div>
 							</div>
 						</div>
-						<!-- #END# Browser Usage -->
+					</div>
+					<!-- #END# Browser Usage -->
 				</div>
 				<div class="row clearfix">
-						<!-- Browser Usage -->
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-							<div class="card">
-								<div class="header">
-									<h2>Connection Transparency</h2>
-								</div>
-								<div class="body">
-									<div id="donut_connection" class="dashboard-donut-chart"></div>
-								</div>
+					<!-- Browser Usage -->
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="header">
+								<h2>Connection Transparency</h2>
+							</div>
+							<div class="body">
+								<div id="donut_connection" class="dashboard-donut-chart"></div>
 							</div>
 						</div>
-						<!-- #END# Browser Usage -->
-						<!-- Browser Usage -->
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-							<div class="card">
-								<div class="header">
-									<h2>User Label Transparency</h2>
-								</div>
-								<div class="body">
-									<div id="donut_user" class="dashboard-donut-chart"></div>
-								</div>
-							</div>
-						</div>
-						<!-- #END# Browser Usage -->
 					</div>
+					<!-- #END# Browser Usage -->
+					<!-- Browser Usage -->
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div class="card">
+							<div class="header">
+								<h2>User Label Transparency</h2>
+							</div>
+							<div class="body">
+								<div id="donut_user" class="dashboard-donut-chart"></div>
+							</div>
+						</div>
+					</div>
+					<!-- #END# Browser Usage -->
+				</div>
 
 			</div>
 		</div>
@@ -416,117 +419,119 @@
 			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 				<div class="card">
 					<div class="body bg-pink">
-					<div class="m-b--35 font-bold">TRANSACTION TRANSPARENCY</div>
-					<ul class="dashboard-stat-list">
-						<li>
-							TODAY CLICKS
-							<span class="pull-right"><b id="today_clicks">1 200</b> <small>USERS</small></span>
-						</li>
-						<li>
-							YESTERDAY CLICKS
-							<span class="pull-right"><b id="yesterday_clicks">3 872</b> <small>USERS</small></span>
-						</li>
-						<li>
-							LAST WEEK CLICKS
-							<span class="pull-right"><b id="last_week_clicks">26 582</b> <small>USERS</small></span>
-						</li>
-					</ul>
+						<div class="m-b--35 font-bold">TRANSACTION TRANSPARENCY</div>
+						<ul class="dashboard-stat-list">
+							<li>
+								TODAY CLICKS
+								<span class="pull-right"><b id="today_clicks">1 200</b> <small>USERS</small></span>
+							</li>
+							<li>
+								YESTERDAY CLICKS
+								<span class="pull-right"><b id="yesterday_clicks">3 872</b> <small>USERS</small></span>
+							</li>
+							<li>
+								LAST WEEK CLICKS
+								<span class="pull-right"><b id="last_week_clicks">26 582</b> <small>USERS</small></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- #END# Visitors -->
+			<!-- Latest Social Trends -->
+			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<div class="card">
+					<div class="body bg-cyan">
+						<div class="m-b--35 font-bold">APPLICATION STATS</div>
+						<ul class="dashboard-stat-list">
+							<li>
+								TOTAL APPLICATIONS
+								<span class="pull-right"><b id="total_apps">12</b> <small>TICKETS</small></span>
+							</li>
+							<li>
+								DISABLED APPLICATIONS
+								<span class="pull-right"><b id="disable_apps">15</b> <small>TICKETS</small></span>
+							</li>
+							<li>
+								ENABLED APPLICATIONS
+								<span class="pull-right"><b id="enable_apps">90</b> <small>TICKETS</small></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- #END# Latest Social Trends -->
+			<!-- Answered Tickets -->
+			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<div class="card">
+					<div class="body bg-teal">
+						<div class="font-bold m-b--35">PLACEMENT STATS</div>
+						<ul class="dashboard-stat-list">
+							<li>
+								TOTAL PLACEMENTS
+								<span class="pull-right"><b id="total_placements">12</b> <small>TICKETS</small></span>
+							</li>
+							<li>
+								DISABLED PLACEMENTS
+								<span class="pull-right"><b id="disable_placements">15</b> <small>TICKETS</small></span>
+							</li>
+							<li>
+								ENABLED PLACEMENTS
+								<span class="pull-right"><b id="enable_placements">90</b> <small>TICKETS</small></span>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- #END# Visitors -->
-		<!-- Latest Social Trends -->
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-			<div class="card">
-				<div class="body bg-cyan">
-					<div class="m-b--35 font-bold">APPLICATION STATS</div>
-					<ul class="dashboard-stat-list">
-						<li>
-							TOTAL APPLICATIONS
-							<span class="pull-right"><b id="total_apps">12</b> <small>TICKETS</small></span>
-						</li>
-						<li>
-							DISABLED APPLICATIONS
-							<span class="pull-right"><b id="disable_apps">15</b> <small>TICKETS</small></span>
-						</li>
-						<li>
-							ENABLED APPLICATIONS
-							<span class="pull-right"><b id="enable_apps">90</b> <small>TICKETS</small></span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- #END# Latest Social Trends -->
-		<!-- Answered Tickets -->
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-			<div class="card">
-				<div class="body bg-teal">
-					<div class="font-bold m-b--35">PLACEMENT STATS</div>
-					<ul class="dashboard-stat-list">
-						<li>
-							TOTAL PLACEMENTS
-							<span class="pull-right"><b id="total_placements">12</b> <small>TICKETS</small></span>
-						</li>
-						<li>
-							DISABLED PLACEMENTS
-							<span class="pull-right"><b id="disable_placements">15</b> <small>TICKETS</small></span>
-						</li>
-						<li>
-							ENABLED PLACEMENTS
-							<span class="pull-right"><b id="enable_placements">90</b> <small>TICKETS</small></span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+	</section>
 
-<!-- Jquery Core Js -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Jquery Core Js -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core Js -->
-<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
-<!-- Select Plugin Js -->
-<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+	<!-- Select Plugin Js -->
+	<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-<!-- Slimscroll Plugin Js -->
-<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-<!-- Waves Effect Plugin Js -->
-<script src="../../plugins/node-waves/waves.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="../../plugins/node-waves/waves.js"></script>
 
-<!-- Jquery CountTo Plugin Js -->
-<script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
+	<!-- Jquery CountTo Plugin Js -->
+	<script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
 
-<!-- Morris Plugin Js -->
-<script src="../../plugins/raphael/raphael.min.js"></script>
-<script src="../../plugins/morrisjs/morris.js"></script>
+	<!-- Morris Plugin Js -->
+	<script src="../../plugins/raphael/raphael.min.js"></script>
+	<script src="../../plugins/morrisjs/morris.js"></script>
 
-<!-- ChartJs -->
-<script src="../../plugins/chartjs/Chart.bundle.js"></script>
+	<!-- ChartJs -->
+	<script src="../../plugins/chartjs/Chart.bundle.js"></script>
 
-<!-- Flot Charts Plugin Js -->
-<script src="../../plugins/flot-charts/jquery.flot.js"></script>
-<script src="../../plugins/flot-charts/jquery.flot.resize.js"></script>
-<script src="../../plugins/flot-charts/jquery.flot.pie.js"></script>
-<script src="../../plugins/flot-charts/jquery.flot.categories.js"></script>
-<script src="../../plugins/flot-charts/jquery.flot.time.js"></script>
+	<!-- Flot Charts Plugin Js -->
+	<script src="../../plugins/flot-charts/jquery.flot.js"></script>
+	<script src="../../plugins/flot-charts/jquery.flot.resize.js"></script>
+	<script src="../../plugins/flot-charts/jquery.flot.pie.js"></script>
+	<script src="../../plugins/flot-charts/jquery.flot.categories.js"></script>
+	<script src="../../plugins/flot-charts/jquery.flot.time.js"></script>
 
-<!-- Sparkline Chart Plugin Js -->
-<script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
+	<!-- Sparkline Chart Plugin Js -->
+	<script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
-<!-- Google Maps API Js -->
-<script src="https://maps.google.com/maps/api/js?v=3&sensor=false"></script>
+	<!-- Google Maps API Js -->
+	<script src="https://maps.google.com/maps/api/js?v=3&sensor=false"></script>
 
-<!-- Custom Js -->
-<script src="../../js/admin.js"></script>
-<script src="../../js/pages/publisher/dashboard.js"></script>
+	<!-- Custom Js -->
+	<script src="../../js/admin.js"></script>
+	<script src="../../js/pages/publisher/dashboard.js"></script>
 
-<!-- Demo Js -->
-<script src="../../js/demo.js"></script>
+	<!-- Demo Js -->
+	<script src="../../js/demo.js"></script>
+	<!-- Nprogress Plugin Js -->
+	<script src="../../plugins/nprogress/nprogress.js"></script>
 </body>
 
 </html>

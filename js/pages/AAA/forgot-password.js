@@ -3,6 +3,7 @@ var announcer_url = "http://127.0.0.1:3000/api/clients/reset";
 
 $(document).ready(function () {
 	$("#reset_btn").click(function () {
+		NProgress.start();
 		if ($('#announcerRadio').attr('checked') == undefined)
 			var serviceToRequest = publisher_url;
 		else
@@ -17,9 +18,11 @@ $(document).ready(function () {
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (result) {
+				NProgress.done();
 				$("#div1").html(result);
 			},
 			error: function (result) {
+				NProgress.done();
 				$("#div1").html(result);
 			}
 		});

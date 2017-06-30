@@ -59,6 +59,9 @@
 
 	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 	<link href="../../css/themes/theme-pink.css" rel="stylesheet" />
+	
+	<!-- Nprogress bar for top in Ajax call-->
+	<link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
 </head>
 
 <body class="theme-pink">
@@ -282,150 +285,152 @@
 									<b>Subcampaign Filter</b>
 								</p>
 								<select id="transactionSubcampaign" class="form-control show-tick" data-live-search="true" data-selected-text-format="count"
-								multiple>
+								    multiple>
 							</select>
-						</div>
-						<div class="col-md-1">
-							<p>
-								<b>Limit</b>
-							</p>
-							<div class="input-group spinner" data-trigger="spinner">
-								<div class="form-line">
-									<input id="transactionLimit" type="text" class="form-control text-center" value="10" data-rule="quantity">
-								</div>
-								<span class="input-group-addon">
+							</div>
+							<div class="col-md-1">
+								<p>
+									<b>Limit</b>
+								</p>
+								<div class="input-group spinner" data-trigger="spinner">
+									<div class="form-line">
+										<input id="transactionLimit" type="text" class="form-control text-center" value="10" data-rule="quantity">
+									</div>
+									<span class="input-group-addon">
 									<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
 									<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
 								</span>
-							</div>
-						</div>
-					</div>
-					<div class="row clearfix">
-						<div class="col-md-3 col-md-offset-2">
-							<p>
-								<b>Beginning Time Filter</b>
-							</p>
-							<div class="form-group">
-								<div class="form-line">
-									<input id="transactionBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3">
-							<p>
-								<b>Ending Time Filter</b>
-							</p>
-							<div class="form-group">
-								<div class="form-line">
-									<input id="transactionEndingTime" type="text" class="datepicker form-control" placeholder="Enter Ending Date">
+						<div class="row clearfix">
+							<div class="col-md-3 col-md-offset-2">
+								<p>
+									<b>Beginning Time Filter</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="transactionBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
+									</div>
 								</div>
 							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Ending Time Filter</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<input id="transactionEndingTime" type="text" class="datepicker form-control" placeholder="Enter Ending Date">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1 col-md-offset-1">
+								<p>
+									<b></b>
+								</p>
+								<button type="button" id="transactionSearchButton" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
+							</div>
 						</div>
-						<div class="col-md-1 col-md-offset-1">
-							<p>
-								<b></b>
-							</p>
-							<button type="button" id="transactionSearchButton" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
-						</div>
-					</div>
 
-					<div class="row clearfix">
-						<div class="col-md-10 col-md-offset-1">
+						<div class="row clearfix">
+							<div class="col-md-10 col-md-offset-1">
 
-							<!-- Exportable Table -->
-							<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
-								<thead>
-									<tr>
-										<th>Transaction ID</th>
-										<th>Campaign</th>
-										<th>Subcampaign</th>
-										<th>Date</th>
-										<th>Event</th>
-										<th>Price</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-							<!-- #END# Exportable Table -->
+								<!-- Exportable Table -->
+								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+									<thead>
+										<tr>
+											<th>Transaction ID</th>
+											<th>Campaign</th>
+											<th>Subcampaign</th>
+											<th>Date</th>
+											<th>Event</th>
+											<th>Price</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<!-- #END# Exportable Table -->
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-</section>
+	</section>
 
-<!-- Jquery Core Js -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Jquery Core Js -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core Js -->
-<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
-<!-- Select Plugin Js -->
-<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+	<!-- Select Plugin Js -->
+	<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-<!-- Slimscroll Plugin Js -->
-<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-<!-- Bootstrap Colorpicker Js -->
-<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+	<!-- Bootstrap Colorpicker Js -->
+	<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 
-<!-- Dropzone Plugin Js -->
-<script src="../../plugins/dropzone/dropzone.js"></script>
+	<!-- Dropzone Plugin Js -->
+	<script src="../../plugins/dropzone/dropzone.js"></script>
 
-<!-- Input Mask Plugin Js -->
-<script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+	<!-- Input Mask Plugin Js -->
+	<script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 
-<!-- Multi Select Plugin Js -->
-<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
+	<!-- Multi Select Plugin Js -->
+	<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
 
-<!-- Jquery Spinner Plugin Js -->
-<script src="../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
+	<!-- Jquery Spinner Plugin Js -->
+	<script src="../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
 
-<!-- Bootstrap Tags Input Plugin Js -->
-<script src="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+	<!-- Bootstrap Tags Input Plugin Js -->
+	<script src="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
-<!-- Moment Plugin Js -->
-<script src="../../plugins/momentjs/moment.js"></script>
+	<!-- Moment Plugin Js -->
+	<script src="../../plugins/momentjs/moment.js"></script>
 
-<!-- Bootstrap Material Datetime Picker Plugin Js -->
-<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+	<!-- Bootstrap Material Datetime Picker Plugin Js -->
+	<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
-<!-- Sweet Alert Plugin Js -->
-<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
-<!-- Bootstrap Notify Plugin Js -->
-<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
-<!-- noUISlider Plugin Js -->
-<script src="../../plugins/nouislider/nouislider.js"></script>
+	<!-- noUISlider Plugin Js -->
+	<script src="../../plugins/nouislider/nouislider.js"></script>
 
-<!-- Waves Effect Plugin Js -->
-<script src="../../plugins/node-waves/waves.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="../../plugins/node-waves/waves.js"></script>
 
-<!-- Custom Js -->
-<script src="../../js/admin.js"></script>
-<script src="../../js/pages/announcer/transactions.js"></script>
+	<!-- Custom Js -->
+	<script src="../../js/admin.js"></script>
+	<script src="../../js/pages/announcer/transactions.js"></script>
 
-<!-- Jquery DataTable Plugin Js -->
-<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+	<!-- Jquery DataTable Plugin Js -->
+	<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
-<!-- Demo Js -->
-<script src="../../js/demo.js"></script>
+	<!-- Demo Js -->
+	<script src="../../js/demo.js"></script>
 
-<!-- Autosize Plugin Js -->
-<script src="../../plugins/autosize/autosize.js"></script>
+	<!-- Autosize Plugin Js -->
+	<script src="../../plugins/autosize/autosize.js"></script>
+	<!-- Nprogress Plugin Js -->
+	<script src="../../plugins/nprogress/nprogress.js"></script>
 </body>
 
 </html>

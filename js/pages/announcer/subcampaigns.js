@@ -332,6 +332,7 @@ $(document).ready(function () {
 
 	$(document).on("click", ".subcampaignEdit", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var campId = $(this).parent().siblings().eq(1).text()
 		var subcampId = $(this).parent().siblings().eq(0).text()
 		var subcampaignName, campaignName
@@ -343,10 +344,12 @@ $(document).ready(function () {
 				campaignName = clientInstance.campaigns[i].name
 		localStorage.setItem('editableSubcampaignName', subcampaignName)
 		$('.nav-tabs a[id="nav3"]').tab('show');
+		NProgress.done();
 	})
 
 	$(document).on("click", ".subcampaignDelete", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var campId = $(this).parent().siblings().eq(1).text()
 		var subcampId = $(this).parent().siblings().eq(0).text()
 		swal({
@@ -368,19 +371,23 @@ $(document).ready(function () {
 					success: function (subcampaignResult) {
 						swal("Deleted!", "Your subcampaign successfuly has been deleted.", "success");
 						getAccountModel()
+						NProgress.done();
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 						alert(xhr.responseText);
 					}
 				});
-			}
+			} else
+				NProgress.done();
 		});
 
 	})
 
 	$("#mySubcampaignsSearch").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var status = [],
 			style = [],
 			plan = [],
@@ -440,10 +447,12 @@ $(document).ready(function () {
 			type: "GET",
 			success: function (subcampaignResult) {
 				fillTable(subcampaignResult)
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
+				NProgress.done();
 				alert(xhr.responseText);
 			}
 		});
@@ -451,6 +460,7 @@ $(document).ready(function () {
 
 	$("#editSubcamapignButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var subcampaignName = $('#editSubcampaignSelect').find('option:selected').text()
 		var campaignId, subcampaignId
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
@@ -458,8 +468,10 @@ $(document).ready(function () {
 				campaignId = totalSubcampaignsArray[i].campaignId
 				subcampaignId = totalSubcampaignsArray[i].id
 			}
-		if (!campaignId || !subcampaignId || !subcampaignName || !$('#editSubcampaignName').val() || !$('#editSubcampaignMinBudget').val() || !$('#editSubcampaignPrice').val() || !$('#editSubcampaignStyle').find('option:selected').text() || !$('#editSubcampaignPlan').find('option:selected').text())
+		if (!campaignId || !subcampaignId || !subcampaignName || !$('#editSubcampaignName').val() || !$('#editSubcampaignMinBudget').val() || !$('#editSubcampaignPrice').val() || !$('#editSubcampaignStyle').find('option:selected').text() || !$('#editSubcampaignPlan').find('option:selected').text()) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 		var data = {
 			name: $('#editSubcampaignName').val(),
 			minBudget: Number($('#editSubcampaignMinBudget').val()),
@@ -476,9 +488,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (subcampaignResult) {
 				getAccountModel()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly edited a subcampaign.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -487,13 +501,16 @@ $(document).ready(function () {
 
 	$("#addSubcamapignButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var campaignName = $('#addSubcampaignSelectCampaign').find('option:selected').text()
 		var campaignId
 		for (var i = 0; i < clientInstance.campaigns.length; i++)
 			if (clientInstance.campaigns[i].name === campaignName)
 				campaignId = clientInstance.campaigns[i].id
-		if (!campaignId || !campaignName || !$('#addSubcampaignName').val() || !$('#addSubcampaignMinBudget').val() || !$('#addSubcampaignPrice').val() || !$('#addSubcampaignStyle').find('option:selected').text() || !$('#addSubcampaignPlan').find('option:selected').text())
+		if (!campaignId || !campaignName || !$('#addSubcampaignName').val() || !$('#addSubcampaignMinBudget').val() || !$('#addSubcampaignPrice').val() || !$('#addSubcampaignStyle').find('option:selected').text() || !$('#addSubcampaignPlan').find('option:selected').text()) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 		var data = {
 			name: $('#addSubcampaignName').val(),
 			minBudget: Number($('#addSubcampaignMinBudget').val()),
@@ -512,9 +529,11 @@ $(document).ready(function () {
 				localStorage.setItem("newAddedSubcampaign", subcampaignResult.name)
 				localStorage.setItem('newAddedSubcampaignCampaign', campaignName)
 				getAccountModel()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly created a subcampaign. Lets go for adding setting and content.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -523,6 +542,7 @@ $(document).ready(function () {
 
 	$("#sendContentButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var subcampaignName = $('#contentProvidingSelect').find('option:selected').text()
 		var campaignId, subcampaignId
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
@@ -530,8 +550,10 @@ $(document).ready(function () {
 				campaignId = totalSubcampaignsArray[i].campaignId
 				subcampaignId = totalSubcampaignsArray[i].id
 			}
-		if (!campaignId || !subcampaignName || !subcampaignId || !$('#contentProvidingHeader').val() || !$('#contentProvidingHolding').val() || !$('#contentProvidingSubtitle').val() || !$('#contentProvidingTemplate').find('option:selected').text() || !$('#contentProvidingType').find('option:selected').text())
+		if (!campaignId || !subcampaignName || !subcampaignId || !$('#contentProvidingHeader').val() || !$('#contentProvidingHolding').val() || !$('#contentProvidingSubtitle').val() || !$('#contentProvidingTemplate').find('option:selected').text() || !$('#contentProvidingType').find('option:selected').text()) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 		var isStatic = false
 		if ($('#contentProvidingType').find('option:selected').text() === 'Static')
 			isStatic = true
@@ -559,11 +581,13 @@ $(document).ready(function () {
 			type: "POST",
 			success: function (subcampaignResult) {
 				getAccountModel()
+				NProgress.done();
 				$("#selectSettingSelect").selectpicker('val', subcampaignResult.name)
 				$("#contentProvidingSelect").selectpicker('val', subcampaignResult.name)
 				swal("Congrates!", "You have successfuly added a content to a subcampaign.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -572,6 +596,7 @@ $(document).ready(function () {
 
 	$("#saveSettingButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var subcampaignName = $('#selectSettingSelect').find('option:selected').text()
 		var campaignId, subcampaignId
 		for (var i = 0; i < totalSubcampaignsArray.length; i++)
@@ -588,8 +613,10 @@ $(document).ready(function () {
 			$('#selectSettingOS').find('option:selected').text().length == 0 ||
 			$('#selectSettingUserLabel').find('option:selected').text().length == 0 ||
 			$('#selectSettingConnection').find('option:selected').text().length == 0
-		)
+		) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 
 		var data = {
 			priority: $('#selectSettingPriority').find('option:selected').text(),
@@ -624,9 +651,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (settingResult) {
 				getAccountModel()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly edited the setting of a subcampaign.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

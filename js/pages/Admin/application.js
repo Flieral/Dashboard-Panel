@@ -138,8 +138,7 @@ $(document).ready(function () {
 		$("#myApplications").show();
 		$("#editApplication").hide();
 		$("#newApplication").hide();
-	}
-	else if (window.location.hash === '#newApplication')
+	} else if (window.location.hash === '#newApplication')
 		$('.nav-tabs a[id="nav2"]').tab('show');
 	else if (window.location.hash === '#editApplication')
 		$('.nav-tabs a[id="nav3"]').tab('show');
@@ -222,6 +221,7 @@ $(document).ready(function () {
 
 	$(document).on("click", ".applicationDelete", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var appId = $(this).parent().siblings().eq(0).text()
 		swal({
 			title: "Are You Sure?",
@@ -241,20 +241,23 @@ $(document).ready(function () {
 					type: "DELETE",
 					success: function (applicationResult) {
 						swal("Deleted!", "Your application successfuly has been deleted.", "success");
-						getAllApplications()
+						getAllApplications();
+						NProgress.done();
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
-						alert(xhr.responseText);
 					}
 				});
-			}
+			} else
+				NProgress.done();
 		});
 
 	})
 
 	$("#myApplicationsSearch").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var status = [],
 			os = []
 		if ($('#myApplicationsStatus').val())
@@ -290,10 +293,12 @@ $(document).ready(function () {
 			url: appURL,
 			type: "GET",
 			success: function (appResult) {
+				NProgress.done();
 				fillTable(appResult)
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -302,6 +307,7 @@ $(document).ready(function () {
 
 	$("#newApplicationAddApplication").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		if (!$('#newApplicationName').val() || !$('#newApplicationOSSelect').find('option:selected').text())
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
 		var data = {
@@ -317,10 +323,12 @@ $(document).ready(function () {
 			type: "POST",
 			success: function (appResult) {
 				getAllApplications()
+				NProgress.done();
 				newApplicationId = appResult.id
 				swal("Congrates!", "You have successfuly created an application. Lets go for adding placement.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -332,18 +340,22 @@ $(document).ready(function () {
 		if (!newApplicationId)
 			return swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 		localStorage.setItem('newCreatedApplication', newApplicationId)
+
 		return window.location.href = 'placement.html#addPlacement'
 	})
 
 	$("#editApplicationSave").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var appName = $('#editApplicationSelect').find('option:selected').text()
 		var appId
 		for (var i = 0; clientApplicationInstance.applications.length; i++)
 			if (clientApplicationInstance.applications[i].name === appName)
 				appId = clientApplicationInstance.applications[i].id
-		if (!appName || !appId || !$('#editApplicationName').val() || !$('#editApplicationStatusSelect').find('option:selected').text())
+		if (!appName || !appId || !$('#editApplicationName').val() || !$('#editApplicationStatusSelect').find('option:selected').text()) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 		var data = {
 			name: $('#editApplicationName').val(),
 			status: $('#editApplicationStatusSelect').val().find('option:selected').text()
@@ -357,9 +369,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (appResult) {
 				getAllApplications()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly edited an application.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

@@ -127,7 +127,7 @@ $(document).ready(function () {
 			var statusColor
 			if (usersArray[i].emailVerified == true)
 				statusColor = 'bg-green'
-			else if (usersArray[i].emailVerified == false) 
+			else if (usersArray[i].emailVerified == false)
 				statusColor = 'bg-deep-orange'
 
 			var str = ''
@@ -210,6 +210,7 @@ $(document).ready(function () {
 
 	$(document).on("click", ".userDelete", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var userId = $(this).parent().siblings().eq(0).text()
 		swal({
 			title: "Are You Sure?",
@@ -230,18 +231,22 @@ $(document).ready(function () {
 					success: function (accountResult) {
 						swal("Deleted!", "Your user successfuly has been deleted.", "success");
 						getAllUsers()
+						NProgress.done();
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 						alert(xhr.responseText);
 					}
 				});
-			}
+			} else
+				NProgress.done();
 		});
 	})
 
 	$("#myUsersSearch").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var userType = [],
 			verify = [],
 			country = [],
@@ -253,7 +258,9 @@ $(document).ready(function () {
 		if ($('#myUsersVerify').val())
 			verify = $('#myUsersVerify').val()
 		if ($('#myUsersCountry').val())
-			country = $('#myUsersCountry').find('option:selected').map(function () { return this.value }).get()
+			country = $('#myUsersCountry').find('option:selected').map(function () {
+				return this.value
+			}).get()
 
 		if ($('#myUsersUsername').val())
 			username = $('#myUsersUsername').val()
@@ -333,9 +340,11 @@ $(document).ready(function () {
 			type: "GET",
 			success: function (accountResult) {
 				fillTable(accountResult)
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -344,10 +353,13 @@ $(document).ready(function () {
 
 	$("#myInfoGeneralSearch").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var userId = $('#myInfoID').val()
-		if (!userId || !$('#myInfoAnnouncerAccountrType').val() || !$('#myInfoAnnouncerBudget').val() || !$('#myInfoPublisherAccountrType').val() || !$('#myInfoPublisherCredit').val())
+		if (!userId || !$('#myInfoAnnouncerAccountrType').val() || !$('#myInfoAnnouncerBudget').val() || !$('#myInfoPublisherAccountrType').val() || !$('#myInfoPublisherCredit').val()) {
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
-		
+		}
+
 		var announcerData = {
 			type: $('#myInfoAnnouncerAccountrType').val(),
 			budget: Number($('#myInfoAnnouncerBudget').val())
@@ -373,15 +385,18 @@ $(document).ready(function () {
 					type: "PUT",
 					success: function (publisherResult) {
 						getAllUsers()
+						NProgress.done();
 						swal("Congrates!", "You have successfuly edited an account.", "success");
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 						alert(xhr.responseText);
 					}
 				});
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}

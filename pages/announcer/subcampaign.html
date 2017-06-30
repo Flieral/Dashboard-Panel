@@ -59,6 +59,11 @@
 
 	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 	<link href="../../css/themes/theme-pink.css" rel="stylesheet" />
+
+	<!-- Nprogress bar for top in Ajax call-->
+	<link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
+	<!-- Nprogress bar for top in Ajax call-->
+	<link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
 </head>
 
 <body class="theme-pink">
@@ -643,7 +648,7 @@
 									<b>Category Types</b>
 								</p>
 								<select id="selectSettingCategory" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=7
-								data-actionsBox=true multiple title="Nothing selected">
+								    data-actionsBox=true multiple title="Nothing selected">
 								<option value="Sports">Sports</option>
 								<option value="Health & Fitness">Health & Fitness</option>
 								<option value="Education">Education</option>
@@ -669,16 +674,16 @@
 								<option value="Games">Games</option>
 								<option value="Kids">Kids</option>
 							</select>
+							</div>
 						</div>
-					</div>
-					<div class="row clearfix">
-						<br>
-						<div class="col-md-8 col-md-offset-2">
-							<p>
-								<b>Country Types</b>
-							</p>
-							<select id="selectSettingCountry" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
-							data-actionsBox=true multiple title="Nothing selected">
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-8 col-md-offset-2">
+								<p>
+									<b>Country Types</b>
+								</p>
+								<select id="selectSettingCountry" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
+								    data-actionsBox=true multiple title="Nothing selected">
 							<option value="AF">Afghanistan</option>
 							<option value="AX">Åland Islands</option>
 							<option value="AL">Albania</option>
@@ -923,16 +928,16 @@
 							<option value="ZM">Zambia</option>
 							<option value="ZW">Zimbabwe</option>
 						</select>
-					</div>
-				</div>
-				<div class="row clearfix">
-					<br>
-					<div class="col-md-8 col-md-offset-2">
-						<p>
-							<b>Language Types</b>
-						</p>
-						<select id="selectSettingLanguage" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
-						data-actionsBox=true multiple title="Nothing selected">
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-8 col-md-offset-2">
+								<p>
+									<b>Language Types</b>
+								</p>
+								<select id="selectSettingLanguage" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
+								    data-actionsBox=true multiple title="Nothing selected">
 						<option value="aa">Afar</option>
 						<option value="ab">Abkhazian</option>
 						<option value="ae">Avestan</option>
@@ -1118,15 +1123,15 @@
 						<option value="zh">Chinese</option>
 						<option value="zu">Zulu</option>
 					</select>
-				</div>
-			</div>
-			<div class="row clearfix">
-				<br>
-				<div class="col-sm-6 col-md-offset-2">
-					<p>
-						<b>Operating System Types</b>
-					</p>
-					<select id="selectSettingOS" class="form-control show-tick" multiple>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-sm-6 col-md-offset-2">
+								<p>
+									<b>Operating System Types</b>
+								</p>
+								<select id="selectSettingOS" class="form-control show-tick" multiple>
 						<optgroup label="Mobile">
 							<option>Mobile: Android</option>
 							<option>Mobile: iOS</option>
@@ -1140,66 +1145,66 @@
 							<option>Application: Unix</option>
 						</optgroup>
 					</select>
-				</div>
-				<div class="col-sm-2">
-					<p>
-						<b>Connection Types</b>
-					</p>
-					<select id="selectSettingConnection" class="form-control show-tick" multiple title="Nothing selected">
+							</div>
+							<div class="col-sm-2">
+								<p>
+									<b>Connection Types</b>
+								</p>
+								<select id="selectSettingConnection" class="form-control show-tick" multiple title="Nothing selected">
 						<option value="WiFi">WiFi</option>
 						<option value="Cellular">Cellular</option>
 					</select>
-				</div>
-			</div>
-			<div class="row clearfix">
-				<br>
-				<div class="col-md-2 col-md-offset-5">
-					<button id="saveSettingButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Save Setting</button>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-2 col-md-offset-5">
+								<button id="saveSettingButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Save Setting</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</div>
 
-<div id="contentProviding" class="row clearfix">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="card">
-			<div class="header">
-				<h2>
-					Content Providing
-				</h2>
-				<br>
-				<small>In this step you can send content of subcampaign related to campaigns you were promoting.</small>
-			</div>
-			<div class="body">
-				<div class="row clearfix">
-					<br>
-					<div class="col-sm-6 col-md-offset-3">
-						<p>
-							<b>Select your Preferd Subcampaign</b>
-						</p>
-						<select id="contentProvidingSelect" data-size=5 data-live-search="true" class="form-control show-tick" title="Nothing selected">
+		<div id="contentProviding" class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+							Content Providing
+						</h2>
+						<br>
+						<small>In this step you can send content of subcampaign related to campaigns you were promoting.</small>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<br>
+							<div class="col-sm-6 col-md-offset-3">
+								<p>
+									<b>Select your Preferd Subcampaign</b>
+								</p>
+								<select id="contentProvidingSelect" data-size=5 data-live-search="true" class="form-control show-tick" title="Nothing selected">
 
 						</select>
-					</div>
-				</div>
-				<div class="row clearfix">
-					<br>
-					<div class="col-sm-2 col-md-offset-2">
-						<p>
-							<b>Content Delivery Type</b>
-						</p>
-						<select id="contentProvidingType" class="form-control show-tick" title="Nothing selected">
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-sm-2 col-md-offset-2">
+								<p>
+									<b>Content Delivery Type</b>
+								</p>
+								<select id="contentProvidingType" class="form-control show-tick" title="Nothing selected">
 							<option value="Dynamic">Dynamic</option>
 							<option value="Static">Static</option>
 						</select>
-					</div>
-					<div class="col-sm-2">
-						<p>
-							<b>Content Template No.</b>
-						</p>
-						<select id="contentProvidingTemplate" class="form-control show-tick" title="Nothing selected">
+							</div>
+							<div class="col-sm-2">
+								<p>
+									<b>Content Template No.</b>
+								</p>
+								<select id="contentProvidingTemplate" class="form-control show-tick" title="Nothing selected">
 							<option value="100">100</option>
 							<option value="101">101</option>
 							<option value="102">102</option>
@@ -1207,150 +1212,155 @@
 							<option value="104">104</option>
 							<option value="105">105</option>
 						</select>
-					</div>
-					<div class="col-md-4">
-						<b>Date Time</b>
-						<div class="input-group">
-							<span class="input-group-addon">
+							</div>
+							<div class="col-md-4">
+								<b>Date Time</b>
+								<div class="input-group">
+									<span class="input-group-addon">
 								<i class="material-icons">date_range</i>
 							</span>
-							<div class="form-line disabled">
-								<input type="text" class="form-control datetime" placeholder="Ex: 30/07/2016 23:59" disabled>
+									<div class="form-line disabled">
+										<input type="text" class="form-control datetime" placeholder="Ex: 30/07/2016 23:59" disabled>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
 
-				</div>
-				<div class="row clearfix">
-					<br>
-					<div class="col-md-4 col-md-offset-2">
-						<p>
-							<b>Content Header</b>
-						</p>
-						<div class="input-group">
-							<span class="input-group-addon">
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-4 col-md-offset-2">
+								<p>
+									<b>Content Header</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
 								<i class="material-icons">next_week</i>
 							</span>
-							<div class="form-line">
-								<input id="contentProvidingHeader" type="text" class="form-control key" placeholder="Ex: Sample Content Header">
+									<div class="form-line">
+										<input id="contentProvidingHeader" type="text" class="form-control key" placeholder="Ex: Sample Content Header">
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<p>
-							<b>Content Holding</b>
-						</p>
-						<div class="input-group">
-							<span class="input-group-addon">
+							<div class="col-md-4">
+								<p>
+									<b>Content Holding</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
 								<i class="material-icons">next_week</i>
 							</span>
-							<div class="form-line">
-								<input id="contentProvidingHolding" type="text" class="form-control key" placeholder="Ex: Sample Content Holding">
+									<div class="form-line">
+										<input id="contentProvidingHolding" type="text" class="form-control key" placeholder="Ex: Sample Content Holding">
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row clearfix">
-					<div class="col-sm-8 col-md-offset-2">
-						<p>
-							<b>Content Subtitle</b>
-						</p>
-						<div class="form-group">
-							<div class="form-line">
-								<textarea id="contentProvidingSubtitle" rows="2" class="form-control no-resize auto-growth" style="line-height: 200%;" placeholder="Please type what you want...&#10;And please don't forget the ENTER key press multiple times :)"></textarea>
+						<div class="row clearfix">
+							<div class="col-sm-8 col-md-offset-2">
+								<p>
+									<b>Content Subtitle</b>
+								</p>
+								<div class="form-group">
+									<div class="form-line">
+										<textarea id="contentProvidingSubtitle" rows="2" class="form-control no-resize auto-growth" style="line-height: 200%;" placeholder="Please type what you want...&#10;And please don't forget the ENTER key press multiple times :)"></textarea>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row clearfix">
-					<div class="col-md-2 col-md-offset-5">
-						<button id="sendContentButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Send Content</button>
+						<div class="row clearfix">
+							<div class="col-md-2 col-md-offset-5">
+								<button id="sendContentButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Send Content</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
-</section>
+	</section>
 
-<!-- Jquery Core Js -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Jquery Core Js -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core Js -->
-<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
-<!-- Select Plugin Js -->
-<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+	<!-- Select Plugin Js -->
+	<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-<!-- Slimscroll Plugin Js -->
-<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-<!-- Bootstrap Colorpicker Js -->
-<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+	<!-- Bootstrap Colorpicker Js -->
+	<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 
-<!-- Dropzone Plugin Js -->
-<script src="../../plugins/dropzone/dropzone.js"></script>
+	<!-- Dropzone Plugin Js -->
+	<script src="../../plugins/dropzone/dropzone.js"></script>
 
-<!-- Input Mask Plugin Js -->
-<script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+	<!-- Input Mask Plugin Js -->
+	<script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 
-<!-- Multi Select Plugin Js -->
-<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
+	<!-- Multi Select Plugin Js -->
+	<script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
 
-<!-- Jquery Spinner Plugin Js -->
-<script src="../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
+	<!-- Jquery Spinner Plugin Js -->
+	<script src="../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
 
-<!-- Bootstrap Tags Input Plugin Js -->
-<script src="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+	<!-- Bootstrap Tags Input Plugin Js -->
+	<script src="../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
-<!-- Moment Plugin Js -->
-<script src="../../plugins/momentjs/moment.js"></script>
+	<!-- Moment Plugin Js -->
+	<script src="../../plugins/momentjs/moment.js"></script>
 
-<!-- Bootstrap Material Datetime Picker Plugin Js -->
-<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+	<!-- Bootstrap Material Datetime Picker Plugin Js -->
+	<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
-<!-- noUISlider Plugin Js -->
-<script src="../../plugins/nouislider/nouislider.js"></script>
+	<!-- noUISlider Plugin Js -->
+	<script src="../../plugins/nouislider/nouislider.js"></script>
 
-<!-- Jquery Validation Plugin Css -->
-<script src="../../plugins/jquery-validation/jquery.validate.js"></script>
+	<!-- Jquery Validation Plugin Css -->
+	<script src="../../plugins/jquery-validation/jquery.validate.js"></script>
 
-<!-- JQuery Steps Plugin Js -->
-<script src="../../plugins/jquery-steps/jquery.steps.js"></script>
+	<!-- JQuery Steps Plugin Js -->
+	<script src="../../plugins/jquery-steps/jquery.steps.js"></script>
 
-<!-- Sweet Alert Plugin Js -->
-<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
-<!-- Bootstrap Notify Plugin Js -->
-<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
-<!-- Sweet Alert Plugin Js -->
-<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
-<!-- Waves Effect Plugin Js -->
-<script src="../../plugins/node-waves/waves.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="../../plugins/node-waves/waves.js"></script>
 
-<!-- Custom Js -->
-<script src="../../js/admin.js"></script>
-<script src="../../js/pages/announcer/subcampaigns.js"></script>
+	<!-- Custom Js -->
+	<script src="../../js/admin.js"></script>
+	<script src="../../js/pages/announcer/subcampaigns.js"></script>
 
-<!-- Jquery DataTable Plugin Js -->
-<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-<script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+	<!-- Jquery DataTable Plugin Js -->
+	<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
-<!-- Demo Js -->
-<script src="../../js/demo.js"></script>
+	<!-- Demo Js -->
+	<script src="../../js/demo.js"></script>
 
-<!-- Autosize Plugin Js -->
-<script src="../../plugins/autosize/autosize.js"></script>
+	<!-- Autosize Plugin Js -->
+	<script src="../../plugins/autosize/autosize.js"></script>
+
+	<!-- Nprogress Plugin Js -->
+	<script src="../../plugins/nprogress/nprogress.js"></script>
+	<!-- Nprogress Plugin Js -->
+	<script src="../../plugins/nprogress/nprogress.js"></script>
 </body>
 
 </html>

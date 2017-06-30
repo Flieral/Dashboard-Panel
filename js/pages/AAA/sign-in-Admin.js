@@ -48,6 +48,7 @@ $(document).ready(function () {
 
 	$("#login_btn").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var data = {
 			password: $('#password').val()
 		}
@@ -82,22 +83,25 @@ $(document).ready(function () {
 								localStorage.setItem('adminId', announcerResult.userId);
 								localStorage.setItem('adminAnnouncerAccessToken', announcerResult.id);
 								localStorage.setItem('adminPublisherAccessToken', publisherResult.id);
-								console.log('fucking success');
+								NProgress.done();
 								window.location.href = '../Admin/users.html'
 							},
 							error: function (xhr, status, error) {
+								NProgress.done();
 								showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 								// alert(xhr.responseText);
 							}
 						});
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 						// alert(xhr.responseText);
 					}
 				});
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 				// alert(xhr.responseText);
 			}

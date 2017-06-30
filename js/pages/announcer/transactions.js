@@ -136,6 +136,7 @@ $(document).ready(function () {
 
 	$("#transactionSearchButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var status = []
 		var events = []
 		var subcampaignFilter = []
@@ -216,9 +217,11 @@ $(document).ready(function () {
 				}
 
 				fillTable(finalResult)
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}

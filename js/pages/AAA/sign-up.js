@@ -62,7 +62,9 @@ $(document).ready(function () {
 
 	$("#signup_btn").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		if ($('#checkbox').is(':checked') == false) {
+			NProgress.done();
 			swal("Wait!", "In order to continue, You shuold be agreed with Flieral terms and policies.", "error");
 			return
 		}
@@ -87,9 +89,11 @@ $(document).ready(function () {
 			contentType: "application/json; charset=utf-8",
 			type: "POST",
 			success: function (result) {
+				NProgress.done();
 				swal("Congrates!", "Thank you for your registering. We have received your regiestration information and send you a confirmation email. Please verify your email address.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 				// alert(xhr.responseText);
 			}

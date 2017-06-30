@@ -29,6 +29,8 @@
 
 	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 	<link href="../../css/themes/theme-pink.css" rel="stylesheet" />
+	<!-- Nprogress bar for top in Ajax call-->
+	<link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
 </head>
 
 <body class="theme-pink">
@@ -232,86 +234,88 @@
 							<div class="col-md-6 col-md-offset-3">
 								<div style="line-height: 200%;" class="font-17 align-center m-b-15 m-l-45 m-r-45">You will be navigated to a third-party secure payment gateway to complete the transaction. Flieral does not store
 									your Credit Card or PayPal account information.</div>
-								</div>
 							</div>
-							<div class="demo-masked-input">
-								<div class="row clearfix">
-									<div class="col-md-4 col-md-offset-4">
-										<b>Date Time</b>
-										<div class="input-group">
-											<span class="input-group-addon">
+						</div>
+						<div class="demo-masked-input">
+							<div class="row clearfix">
+								<div class="col-md-4 col-md-offset-4">
+									<b>Date Time</b>
+									<div class="input-group">
+										<span class="input-group-addon">
 												<i class="material-icons">date_range</i>
 											</span>
-											<div class="form-line disabled">
-												<input id="checkoutTime" type="text" class="form-control datetime" placeholder="Ex: 30/07/2016 23:59" disabled>
-											</div>
+										<div class="form-line disabled">
+											<input id="checkoutTime" type="text" class="form-control datetime" placeholder="Ex: 30/07/2016 23:59" disabled>
 										</div>
 									</div>
 								</div>
-								<div class="row clearfix">
-									<div class="col-md-4 col-md-offset-4">
-										<b>IP Address</b>
-										<div class="input-group">
-											<span class="input-group-addon">
+							</div>
+							<div class="row clearfix">
+								<div class="col-md-4 col-md-offset-4">
+									<b>IP Address</b>
+									<div class="input-group">
+										<span class="input-group-addon">
 												<i class="material-icons">computer</i>
 											</span>
-											<div class="form-line disabled">
-												<input id="checkoutIP" type="text" class="form-control ip" placeholder="Ex: 255.255.255.255" disabled>
-											</div>
+										<div class="form-line disabled">
+											<input id="checkoutIP" type="text" class="form-control ip" placeholder="Ex: 255.255.255.255" disabled>
 										</div>
 									</div>
 								</div>
-								<div class="row clearfix">
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-md-offset-4">
-										<div class="card" style="margin-bottom: 0;">
-											<div class="header">
-												<h2 id="sharedCredit" class="text-center">Publisher Payable Credit: $4500</h2>
-											</div>
+							</div>
+							<div class="row clearfix">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-md-offset-4">
+									<div class="card" style="margin-bottom: 0;">
+										<div class="header">
+											<h2 id="sharedCredit" class="text-center">Publisher Payable Credit: $4500</h2>
 										</div>
 									</div>
 								</div>
-								<br>
-								<div class="row clearfix">
-									<div class="col-md-2 col-md-offset-5">
-										<button id="refinementButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Calculate Refinement</button>
-									</div>
+							</div>
+							<br>
+							<div class="row clearfix">
+								<div class="col-md-2 col-md-offset-5">
+									<button id="refinementButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Calculate Refinement</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- #END# Masked Input -->
+		</div>
+		<!-- #END# Masked Input -->
 
-		</section>
+	</section>
 
-		<!-- Jquery Core Js -->
-		<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Jquery Core Js -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
 
-		<!-- Bootstrap Core Js -->
-		<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
-		<!-- Select Plugin Js -->
-		<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+	<!-- Select Plugin Js -->
+	<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-		<!-- Slimscroll Plugin Js -->
-		<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-		<!-- Sweet Alert Plugin Js -->
-		<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
+	<!-- Sweet Alert Plugin Js -->
+	<script src="../../plugins/sweetalert/sweetalert.min.js"></script>
 
-		<!-- Bootstrap Notify Plugin Js -->
-		<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+	<!-- Bootstrap Notify Plugin Js -->
+	<script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
-		<!-- Waves Effect Plugin Js -->
-		<script src="../../plugins/node-waves/waves.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="../../plugins/node-waves/waves.js"></script>
 
-		<!-- Custom Js -->
-		<script src="../../js/admin.js"></script>
-		<script src="../../js/pages/publisher/checkout.js"></script>
+	<!-- Custom Js -->
+	<script src="../../js/admin.js"></script>
+	<script src="../../js/pages/publisher/checkout.js"></script>
 
-		<!-- Demo Js -->
-		<script src="../../js/demo.js"></script>
-	</body>
+	<!-- Demo Js -->
+	<script src="../../js/demo.js"></script>
+	<!-- Nprogress Plugin Js -->
+	<script src="../../plugins/nprogress/nprogress.js"></script>
+</body>
 
-	</html>
+</html>

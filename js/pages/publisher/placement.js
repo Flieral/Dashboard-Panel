@@ -301,6 +301,7 @@ $(document).ready(function () {
 
 	$(document).on("click", ".placementEdit", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var appId = $(this).parent().siblings().eq(1).text()
 		var placementId = $(this).parent().siblings().eq(0).text()
 		var placementName, appName
@@ -312,10 +313,12 @@ $(document).ready(function () {
 				appName = clientInstance.applications[i].name
 		localStorage.setItem('editablePlacementName', placementName)
 		$('.nav-tabs a[id="nav3"]').tab('show');
+		NProgress.done();
 	})
 
 	$(document).on("click", ".placementDelete", function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var appId = $(this).parent().siblings().eq(1).text()
 		var placementId = $(this).parent().siblings().eq(0).text()
 		swal({
@@ -337,19 +340,24 @@ $(document).ready(function () {
 					success: function (placementResult) {
 						swal("Deleted!", "Your placement successfuly has been deleted.", "success");
 						getAccountModel()
+						NProgress.done();
 					},
 					error: function (xhr, status, error) {
+						NProgress.done();
 						swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 						alert(xhr.responseText);
 					}
 				});
 			}
+			else 
+				NProgress.done();
 		});
 
 	})
 
 	$("#myPlacementsSearch").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var style = [],
 			priority = [],
 			application = [],
@@ -420,9 +428,11 @@ $(document).ready(function () {
 			type: "GET",
 			success: function (placementResult) {
 				fillTable(placementResult)
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 				alert(xhr.responseText);
 			}
@@ -431,6 +441,7 @@ $(document).ready(function () {
 
 	$("#editPlacementButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var placementName = $('#editPlacementSelect').find('option:selected').text()
 		var appId, placementId
 		for (var i = 0; i < totalPlacementsArray.length; i++)
@@ -458,9 +469,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (placementResult) {
 				getAccountModel()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly edited a placement.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -469,13 +482,16 @@ $(document).ready(function () {
 
 	$("#addPlacementButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var applicationName = $('#addPlacementSelectApplication').find('option:selected').text()
 		var applicationId
 		for (var i = 0; i < clientInstance.applications.length; i++)
 			if (clientInstance.applications[i].name === applicationName)
 				applicationId = clientInstance.applications[i].id
-		if (!applicationId || !applicationName || !$('#addPlacementName').val() || !$('#addPlacementOnlineCapacity').val() || !$('#addPlacementOfflineCapacity').val() || !$('#addPlacementBeginningTime').val() || !$('#addPlacementEndingTime').val() || !$('#addPlacementStyle').find('option:selected').text() || !$('#addPlacementPriority').find('option:selected').text())
+		if (!applicationId || !applicationName || !$('#addPlacementName').val() || !$('#addPlacementOnlineCapacity').val() || !$('#addPlacementOfflineCapacity').val() || !$('#addPlacementBeginningTime').val() || !$('#addPlacementEndingTime').val() || !$('#addPlacementStyle').find('option:selected').text() || !$('#addPlacementPriority').find('option:selected').text()){
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 		var data = {
 			name: $('#addPlacementName').val(),
 			onlineCapacity: $('#addPlacementOnlineCapacity').val(),
@@ -496,9 +512,11 @@ $(document).ready(function () {
 				localStorage.setItem("newAddedPlacement", placementResult.name)
 				localStorage.setItem('newAddedPlacementApplication', applicationName)
 				getAccountModel()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly created a placement. Lets go for adding setting and content.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
@@ -507,6 +525,7 @@ $(document).ready(function () {
 
 	$("#saveSettingButton").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var placementName = $('#selectSettingSelect').find('option:selected').text()
 		var applicationId, placementId
 		for (var i = 0; i < totalPlacementsArray.length; i++)
@@ -518,8 +537,10 @@ $(document).ready(function () {
 			$('#selectSettingCategory').find('option:selected').text().length == 0 ||
 			$('#selectSettingCountry').find('option:selected').text().length == 0 ||
 			$('#selectSettingUserLabel').find('option:selected').text().length == 0
-		)
+		){
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 
 		var data = {
 			category: $('#selectSettingCategory').find('option:selected').map(function () {
@@ -541,9 +562,11 @@ $(document).ready(function () {
 			type: "PUT",
 			success: function (settingResult) {
 				getAccountModel()
+				NProgress.done();
 				swal("Congrates!", "You have successfuly edited the setting of a placement.", "success");
 			},
 			error: function (xhr, status, error) {
+				NProgress.done();
 				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
 				alert(xhr.responseText);
 			}
