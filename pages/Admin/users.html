@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<title>Campaigns</title>
+	<title>Users</title>
 	<!-- Favicon-->
 	<link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
@@ -170,8 +170,8 @@
 					<img src="../../images/user.png" width="48" height="48" alt="User" />
 				</div>
 				<div class="info-container">
-					<div id="announcerUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-					<div id="announcerEmail" class="email">john.doe@example.com</div>
+					<div id="adminUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+					<div id="adminEmail" class="email">john.doe@example.com</div>
 					<div class="btn-group user-helper-dropdown">
 						<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 						<ul class="dropdown-menu pull-right">
@@ -188,7 +188,7 @@
 			<!-- Menu -->
 			<div class="menu">
 				<ul class="list">
-					<li>
+					<li class="actove">
 						<a href="users.html">
 							<i class="material-icons col-red">person</i>
 							<span>Users</span>
@@ -237,33 +237,12 @@
 
 	<section class="content">
 
-		<div class="row clearfix">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="body">
-						<div class="row clearfix">
-							<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-md-offset-4">
-								<ul class="nav nav-tabs nav-justified tab-col-pink" role="tablist">
-									<li role="presentation" class="active">
-										<a href="#home_md_col_1" id="nav1" data-toggle="tab">All Users</a>
-									</li>
-									<li role="presentation">
-										<a href="#profile_md_col_1" id="nav2" data-toggle="tab">Unverified Users</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<div id="allUsers" class="row clearfix">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="card">
 					<div class="header">
 						<h2>
-							My Campaigns
+							My Users
 						</h2>
 					</div>
 					<div class="body">
@@ -272,7 +251,7 @@
 								<p>
 									<b>User Type</b>
 								</p>
-								<select id="myCampaignsStatus" class="form-control show-tick" title="Nothing selected" multiple>
+								<select id="myUsersType" class="form-control show-tick" title="Nothing selected" multiple>
 									<option>Announcer</option>
 									<option>Publisher</option>
 								</select>
@@ -281,36 +260,40 @@
 								<p>
 									<b>Username</b>
 								</p>
-								<div class="form-line">
-									<input id="myCampaignsLimit" type="text" class="form-control" placeholder="Enter Username" data-rule="quantity">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myUsersUsername" class="form-control key" placeholder="Sample Username" required>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<p>
 									<b>Email</b>
 								</p>
-								<div class="form-line">
-									<input id="myCampaignsLimit" type="text" class="form-control" placeholder="Enter Email" data-rule="quantity">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myUsersEmail" class="form-control key" placeholder="Sample Email" required>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<p>
 									<b>Company</b>
 								</p>
-								<div class="form-line">
-									<input id="myCampaignsLimit" type="text" class="form-control" placeholder="Enter Username" data-rule="quantity">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myUsersCompany" class="form-control key" placeholder="Sample Company" required>
+									</div>
 								</div>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<div class="col-md-4 col-md-offset-2">
-								<p>
-									<b>Country</b>
-								</p>
-								<select id="myCampaignsStartStyle" class="form-control show-tick" title="Nothing selected" multiple>
-									<option>Automatic</option>
-									<option>Manual</option>
-								</select>
 							</div>
 							<div class="col-md-1">
 								<p>
@@ -318,7 +301,7 @@
 								</p>
 								<div class="input-group spinner" data-trigger="spinner">
 									<div class="form-line">
-										<input id="myCampaignsLimit" type="text" class="form-control text-center" value="10" data-rule="quantity">
+										<input id="myUsersLimit" type="text" class="form-control text-center" value="10" data-rule="quantity">
 									</div>
 									<span class="input-group-addon">
 										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -328,13 +311,276 @@
 							</div>
 						</div>
 						<div class="row clearfix">
+							<div class="col-md-6 col-md-offset-2">
+								<p>
+									<b>Country</b>
+								</p>
+								<select id="myUsersCountry" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
+								data-actionsBox=true multiple title="Nothing selected">
+								<option value="AF">Afghanistan</option>
+								<option value="AX">Åland Islands</option>
+								<option value="AL">Albania</option>
+								<option value="DZ">Algeria</option>
+								<option value="AS">American Samoa</option>
+								<option value="AD">AndorrA</option>
+								<option value="AO">Angola</option>
+								<option value="AI">Anguilla</option>
+								<option value="AQ">Antarctica</option>
+								<option value="AG">Antigua and Barbuda</option>
+								<option value="AR">Argentina</option>
+								<option value="AM">Armenia</option>
+								<option value="AW">Aruba</option>
+								<option value="AU">Australia</option>
+								<option value="AT">Austria</option>
+								<option value="AZ">Azerbaijan</option>
+								<option value="BS">Bahamas</option>
+								<option value="BH">Bahrain</option>
+								<option value="BD">Bangladesh</option>
+								<option value="BB">Barbados</option>
+								<option value="BY">Belarus</option>
+								<option value="BE">Belgium</option>
+								<option value="BZ">Belize</option>
+								<option value="BJ">Benin</option>
+								<option value="BM">Bermuda</option>
+								<option value="BT">Bhutan</option>
+								<option value="BO">Bolivia</option>
+								<option value="BA">Bosnia and Herzegovina</option>
+								<option value="BW">Botswana</option>
+								<option value="BV">Bouvet Island</option>
+								<option value="BR">Brazil</option>
+								<option value="IO">British Indian Ocean Territory</option>
+								<option value="BN">Brunei Darussalam</option>
+								<option value="BG">Bulgaria</option>
+								<option value="BF">Burkina Faso</option>
+								<option value="BI">Burundi</option>
+								<option value="KH">Cambodia</option>
+								<option value="CM">Cameroon</option>
+								<option value="CA">Canada</option>
+								<option value="CV">Cape Verde</option>
+								<option value="KY">Cayman Islands</option>
+								<option value="CF">Central African Republic</option>
+								<option value="TD">Chad</option>
+								<option value="CL">Chile</option>
+								<option value="CN">China</option>
+								<option value="CX">Christmas Island</option>
+								<option value="CC">Cocos (Keeling) Islands</option>
+								<option value="CO">Colombia</option>
+								<option value="KM">Comoros</option>
+								<option value="CG">Congo</option>
+								<option value="CD">Congo, The Democratic Republic of the</option>
+								<option value="CK">Cook Islands</option>
+								<option value="CR">Costa Rica</option>
+								<option value="CI">Cote D'Ivoire</option>
+								<option value="HR">Croatia</option>
+								<option value="CU">Cuba</option>
+								<option value="CY">Cyprus</option>
+								<option value="CZ">Czech Republic</option>
+								<option value="DK">Denmark</option>
+								<option value="DJ">Djibouti</option>
+								<option value="DM">Dominica</option>
+								<option value="DO">Dominican Republic</option>
+								<option value="EC">Ecuador</option>
+								<option value="EG">Egypt</option>
+								<option value="SV">El Salvador</option>
+								<option value="GQ">Equatorial Guinea</option>
+								<option value="ER">Eritrea</option>
+								<option value="EE">Estonia</option>
+								<option value="ET">Ethiopia</option>
+								<option value="FK">Falkland Islands (Malvinas)</option>
+								<option value="FO">Faroe Islands</option>
+								<option value="FJ">Fiji</option>
+								<option value="FI">Finland</option>
+								<option value="FR">France</option>
+								<option value="GF">French Guiana</option>
+								<option value="PF">French Polynesia</option>
+								<option value="TF">French Southern Territories</option>
+								<option value="GA">Gabon</option>
+								<option value="GM">Gambia</option>
+								<option value="GE">Georgia</option>
+								<option value="DE">Germany</option>
+								<option value="GH">Ghana</option>
+								<option value="GI">Gibraltar</option>
+								<option value="GR">Greece</option>
+								<option value="GL">Greenland</option>
+								<option value="GD">Grenada</option>
+								<option value="GP">Guadeloupe</option>
+								<option value="GU">Guam</option>
+								<option value="GT">Guatemala</option>
+								<option value="GG">Guernsey</option>
+								<option value="GN">Guinea</option>
+								<option value="GW">Guinea-Bissau</option>
+								<option value="GY">Guyana</option>
+								<option value="HT">Haiti</option>
+								<option value="HM">Heard Island and Mcdonald Islands</option>
+								<option value="VA">Holy See (Vatican City State)</option>
+								<option value="HN">Honduras</option>
+								<option value="HK">Hong Kong</option>
+								<option value="HU">Hungary</option>
+								<option value="IS">Iceland</option>
+								<option value="IN">India</option>
+								<option value="ID">Indonesia</option>
+								<option value="IR">Iran, Islamic Republic Of</option>
+								<option value="IQ">Iraq</option>
+								<option value="IE">Ireland</option>
+								<option value="IM">Isle of Man</option>
+								<option value="IL">Israel</option>
+								<option value="IT">Italy</option>
+								<option value="JM">Jamaica</option>
+								<option value="JP">Japan</option>
+								<option value="JE">Jersey</option>
+								<option value="JO">Jordan</option>
+								<option value="KZ">Kazakhstan</option>
+								<option value="KE">Kenya</option>
+								<option value="KI">Kiribati</option>
+								<option value="KP">Korea, Democratic People'S Republic of</option>
+								<option value="KR">Korea, Republic of</option>
+								<option value="KW">Kuwait</option>
+								<option value="KG">Kyrgyzstan</option>
+								<option value="LA">Lao People'S Democratic Republic</option>
+								<option value="LV">Latvia</option>
+								<option value="LB">Lebanon</option>
+								<option value="LS">Lesotho</option>
+								<option value="LR">Liberia</option>
+								<option value="LY">Libyan Arab Jamahiriya</option>
+								<option value="LI">Liechtenstein</option>
+								<option value="LT">Lithuania</option>
+								<option value="LU">Luxembourg</option>
+								<option value="MO">Macao</option>
+								<option value="MK">Macedonia, The Former Yugoslav Republic of</option>
+								<option value="MG">Madagascar</option>
+								<option value="MW">Malawi</option>
+								<option value="MY">Malaysia</option>
+								<option value="MV">Maldives</option>
+								<option value="ML">Mali</option>
+								<option value="MT">Malta</option>
+								<option value="MH">Marshall Islands</option>
+								<option value="MQ">Martinique</option>
+								<option value="MR">Mauritania</option>
+								<option value="MU">Mauritius</option>
+								<option value="YT">Mayotte</option>
+								<option value="MX">Mexico</option>
+								<option value="FM">Micronesia, Federated States of</option>
+								<option value="MD">Moldova, Republic of</option>
+								<option value="MC">Monaco</option>
+								<option value="MN">Mongolia</option>
+								<option value="MS">Montserrat</option>
+								<option value="MA">Morocco</option>
+								<option value="MZ">Mozambique</option>
+								<option value="MM">Myanmar</option>
+								<option value="NA">Namibia</option>
+								<option value="NR">Nauru</option>
+								<option value="NP">Nepal</option>
+								<option value="NL">Netherlands</option>
+								<option value="AN">Netherlands Antilles</option>
+								<option value="NC">New Caledonia</option>
+								<option value="NZ">New Zealand</option>
+								<option value="NI">Nicaragua</option>
+								<option value="NE">Niger</option>
+								<option value="NG">Nigeria</option>
+								<option value="NU">Niue</option>
+								<option value="NF">Norfolk Island</option>
+								<option value="MP">Northern Mariana Islands</option>
+								<option value="NO">Norway</option>
+								<option value="OM">Oman</option>
+								<option value="PK">Pakistan</option>
+								<option value="PW">Palau</option>
+								<option value="PS">Palestinian Territory, Occupied</option>
+								<option value="PA">Panama</option>
+								<option value="PG">Papua New Guinea</option>
+								<option value="PY">Paraguay</option>
+								<option value="PE">Peru</option>
+								<option value="PH">Philippines</option>
+								<option value="PN">Pitcairn</option>
+								<option value="PL">Poland</option>
+								<option value="PT">Portugal</option>
+								<option value="PR">Puerto Rico</option>
+								<option value="QA">Qatar</option>
+								<option value="RE">Reunion</option>
+								<option value="RO">Romania</option>
+								<option value="RU">Russian Federation</option>
+								<option value="RW">RWANDA</option>
+								<option value="SH">Saint Helena</option>
+								<option value="KN">Saint Kitts and Nevis</option>
+								<option value="LC">Saint Lucia</option>
+								<option value="PM">Saint Pierre and Miquelon</option>
+								<option value="VC">Saint Vincent and the Grenadines</option>
+								<option value="WS">Samoa</option>
+								<option value="SM">San Marino</option>
+								<option value="ST">Sao Tome and Principe</option>
+								<option value="SA">Saudi Arabia</option>
+								<option value="SN">Senegal</option>
+								<option value="CS">Serbia and Montenegro</option>
+								<option value="SC">Seychelles</option>
+								<option value="SL">Sierra Leone</option>
+								<option value="SG">Singapore</option>
+								<option value="SK">Slovakia</option>
+								<option value="SI">Slovenia</option>
+								<option value="SB">Solomon Islands</option>
+								<option value="SO">Somalia</option>
+								<option value="ZA">South Africa</option>
+								<option value="GS">South Georgia and the South Sandwich Islands</option>
+								<option value="ES">Spain</option>
+								<option value="LK">Sri Lanka</option>
+								<option value="SD">Sudan</option>
+								<option value="SR">Suriname</option>
+								<option value="SJ">Svalbard and Jan Mayen</option>
+								<option value="SZ">Swaziland</option>
+								<option value="SE">Sweden</option>
+								<option value="CH">Switzerland</option>
+								<option value="SY">Syrian Arab Republic</option>
+								<option value="TW">Taiwan, Province of China</option>
+								<option value="TJ">Tajikistan</option>
+								<option value="TZ">Tanzania, United Republic of</option>
+								<option value="TH">Thailand</option>
+								<option value="TL">Timor-Leste</option>
+								<option value="TG">Togo</option>
+								<option value="TK">Tokelau</option>
+								<option value="TO">Tonga</option>
+								<option value="TT">Trinidad and Tobago</option>
+								<option value="TN">Tunisia</option>
+								<option value="TR">Turkey</option>
+								<option value="TM">Turkmenistan</option>
+								<option value="TC">Turks and Caicos Islands</option>
+								<option value="TV">Tuvalu</option>
+								<option value="UG">Uganda</option>
+								<option value="UA">Ukraine</option>
+								<option value="AE">United Arab Emirates</option>
+								<option value="GB">United Kingdom</option>
+								<option value="US">United States</option>
+								<option value="UM">United States Minor Outlying Islands</option>
+								<option value="UY">Uruguay</option>
+								<option value="UZ">Uzbekistan</option>
+								<option value="VU">Vanuatu</option>
+								<option value="VE">Venezuela</option>
+								<option value="VN">Viet Nam</option>
+								<option value="VG">Virgin Islands, British</option>
+								<option value="VI">Virgin Islands, U.S.</option>
+								<option value="WF">Wallis and Futuna</option>
+								<option value="EH">Western Sahara</option>
+								<option value="YE">Yemen</option>
+								<option value="ZM">Zambia</option>
+								<option value="ZW">Zimbabwe</option>
+							</select>
+							</div>
+							<div class="col-md-2">
+								<p>
+									<b>Verify Status</b>
+								</p>
+								<select id="myUsersVerify" class="form-control show-tick" title="Nothing selected" multiple>
+									<option>true</option>
+									<option>false</option>
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
 							<div class="col-md-3 col-md-offset-2">
 								<p>
 									<b>Registration Date From</b>
 								</p>
 								<div class="form-group">
 									<div class="form-line">
-										<input id="myCampaignsBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Registration Date">
+										<input id="myUsersBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Registration Date">
 									</div>
 								</div>
 							</div>
@@ -344,7 +590,7 @@
 								</p>
 								<div class="form-group">
 									<div class="form-line">
-										<input id="myCampaignsEndingTime" type="text" class="datepicker form-control" placeholder="Enter Registration Date">
+										<input id="myUsersEndingTime" type="text" class="datepicker form-control" placeholder="Enter Registration Date">
 									</div>
 								</div>
 							</div>
@@ -352,7 +598,7 @@
 								<p>
 									<b></b>
 								</p>
-								<button id="myCampaignsSearch" type="button" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
+								<button id="myUsersSearch" type="button" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
 							</div>
 						</div>
 						<div class="row clearfix">
@@ -366,8 +612,10 @@
 											<th>Email</th>
 											<th>Company</th>
 											<th>Date</th>
-											<th>IP</th>
+											<th>Country</th>
+											<th>Types</th>
 											<th>Status</th>
+											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -381,98 +629,462 @@
 			</div>
 		</div>
 
-		<!-- Masked Input -->
-		<div id="unverifiedUser" class="row clearfix">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="header">
-						<h2>
-							Edit Campaign
-						</h2>
-						<br>
-						<small>In this step you can edit the basic information of campaign you were promoting.</small>
+		<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel"></h4>
 					</div>
-					<div class="body">
-						<div id="editCampaignChoose" class="row clearfix">
-							<div class="col-sm-6 col-md-offset-3">
-								<p>
-									<b>Select your Preferd Campaign</b>
-								</p>
-								<select id="editCampaignSelect" data-live-search="true" title="Choose one of your following campaigns..." class="form-control show-tick">
-								</select>
-							</div>
+					<div class="row clearfix">
+						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-md-offset-2">
+							<ul class="nav nav-tabs nav-justified tab-col-pink" role="tablist">
+								<li role="presentation" class="active">
+									<a href="#generalInfo" id="nav1" data-toggle="tab">General Info</a>
+								</li>
+								<li role="presentation">
+									<a href="#announcerInfo" id="nav2" data-toggle="tab">Announcer Info</a>
+								</li>
+								<li role="presentation">
+									<a href="#publisherInfo" id="nav3" data-toggle="tab">Publisher Info</a>
+								</li>
+							</ul>
 						</div>
+					</div>
+					<br>
+					<div id="generalInfo" class="row clearfix">
 						<br>
-						<div class="row clearfix">
-							<div class="col-md-4 col-md-offset-2">
-								<p>
-									<b>Campaign Name</b>
-								</p>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">next_week</i>
-									</span>
-									<div class="form-line">
-										<input id="editCampaignName" type="text" class="form-control key" placeholder="Ex: My Sample Campaign Name">
+						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
+							<div class="card">
+								<div class="header">
+									<h2>
+										User General Info
+									</h2>
+								</div>
+								<div class="body">
+									<div class="row clearfix">
+										<div class="col-md-6 col-md-offset-3">
+											<p>
+												<b>UUID</b>
+											</p>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">next_week</i>
+												</span>
+												<div class="form-line">
+													<input type="text" id="myInfoID" class="form-control key" placeholder="Sample Identifier" required disabled>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<div class="col-md-5 col-md-offset-1">
+											<p>
+												<b>Username</b>
+											</p>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">next_week</i>
+												</span>
+												<div class="form-line">
+													<input type="text" id="myInfoUsername" class="form-control key" placeholder="Sample Username" required disabled>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-5">
+											<p>
+												<b>Email</b>
+											</p>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">next_week</i>
+												</span>
+												<div class="form-line">
+													<input type="text" id="myInfoEmail" class="form-control key" placeholder="Sample Email" required disabled>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<br>
+										<div class="col-md-5 col-md-offset-1">
+											<p>
+												<b>Company</b>
+											</p>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">next_week</i>
+												</span>
+												<div class="form-line">
+													<input type="text" id="myInfoCompany" class="form-control key" placeholder="Sample Company" required disabled>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-5">
+											<p>
+												<b>IP Address</b>
+											</p>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">next_week</i>
+												</span>
+												<div class="form-line">
+													<input type="text" id="myInfoIP" class="form-control key" placeholder="Sample IP" required disabled>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row clearfix">
+										<br>
+										<div class="col-md-5 col-md-offset-1">
+											<p>
+												<b>Verify Status</b>
+											</p>
+											<select id="myInfoVerify" class="form-control show-tick" title="Nothing selected" disabled>
+												<option>true</option>
+												<option>false</option>
+											</select>
+										</div>
+										<div class="col-md-5">
+											<p>
+												<b>Country</b>
+											</p>
+											<select id="myInfoCountry" class="form-control show-tick" data-actions-box="true" data-live-search="true" data-size=5
+											data-actionsBox=true title="Nothing selected" disabled>
+											<option value="AF">Afghanistan</option>
+											<option value="AX">Åland Islands</option>
+											<option value="AL">Albania</option>
+											<option value="DZ">Algeria</option>
+											<option value="AS">American Samoa</option>
+											<option value="AD">AndorrA</option>
+											<option value="AO">Angola</option>
+											<option value="AI">Anguilla</option>
+											<option value="AQ">Antarctica</option>
+											<option value="AG">Antigua and Barbuda</option>
+											<option value="AR">Argentina</option>
+											<option value="AM">Armenia</option>
+											<option value="AW">Aruba</option>
+											<option value="AU">Australia</option>
+											<option value="AT">Austria</option>
+											<option value="AZ">Azerbaijan</option>
+											<option value="BS">Bahamas</option>
+											<option value="BH">Bahrain</option>
+											<option value="BD">Bangladesh</option>
+											<option value="BB">Barbados</option>
+											<option value="BY">Belarus</option>
+											<option value="BE">Belgium</option>
+											<option value="BZ">Belize</option>
+											<option value="BJ">Benin</option>
+											<option value="BM">Bermuda</option>
+											<option value="BT">Bhutan</option>
+											<option value="BO">Bolivia</option>
+											<option value="BA">Bosnia and Herzegovina</option>
+											<option value="BW">Botswana</option>
+											<option value="BV">Bouvet Island</option>
+											<option value="BR">Brazil</option>
+											<option value="IO">British Indian Ocean Territory</option>
+											<option value="BN">Brunei Darussalam</option>
+											<option value="BG">Bulgaria</option>
+											<option value="BF">Burkina Faso</option>
+											<option value="BI">Burundi</option>
+											<option value="KH">Cambodia</option>
+											<option value="CM">Cameroon</option>
+											<option value="CA">Canada</option>
+											<option value="CV">Cape Verde</option>
+											<option value="KY">Cayman Islands</option>
+											<option value="CF">Central African Republic</option>
+											<option value="TD">Chad</option>
+											<option value="CL">Chile</option>
+											<option value="CN">China</option>
+											<option value="CX">Christmas Island</option>
+											<option value="CC">Cocos (Keeling) Islands</option>
+											<option value="CO">Colombia</option>
+											<option value="KM">Comoros</option>
+											<option value="CG">Congo</option>
+											<option value="CD">Congo, The Democratic Republic of the</option>
+											<option value="CK">Cook Islands</option>
+											<option value="CR">Costa Rica</option>
+											<option value="CI">Cote D'Ivoire</option>
+											<option value="HR">Croatia</option>
+											<option value="CU">Cuba</option>
+											<option value="CY">Cyprus</option>
+											<option value="CZ">Czech Republic</option>
+											<option value="DK">Denmark</option>
+											<option value="DJ">Djibouti</option>
+											<option value="DM">Dominica</option>
+											<option value="DO">Dominican Republic</option>
+											<option value="EC">Ecuador</option>
+											<option value="EG">Egypt</option>
+											<option value="SV">El Salvador</option>
+											<option value="GQ">Equatorial Guinea</option>
+											<option value="ER">Eritrea</option>
+											<option value="EE">Estonia</option>
+											<option value="ET">Ethiopia</option>
+											<option value="FK">Falkland Islands (Malvinas)</option>
+											<option value="FO">Faroe Islands</option>
+											<option value="FJ">Fiji</option>
+											<option value="FI">Finland</option>
+											<option value="FR">France</option>
+											<option value="GF">French Guiana</option>
+											<option value="PF">French Polynesia</option>
+											<option value="TF">French Southern Territories</option>
+											<option value="GA">Gabon</option>
+											<option value="GM">Gambia</option>
+											<option value="GE">Georgia</option>
+											<option value="DE">Germany</option>
+											<option value="GH">Ghana</option>
+											<option value="GI">Gibraltar</option>
+											<option value="GR">Greece</option>
+											<option value="GL">Greenland</option>
+											<option value="GD">Grenada</option>
+											<option value="GP">Guadeloupe</option>
+											<option value="GU">Guam</option>
+											<option value="GT">Guatemala</option>
+											<option value="GG">Guernsey</option>
+											<option value="GN">Guinea</option>
+											<option value="GW">Guinea-Bissau</option>
+											<option value="GY">Guyana</option>
+											<option value="HT">Haiti</option>
+											<option value="HM">Heard Island and Mcdonald Islands</option>
+											<option value="VA">Holy See (Vatican City State)</option>
+											<option value="HN">Honduras</option>
+											<option value="HK">Hong Kong</option>
+											<option value="HU">Hungary</option>
+											<option value="IS">Iceland</option>
+											<option value="IN">India</option>
+											<option value="ID">Indonesia</option>
+											<option value="IR">Iran, Islamic Republic Of</option>
+											<option value="IQ">Iraq</option>
+											<option value="IE">Ireland</option>
+											<option value="IM">Isle of Man</option>
+											<option value="IL">Israel</option>
+											<option value="IT">Italy</option>
+											<option value="JM">Jamaica</option>
+											<option value="JP">Japan</option>
+											<option value="JE">Jersey</option>
+											<option value="JO">Jordan</option>
+											<option value="KZ">Kazakhstan</option>
+											<option value="KE">Kenya</option>
+											<option value="KI">Kiribati</option>
+											<option value="KP">Korea, Democratic People'S Republic of</option>
+											<option value="KR">Korea, Republic of</option>
+											<option value="KW">Kuwait</option>
+											<option value="KG">Kyrgyzstan</option>
+											<option value="LA">Lao People'S Democratic Republic</option>
+											<option value="LV">Latvia</option>
+											<option value="LB">Lebanon</option>
+											<option value="LS">Lesotho</option>
+											<option value="LR">Liberia</option>
+											<option value="LY">Libyan Arab Jamahiriya</option>
+											<option value="LI">Liechtenstein</option>
+											<option value="LT">Lithuania</option>
+											<option value="LU">Luxembourg</option>
+											<option value="MO">Macao</option>
+											<option value="MK">Macedonia, The Former Yugoslav Republic of</option>
+											<option value="MG">Madagascar</option>
+											<option value="MW">Malawi</option>
+											<option value="MY">Malaysia</option>
+											<option value="MV">Maldives</option>
+											<option value="ML">Mali</option>
+											<option value="MT">Malta</option>
+											<option value="MH">Marshall Islands</option>
+											<option value="MQ">Martinique</option>
+											<option value="MR">Mauritania</option>
+											<option value="MU">Mauritius</option>
+											<option value="YT">Mayotte</option>
+											<option value="MX">Mexico</option>
+											<option value="FM">Micronesia, Federated States of</option>
+											<option value="MD">Moldova, Republic of</option>
+											<option value="MC">Monaco</option>
+											<option value="MN">Mongolia</option>
+											<option value="MS">Montserrat</option>
+											<option value="MA">Morocco</option>
+											<option value="MZ">Mozambique</option>
+											<option value="MM">Myanmar</option>
+											<option value="NA">Namibia</option>
+											<option value="NR">Nauru</option>
+											<option value="NP">Nepal</option>
+											<option value="NL">Netherlands</option>
+											<option value="AN">Netherlands Antilles</option>
+											<option value="NC">New Caledonia</option>
+											<option value="NZ">New Zealand</option>
+											<option value="NI">Nicaragua</option>
+											<option value="NE">Niger</option>
+											<option value="NG">Nigeria</option>
+											<option value="NU">Niue</option>
+											<option value="NF">Norfolk Island</option>
+											<option value="MP">Northern Mariana Islands</option>
+											<option value="NO">Norway</option>
+											<option value="OM">Oman</option>
+											<option value="PK">Pakistan</option>
+											<option value="PW">Palau</option>
+											<option value="PS">Palestinian Territory, Occupied</option>
+											<option value="PA">Panama</option>
+											<option value="PG">Papua New Guinea</option>
+											<option value="PY">Paraguay</option>
+											<option value="PE">Peru</option>
+											<option value="PH">Philippines</option>
+											<option value="PN">Pitcairn</option>
+											<option value="PL">Poland</option>
+											<option value="PT">Portugal</option>
+											<option value="PR">Puerto Rico</option>
+											<option value="QA">Qatar</option>
+											<option value="RE">Reunion</option>
+											<option value="RO">Romania</option>
+											<option value="RU">Russian Federation</option>
+											<option value="RW">RWANDA</option>
+											<option value="SH">Saint Helena</option>
+											<option value="KN">Saint Kitts and Nevis</option>
+											<option value="LC">Saint Lucia</option>
+											<option value="PM">Saint Pierre and Miquelon</option>
+											<option value="VC">Saint Vincent and the Grenadines</option>
+											<option value="WS">Samoa</option>
+											<option value="SM">San Marino</option>
+											<option value="ST">Sao Tome and Principe</option>
+											<option value="SA">Saudi Arabia</option>
+											<option value="SN">Senegal</option>
+											<option value="CS">Serbia and Montenegro</option>
+											<option value="SC">Seychelles</option>
+											<option value="SL">Sierra Leone</option>
+											<option value="SG">Singapore</option>
+											<option value="SK">Slovakia</option>
+											<option value="SI">Slovenia</option>
+											<option value="SB">Solomon Islands</option>
+											<option value="SO">Somalia</option>
+											<option value="ZA">South Africa</option>
+											<option value="GS">South Georgia and the South Sandwich Islands</option>
+											<option value="ES">Spain</option>
+											<option value="LK">Sri Lanka</option>
+											<option value="SD">Sudan</option>
+											<option value="SR">Suriname</option>
+											<option value="SJ">Svalbard and Jan Mayen</option>
+											<option value="SZ">Swaziland</option>
+											<option value="SE">Sweden</option>
+											<option value="CH">Switzerland</option>
+											<option value="SY">Syrian Arab Republic</option>
+											<option value="TW">Taiwan, Province of China</option>
+											<option value="TJ">Tajikistan</option>
+											<option value="TZ">Tanzania, United Republic of</option>
+											<option value="TH">Thailand</option>
+											<option value="TL">Timor-Leste</option>
+											<option value="TG">Togo</option>
+											<option value="TK">Tokelau</option>
+											<option value="TO">Tonga</option>
+											<option value="TT">Trinidad and Tobago</option>
+											<option value="TN">Tunisia</option>
+											<option value="TR">Turkey</option>
+											<option value="TM">Turkmenistan</option>
+											<option value="TC">Turks and Caicos Islands</option>
+											<option value="TV">Tuvalu</option>
+											<option value="UG">Uganda</option>
+											<option value="UA">Ukraine</option>
+											<option value="AE">United Arab Emirates</option>
+											<option value="GB">United Kingdom</option>
+											<option value="US">United States</option>
+											<option value="UM">United States Minor Outlying Islands</option>
+											<option value="UY">Uruguay</option>
+											<option value="UZ">Uzbekistan</option>
+											<option value="VU">Vanuatu</option>
+											<option value="VE">Venezuela</option>
+											<option value="VN">Viet Nam</option>
+											<option value="VG">Virgin Islands, British</option>
+											<option value="VI">Virgin Islands, U.S.</option>
+											<option value="WF">Wallis and Futuna</option>
+											<option value="EH">Western Sahara</option>
+											<option value="YE">Yemen</option>
+											<option value="ZM">Zambia</option>
+											<option value="ZW">Zimbabwe</option>
+											</select>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-2">
-								<p>
-									<b>Budget</b>
-								</p>
-								<div class="input-group spinner" data-trigger="spinner">
-									<div class="form-line">
-										<input id="editCampaignBudget" type="text" class="form-control text-center" value="100" data-rule="currency">
-									</div>
-									<span class="input-group-addon">
-										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
-										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
-									</span>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<p>
-									<b>Status</b>
-								</p>
-								<select id="editCampaignStatus" class="form-control show-tick" title="Nothing selected">
-									<option>Stop</option>
-									<option>Unstop</option>
-								</select>
 							</div>
 						</div>
-						<div class="row clearfix">
-							<div class="col-md-3 col-md-offset-3">
-								<p>
-									<b>Beginning Time</b>
-								</p>
-								<div class="form-group">
-									<div class="form-line">
-										<input id="editCampaignBeginningTime" type="text" class="datetimepicker form-control" placeholder="Enter Beginning Date">
-									</div>
+					</div>
+					<div id="announcerInfo" class="row clearfix">
+						<br>
+						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
+							<div class="card">
+								<div class="header">
+									<h2>
+										User Announcer Info
+									</h2>
 								</div>
-							</div>
-							<div class="col-md-3">
-								<p>
-									<b>Ending Time</b>
-								</p>
-								<div class="form-group">
-									<div class="form-line">
-										<input id="editCampaignEndingTime" type="text" class="datetimepicker form-control" placeholder="Enter Ending Date">
+								<div class="body">
+									<div class="row clearfix">
+										<div class="col-md-4 col-md-offset-2">
+											<p>
+												<b>Account Type</b>
+											</p>
+											<select id="myInfoAnnouncerAccountrType" class="form-control show-tick" title="Nothing selected">
+												<option>Free</option>
+												<option>Premium</option>
+											</select>
+										</div>
+										<div class="col-md-3 col-md-offset-1">
+											<p>
+												<b>Budget</b>
+											</p>
+											<div class="input-group spinner" data-trigger="spinner">
+												<div class="form-line">
+													<input type="text" id="myInfoAnnouncerBudget" class="form-control text-center" value="100" data-rule="currency" required>
+												</div>
+												<span class="input-group-addon">
+													<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+													<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+												</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row clearfix">
-							<div class="col-md-2 col-md-offset-5">
-								<button type="button" id="editCampaignsSave" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Save Edits</button>
+					</div>
+					<div id="publisherInfo" class="row clearfix">
+						<br>
+						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
+							<div class="card">
+								<div class="header">
+									<h2>
+										User Publisher Info
+									</h2>
+								</div>
+								<div class="body">
+									<div class="row clearfix">
+										<div class="col-md-4 col-md-offset-2">
+											<p>
+												<b>Account Type</b>
+											</p>
+											<select id="myInfoPublisherAccountrType" class="form-control show-tick" title="Nothing selected">
+												<option>Free</option>
+												<option>Premium</option>
+											</select>
+										</div>
+										<div class="col-md-3 col-md-offset-1">
+											<p>
+												<b>Credit</b>
+											</p>
+											<div class="input-group spinner" data-trigger="spinner">
+												<div class="form-line">
+													<input type="text" id="myInfoPublisherCredit" class="form-control text-center" value="100" data-rule="currency" required>
+												</div>
+												<span class="input-group-addon">
+													<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+													<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="myInfoGeneralSearch" type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+						<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- #END# Masked Input -->
 
 	</section>
 

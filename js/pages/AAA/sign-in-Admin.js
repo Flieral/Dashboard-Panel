@@ -76,8 +76,6 @@ $(document).ready(function () {
 							contentType: "application/json; charset=utf-8",
 							type: "POST",
 							success: function (coreResult) {
-								if (coreResult.userId !== '594d2df7d927f1738eba9e16' && coreResult.userId !== '594d2df7d927f1738eba9e17' && coreResult.userId !== '594d2df7d927f1738eba9e18')
-									return showNotification('alert-danger', 'Only admins can sign in to this panel.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
 								localStorage.setItem('adminCoreAccessToken', coreResult.id);
 								localStorage.setItem('adminId', announcerResult.userId);
 								localStorage.setItem('adminAnnouncerAccessToken', announcerResult.id);
