@@ -82,6 +82,7 @@ $(document).ready(function () {
 								localStorage.setItem('adminId', announcerResult.userId);
 								localStorage.setItem('adminAnnouncerAccessToken', announcerResult.id);
 								localStorage.setItem('adminPublisherAccessToken', publisherResult.id);
+								console.log('fucking success');
 								window.location.href = '../Admin/users.html'
 							},
 							error: function (xhr, status, error) {

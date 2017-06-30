@@ -50,19 +50,19 @@ $(document).ready(function () {
 	if (localStorage.getItem('adminId'))
 		adminId = localStorage.getItem('adminId')
 	else
-		return window.location.href = '../AAA/sign-in-Admin.html';
+		return window.location.href = '../AAA/sign-in-admin.html';
 	if (localStorage.getItem('adminCoreAccessToken'))
 		coreAccessToken = localStorage.getItem('adminCoreAccessToken')
 	else
-		return window.location.href = '../AAA/sign-in-Admin.html';
+		return window.location.href = '../AAA/sign-in-admin.html';
 	if (localStorage.getItem('adminAnnouncerAccessToken'))
 		announcerAccessToken = localStorage.getItem('adminAnnouncerAccessToken')
 	else
-		return window.location.href = '../AAA/sign-in-Admin.html';
+		return window.location.href = '../AAA/sign-in-admin.html';
 	if (localStorage.getItem('adminPublisherAccessToken'))
 		publisherAccessToken = localStorage.getItem('adminPublisherAccessToken')
 	else
-		return window.location.href = '../AAA/sign-in-Admin.html';
+		return window.location.href = '../AAA/sign-in-admin.html';
 
 	getAllUsers();
 	initDateTimePicker();

@@ -272,6 +272,7 @@ $(document).ready(function () {
 
 	$("#myCampaignsSearch").click(function (e) {
 		e.preventDefault();
+		NProgress.start();
 		var status = [],
 			mediaStyle = [],
 			startStyle = [],
@@ -336,10 +337,12 @@ $(document).ready(function () {
 			type: "GET",
 			success: function (campaignResult) {
 				fillTable(campaignResult)
+				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
 				$('.page-loader-wrapper').fadeOut();
+				NProgress.done();
 				alert(xhr.responseText);
 			}
 		});

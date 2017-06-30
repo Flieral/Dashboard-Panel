@@ -49,15 +49,15 @@ $(document).ready(function () {
 	if (localStorage.getItem('userId'))
 		userId = localStorage.getItem('userId')
 	else
-		return window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in-admin.html';
 	if (localStorage.getItem('announcerAccessToken'))
 		announcerAccessToken = localStorage.getItem('announcerAccessToken')
 	else
-		return window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in-admin.html';
 	if (localStorage.getItem('coreAccessToken'))
 		coreAccessToken = localStorage.getItem('coreAccessToken')
 	else
-		return window.location.href = '../AAA/sign-in.html';
+		return window.location.href = '../AAA/sign-in-admin.html';
 
 	getAccountModel();
 	initDateTimePicker();
@@ -636,7 +636,7 @@ $(document).ready(function () {
 	$("#signOutButton").click(function (e) {
 		e.preventDefault();
 		localStorage.clear()
-		return window.location.href = '../AAA/sign-in.html'
+		return window.location.href = '../AAA/sign-in-admin.html'
 	})
 
 })
