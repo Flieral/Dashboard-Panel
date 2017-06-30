@@ -39,8 +39,8 @@ function fullDateConvertor(myDate) {
 	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes())
 }
 
-var publisher_url = "http://149.202.30.89:3005/api/";
-var coreEngine_url = "http://149.202.30.89:3015/api/";
+var publisher_url = "http://127.0.0.1:3005/api/";
+var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
 	var clientApplicationInstance;
