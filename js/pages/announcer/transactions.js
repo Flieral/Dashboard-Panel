@@ -115,7 +115,7 @@ $(document).ready(function () {
 
 	function fillTable(transactionArray) {
 		$('#tab_logic>tbody').empty()
-		for (var i = 0; i < totalSubcampaignArray.length; i++) {
+		for (var i = 0; i < transactionArray.length; i++) {
 			var statusColor
 			if (transactionArray[i].status === 'Open') statusColor = 'bg-green'
 			else if (transactionArray[i].status === 'Checkout') statusColor = 'bg-light-blue'
@@ -181,28 +181,28 @@ $(document).ready(function () {
 						if (status.indexOf(stat) >= 0) {
 							if (beginningTime && endingTime) {
 								if (time >= beginningTime && time <= endingTime)
-									responseArray.push(receiptResult[i])
+									responseArray.push(transactionResult[i])
 							} else if (beginningTime) {
 								if (time >= beginningTime)
-									responseArray.push(receiptResult[i])
+									responseArray.push(transactionResult[i])
 							} else if (endingTime) {
 								if (time <= endingTime)
-									responseArray.push(receiptResult[i])
+									responseArray.push(transactionResult[i])
 							} else
-								responseArray.push(receiptResult[i])
+								responseArray.push(transactionResult[i])
 						}
 					} else {
 						if (beginningTime && endingTime) {
 							if (time >= beginningTime && time <= endingTime)
-								responseArray.push(receiptResult[i])
+								responseArray.push(transactionResult[i])
 						} else if (beginningTime) {
 							if (time >= beginningTime)
-								responseArray.push(receiptResult[i])
+								responseArray.push(transactionResult[i])
 						} else if (endingTime) {
 							if (time <= endingTime)
-								responseArray.push(receiptResult[i])
+								responseArray.push(transactionResult[i])
 						} else
-							responseArray.push(receiptResult[i])
+							responseArray.push(transactionResult[i])
 					}
 				}
 
