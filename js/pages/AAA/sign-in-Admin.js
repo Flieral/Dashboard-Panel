@@ -76,6 +76,8 @@ $(document).ready(function () {
 							contentType: "application/json; charset=utf-8",
 							type: "POST",
 							success: function (coreResult) {
+								localStorage.setItem('AdminCompanyName', 'Flieral Inc.');
+								localStorage.setItem('adminEmail', data.email);						
 								localStorage.setItem('adminCoreAccessToken', coreResult.id);
 								localStorage.setItem('adminId', announcerResult.userId);
 								localStorage.setItem('adminAnnouncerAccessToken', announcerResult.id);

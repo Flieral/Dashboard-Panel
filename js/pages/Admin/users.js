@@ -110,8 +110,8 @@ $(document).ready(function () {
 			success: function (accountResult) {
 				clientInstance = accountResult
 				fillTable(accountResult)
-				$("#adminUsername").html(localStorage.getItem('announcerCompanyName'));
-				$("#adminEmail").html(localStorage.getItem('announcerEmail'));
+				$("#adminUsername").html(localStorage.getItem('AdminCompanyName'));
+				$("#adminEmail").html(localStorage.getItem('adminEmail'));
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
