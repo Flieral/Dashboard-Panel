@@ -69,9 +69,6 @@ $(document).ready(function () {
 					contentType: "application/json; charset=utf-8",
 					type: "POST",
 					success: function (announcerResult) {
-						localStorage.setItem('adminId', announcerResult.userId);
-						localStorage.setItem('announcerAccessToken', announcerResult.id);
-						localStorage.setItem('publisherAccessToken', publisherResult.id);
 						$.ajax({
 							url: coreEngine_url,
 							data: JSON.stringify(data),
@@ -79,8 +76,13 @@ $(document).ready(function () {
 							contentType: "application/json; charset=utf-8",
 							type: "POST",
 							success: function (coreResult) {
-								localStorage.setItem('coreAccessToken', coreResult.id);
-									window.location.href = '../Admin/users.html'
+								if (coreResult.userId !== '594d2df7d927f1738eba9e16' && coreResult.userId !== '594d2df7d927f1738eba9e17' && coreResult.userId !== '594d2df7d927f1738eba9e18')
+									return showNotification('alert-danger', 'Only admins can sign in to this panel.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
+								localStorage.setItem('adminCoreAccessToken', coreResult.id);
+								localStorage.setItem('adminId', announcerResult.userId);
+								localStorage.setItem('adminAnnouncerAccessToken', announcerResult.id);
+								localStorage.setItem('adminPublisherAccessToken', publisherResult.id);
+								window.location.href = '../Admin/users.html'
 							},
 							error: function (xhr, status, error) {
 								showNotification('alert-danger', 'Oops! Something went wrong, Please try again somehow later.', 'top', 'right', 'animated fadeIn', 'animated fadeOut');
