@@ -101,8 +101,7 @@ $(document).ready(function () {
 
 	function fillEditCampaignFields(selected) {
 		for (var i = 0; i < clientCampaignInstance.campaigns.length; i++) {
-			if (clientCampaignInstance.campaigns[i].name === selected) {
-				editableCampaignId = clientCampaignInstance.campaigns[i].id
+			if (clientCampaignInstance.campaigns[i].id === selected) {
 				$("#editCampaignName").val(clientCampaignInstance.campaigns[i].name)
 				$("#editCampaignBudget").val(clientCampaignInstance.campaigns[i].budget)
 				if (clientCampaignInstance.campaigns[i].status === 'Stopped')
@@ -122,11 +121,11 @@ $(document).ready(function () {
 			$("#editCampaign").hide();
 			$("#newCampaign").hide();
 		} else if ($(e.target).attr('id') === 'nav3') {
-			if (localStorage.getItem('editableCampaignName')) {
-				var campName = localStorage.getItem('editableCampaignName')
-				$("#editCampaignSelect").selectpicker('val', campName).selectpicker('refresh')
-				fillEditCampaignFields(campName);
-				localStorage.removeItem('editableCampaignName')
+			if (localStorage.getItem('editableCampaignId')) {
+				var campId = localStorage.getItem('editableCampaignId')
+				$("#editCampaignSelect").selectpicker('val',campId);
+				fillEditCampaignFields(campId);
+				localStorage.removeItem('editableCampaignId')
 			}
 			$("#myCampaigns").hide();
 			$("#editCampaign").show();
@@ -224,8 +223,8 @@ $(document).ready(function () {
 
 	$(document).on("click", ".campaignEdit", function (e) {
 		e.preventDefault();
-		var campName = $(this).parent().siblings().eq(1).text()
-		localStorage.setItem('editableCampaignName', campName)
+		var campId = $(this).parent().siblings().eq(0).text();
+		localStorage.setItem('editableCampaignId', campId)
 		$('.nav-tabs a[id="nav3"]').tab('show');
 	})
 
@@ -400,7 +399,7 @@ $(document).ready(function () {
 		NProgress.start();
 		var campaignName = $('#editCampaignSelect').find('option:selected').text()
 		var campaignId
-		for (var i = 0; clientCampaignInstance.campaigns.length; i++)
+		for (var i = 0; i < clientCampaignInstance.campaigns.length; i++)
 			if (clientCampaignInstance.campaigns[i].name === campaignName)
 				campaignId = clientCampaignInstance.campaigns[i].id
 		if (!campaignName || !campaignId || !$('#editCampaignName').val() || !$('#editCampaignBeginningTime').val() || !$('#editCampaignEndingTime').val() || !$('#editCampaignBudget').val() || !$('#editCampaignStatus').find('option:selected').text()) {
