@@ -59,6 +59,7 @@
 
 	<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 	<link href="../../css/themes/theme-pink.css" rel="stylesheet" />
+
 	<!-- Nprogress bar for top in Ajax call-->
 	<link href="../../plugins/nprogress/nprogress.css" rel="stylesheet" />
 </head>
@@ -90,7 +91,7 @@
 			<div class="navbar-header">
 				<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
 				<a href="javascript:void(0);" class="bars"></a>
-				<a class="navbar-brand" href="dashboard.html"><b>Flieral Inc.</b> Publisher Dashboard</a>
+				<a class="navbar-brand" href="dashboard.html"><b>Flieral Inc.</b> Admin Dashboard</a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -172,8 +173,8 @@
 					<img src="../../images/user.png" width="48" height="48" alt="User" />
 				</div>
 				<div class="info-container">
-					<div id="publisherUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-					<div id="publisherEmail" class="email">john.doe@example.com</div>
+					<div id="adminUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+					<div id="adminEmail" class="email">john.doe@example.com</div>
 					<div class="btn-group user-helper-dropdown">
 						<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 						<ul class="dropdown-menu pull-right">
@@ -196,7 +197,7 @@
 							<span>Users</span>
 						</a>
 					</li>
-					<li class="active">
+					<li>
 						<a href="campaign.html">
 							<i class="material-icons col-amber">notifications_active</i>
 							<span>Campaigns</span>
@@ -209,15 +210,39 @@
 						</a>
 					</li>
 					<li>
-						<a href="activity-monitor.html">
+						<a href="application.html">
 							<i class="material-icons col-light-green" >notifications_active</i>
 							<span>Applications</span>
 						</a>
 					</li>
-					<li>
-						<a href="javascript:void(0);">
+					<li class="active">
+						<a href="placement.html">
 							<i class="material-icons col-light-blue">notifications_active</i>
 							<span>Placements</span>
+						</a>
+					</li>
+					<li>
+						<a href="statistics.html">
+							<i class="material-icons col-amber" >dashboard</i>
+							<span>Statistics</span>
+						</a>
+					</li>
+					<li>
+						<a href="transactions.html">
+							<i class="material-icons col-deep-purple">dashboard</i>
+							<span>Transactions</span>
+						</a>
+					</li>
+					<li>
+						<a href="invoices.html">
+							<i class="material-icons col-light-green">dashboard</i>
+							<span>Invoices</span>
+						</a>
+					</li>
+					<li>
+						<a href="interactions.html">
+							<i class="material-icons col-light-blue">dashboard</i>
+							<span>Interactions</span>
 						</a>
 					</li>
 				</ul>
@@ -250,10 +275,7 @@
 										<a href="#home_md_col_1" id="nav1" data-toggle="tab">My Placements</a>
 									</li>
 									<li role="presentation">
-										<a href="#profile_md_col_1" id="nav2" data-toggle="tab">New Placement</a>
-									</li>
-									<li role="presentation">
-										<a href="#messages_md_col_1" id="nav3" data-toggle="tab">Edit Placement</a>
+										<a href="#messages_md_col_1" id="nav2" data-toggle="tab">Edit Placement</a>
 									</li>
 								</ul>
 							</div>
@@ -272,6 +294,16 @@
 						</h2>
 					</div>
 					<div class="body">
+						<div class="row clearfix">
+							<div class="col-md-6 col-md-offset-3">
+								<p>
+									<b>Publisher Clients</b>
+								</p>
+								<select id="myPlacementsClients" class="form-control show-tick" title="Nothing selected" data-actions-box="true" data-live-search="true" data-size=5
+								    data-actionsBox=true multiple>
+								</select>
+							</div>
+						</div>
 						<div class="row clearfix">
 							<div class="col-sm-3 col-md-offset-1">
 								<p>
@@ -310,7 +342,7 @@
 								</p>
 								<div class="form-group">
 									<div class="form-line">
-										<input id="myPlacementsBeginningTime" type="text" class="datepicker form-control" placeholder="Enter Beginning Date">
+										<input id="myPlacementsBeginningTime" type="text" class="datetimepicker form-control" placeholder="Enter Beginning Date">
 									</div>
 								</div>
 							</div>
@@ -320,7 +352,7 @@
 								</p>
 								<div class="form-group">
 									<div class="form-line">
-										<input id="myPlacementsEndingTime" type="text" class="datepicker form-control" placeholder="Enter Ending Date">
+										<input id="myPlacementsEndingTime" type="text" class="datetimepicker form-control" placeholder="Enter Ending Date">
 									</div>
 								</div>
 							</div>
@@ -354,12 +386,10 @@
 										<tr>
 											<th>ID</th>
 											<th>Application ID</th>
+											<th>Client ID</th>
 											<th>Name</th>
 											<th>Style</th>
 											<th>Cedit</th>
-											<th>Priorty</th>
-											<th>Period</th>
-											<th>Capacity</th>
 											<th>Status</th>
 											<th>Actions</th>
 										</tr>
@@ -368,126 +398,6 @@
 									</tbody>
 								</table>
 								<!-- #END# Exportable Table -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="addPlacement" class="row clearfix">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="header">
-						<h2>
-							Add Placement
-						</h2>
-						<br>
-						<small>In this step you can add the basic information of placement related to application.</small>
-					</div>
-					<div class="body">
-						<div class="row clearfix">
-							<br>
-							<div class="col-sm-6 col-md-offset-3">
-								<p>
-									<b>Select your Preferd Application</b>
-								</p>
-								<select id="addPlacementSelectApplication" data-live-search="true" class="form-control show-tick" title="Nothing selected">
-								</select>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<br>
-							<div class="col-md-4 col-md-offset-1">
-								<p>
-									<b>Placement Name</b>
-								</p>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">next_week</i>
-									</span>
-									<div class="form-line">
-										<input id="addPlacementName" type="text" class="form-control key" placeholder="Ex: My Sample Placement Name">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<p>
-									<b>Placement Style</b>
-								</p>
-								<select id="addPlacementStyle" class="form-control show-tick" title="Nothing selected">
-									<option>Banner: Small</option>
-									<option>Banner: Medium</option>
-									<option>Banner: Large</option>
-									<option>Interstitial</option>
-									<option>Overlay</option>
-								</select>
-							</div>
-							<div class="col-md-2">
-								<p>
-									<b>Online Capacity</b>
-								</p>
-								<div class="input-group spinner" data-trigger="spinner">
-									<div class="form-line">
-										<input id="addPlacementOnlineCapacity" type="text" class="form-control text-center" value="3" data-rule="count">
-									</div>
-									<span class="input-group-addon">
-										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
-										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
-									</span>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<p>
-									<b>Offline Capacity</b>
-								</p>
-								<div class="input-group spinner" data-trigger="spinner">
-									<div class="form-line">
-										<input id="addPlacementOfflineCapacity" type="text" class="form-control text-center" value="3" data-rule="count">
-									</div>
-									<span class="input-group-addon">
-										<a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
-										<a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="row clearfix">
-							<div class="col-md-3 col-md-offset-2">
-								<p>
-									<b>Show Beginning Time</b>
-								</p>
-								<div class="form-group">
-									<div class="form-line">
-										<input id="addPlacementBeginningTime" type="text" class="datetimepicker form-control" placeholder="Enter Beginning Date">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<p>
-									<b>Show Ending Time</b>
-								</p>
-								<div class="form-group">
-									<div class="form-line">
-										<input id="addPlacementEndingTime" type="text" class="datetimepicker form-control" placeholder="Enter Ending Date">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<p>
-									<b>Load Priority</b>
-								</p>
-								<select id="addPlacementPriority" class="form-control show-tick" title="Nothing selected">
-									<option>Low</option>
-									<option>Average</option>
-									<option>High</option>
-								</select>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<div class="col-md-2 col-md-offset-5">
-								<button id="addPlacementButton" type="button" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Add Placement</button>
 							</div>
 						</div>
 					</div>
@@ -1011,7 +921,7 @@
 
 	<!-- Custom Js -->
 	<script src="../../js/admin.js"></script>
-	<script src="../../js/pages/publisher/placement.js"></script>
+	<script src="../../js/pages/admin/placement.js"></script>
 
 	<!-- Jquery DataTable Plugin Js -->
 	<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>

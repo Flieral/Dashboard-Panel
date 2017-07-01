@@ -18,11 +18,25 @@ function timeConvertor(myDate) {
 	return Math.floor((new Date(parseInt(parts[3]), months.indexOf(parts[2]), parseInt(parts[1]))).getTime())
 }
 
+function fullTimeConvertor(myDate) {
+	var parts = myDate.split(" ")
+	var doublePart = parts[5].split(":")
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	return Math.floor((new Date(parseInt(parts[3]), months.indexOf(parts[2]), parseInt(parts[1]), parseInt(doublePart[0]), parseInt(doublePart[1]))).getTime())
+}
+
 function dateConvertor(myDate) {
 	var d = new Date(myDate)
 	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear())
+}
+
+function fullDateConvertor(myDate) {
+	var d = new Date(myDate)
+	var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	return ('' + weekday[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' - ' + d.getHours() + ':' + d.getMinutes())
 }
 
 function generateQueryString(data) {
@@ -37,21 +51,25 @@ var publisher_url = "http://127.0.0.1:3005/api/";
 var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
-	var clientInstance;
-	var fullApplicationResult
-	var totalPlacementsArray = []
+	var clientsArray = [];
+	var applicationsArray = []
+	var placementsArray = []
 
-	var userId, publisherAccessToken, coreAccessToken
-	if (localStorage.getItem('userId'))
-		userId = localStorage.getItem('userId')
+	var adminId, coreAccessToken, announcerAccessToken, publisherAccessToken
+	if (localStorage.getItem('adminId'))
+		adminId = localStorage.getItem('adminId')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-	if (localStorage.getItem('publisherAccessToken'))
-		publisherAccessToken = localStorage.getItem('publisherAccessToken')
+	if (localStorage.getItem('adminCoreAccessToken'))
+		coreAccessToken = localStorage.getItem('adminCoreAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-	if (localStorage.getItem('coreAccessToken'))
-		coreAccessToken = localStorage.getItem('coreAccessToken')
+	if (localStorage.getItem('adminAnnouncerAccessToken'))
+		announcerAccessToken = localStorage.getItem('adminAnnouncerAccessToken')
+	else
+		return window.location.href = '../AAA/sign-in-admin.html';
+	if (localStorage.getItem('adminPublisherAccessToken'))
+		publisherAccessToken = localStorage.getItem('adminPublisherAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
 
@@ -94,26 +112,26 @@ $(document).ready(function () {
 	}
 
 	function fillEditPlacementsnFields(selected) {
-		for (var i = 0; i < totalPlacementsArray.length; i++) {
-			if (totalPlacementsArray[i].name === selected) {
-				$("#editPlacementName").val(totalPlacementsArray[i].name)
-				$("#editPlacementStyle").selectpicker('val', totalPlacementsArray[i].style)
-				$("#editPlacementOnlineCapacity").val(totalPlacementsArray[i].onlineCapacity)
-				$("#editPlacementOfflineCapacity").val(totalPlacementsArray[i].offlineCapacity)
-				$("#editPlacementBeginningTime").val(totalPlacementsArray[i].beginningTime)
-				$("#editPlacementEndingTime").val(totalPlacementsArray[i].endingTime)
-				$("#editPlacementPriority").selectpicker('val', totalPlacementsArray[i].priority)
+		for (var i = 0; i < placementsArray.length; i++) {
+			if (placementsArray[i].name === selected) {
+				$("#editPlacementName").val(placementsArray[i].name)
+				$("#editPlacementStyle").selectpicker('val', placementsArray[i].style)
+				$("#editPlacementOnlineCapacity").val(placementsArray[i].onlineCapacity)
+				$("#editPlacementOfflineCapacity").val(placementsArray[i].offlineCapacity)
+				$("#editPlacementBeginningTime").val(fullDateConvertor(placementsArray[i].beginningTime))
+				$("#editPlacementEndingTime").val(fullDateConvertor(placementsArray[i].endingTime))
+				$("#editPlacementPriority").selectpicker('val', placementsArray[i].priority)
 				break
 			}
 		}
 	}
 
 	function fillSettingPlacementFields(selected) {
-		for (var i = 0; i < totalPlacementsArray.length; i++) {
-			if (totalPlacementsArray[i].name === selected) {
-				$("#selectSettingUserLabel").selectpicker('val', totalPlacementsArray[i].settingModel.userLabel)
-				$("#selectSettingCategory").selectpicker('val', totalPlacementsArray[i].settingModel.category)
-				$("#selectSettingCountry").selectpicker('val', totalPlacementsArray[i].settingModel.country)
+		for (var i = 0; i < placementsArray.length; i++) {
+			if (placementsArray[i].name === selected) {
+				$("#selectSettingUserLabel").selectpicker('val', placementsArray[i].settingModel.userLabel)
+				$("#selectSettingCategory").selectpicker('val', placementsArray[i].settingModel.category)
+				$("#selectSettingCountry").selectpicker('val', placementsArray[i].settingModel.country)
 				break
 			}
 		}
@@ -123,9 +141,8 @@ $(document).ready(function () {
 		if ($(e.target).attr('id') === 'nav1') {
 			$("#myPlacements").show();
 			$("#editPlacement").hide();
-			$("#addPlacement").hide();
 			$("#selectSetting").hide();
-		} else if ($(e.target).attr('id') === 'nav3') {
+		} else if ($(e.target).attr('id') === 'nav2') {
 			if (localStorage.getItem('editablePlacementName')) {
 				var placementName = localStorage.getItem('editablePlacementName')
 				$("#editPlacementSelect").selectpicker('val', placementName)
@@ -137,17 +154,6 @@ $(document).ready(function () {
 			$("#myPlacements").hide();
 			$("#selectSetting").show();
 			$("#editPlacement").show();
-			$("#addPlacement").hide();
-		} else if ($(e.target).attr('id') === 'nav2') {
-			if (localStorage.getItem('newCreatedApplication')) {
-				var appName = localStorage.getItem('newCreatedApplication')
-				$("#addPlacementSelectApplication").selectpicker('val', appName)
-				localStorage.removeItem("newCreatedApplication")
-			}
-			$("#myPlacements").hide();
-			$("#editPlacement").hide();
-			$("#addPlacement").show();
-			$("#selectSetting").show();
 		}
 	}
 
@@ -158,12 +164,9 @@ $(document).ready(function () {
 	if (!window.location.hash) {
 		$("#myPlacements").show();
 		$("#editPlacement").hide();
-		$("#addPlacement").hide();
 		$("#selectSetting").hide();
-	} else if (window.location.hash === '#addPlacement')
+	} else if (window.location.hash === '#editPlacement')
 		$('.nav-tabs a[id="nav2"]').tab('show');
-	else if (window.location.hash === '#editPlacement')
-		$('.nav-tabs a[id="nav3"]').tab('show');
 	else if (window.location.hash === '#myPlacements')
 		$('.nav-tabs a[id="nav1"]').tab('show');
 
@@ -178,75 +181,63 @@ $(document).ready(function () {
 	});
 
 	function getAccountModel() {
-		var accountURLWithAT = wrapAccessToken(publisher_url + 'clients/' + userId, publisherAccessToken)
-		var accountURL = wrapFilter(accountURLWithAT, '{"include":["publisherAccount", "applications"]}')
+		var accountURLWithAT = wrapAccessToken(publisher_url + 'applications', publisherAccessToken)
+		var accountURL = wrapFilter(accountURLWithAT, '{"include":["placements"]}')
 		$.ajax({
 			url: accountURL,
 			type: "GET",
-			success: function (accountResult) {
-				clientInstance = accountResult
-				var applicationURLWithAT = wrapAccessToken(publisher_url + 'clients/' + userId + '/applications', publisherAccessToken)
-				var applicationURL = wrapFilter(applicationURLWithAT, '{"include":["placements"]}')
-				$.ajax({
-					url: applicationURL,
-					type: "GET",
-					success: function (applicationResult) {
-						totalPlacementsArray = []
-						fullApplicationResult = applicationResult
-						$('#addPlacementSelectApplication').find('option').remove()
-						$('#myPlacementsSelectApplication').find('option').remove()
-						$('#selectSettingSelect').find('option').remove()
-						$('#editPlacementSelect').find('option').remove()
-						for (var i = 0; i < accountResult.applications.length; i++) {
-							$('#addPlacementSelectApplication').append($('<option>', {
-								value: accountResult.applications[i].id,
-								text: accountResult.applications[i].name
-							})).selectpicker('refresh');
-							$('#myPlacementsSelectApplication').append($('<option>', {
-								value: accountResult.applications[i].id,
-								text: accountResult.applications[i].name
-							})).selectpicker('refresh');
-						}
-
-						for (var i = 0; i < applicationResult.length; i++) {
-							var group = $('<optgroup label="' + applicationResult[i].name + '"/>');
-							for (j = 0; j < applicationResult[i].placements.length; j++) {
-								$('<option />').html(applicationResult[i].placements[j].name).appendTo(group);
-								totalPlacementsArray.push(applicationResult[i].placements[j])
-							}
-							group.appendTo('#editPlacementSelect');
-							$('#editPlacementSelect').selectpicker('refresh');
-						}
-						for (var i = 0; i < applicationResult.length; i++) {
-							var group = $('<optgroup label="' + applicationResult[i].name + '"/>');
-							for (j = 0; j < applicationResult[i].placements.length; j++) {
-								$('<option />').html(applicationResult[i].placements[j].name).appendTo(group);
-							}
-							group.appendTo('#selectSettingSelect');
-							$('#selectSettingSelect').selectpicker('refresh');
-						}
-
-						$('#editPlacementSelect').trigger("chosen:updated")
-						$('#selectSettingSelect').trigger("chosen:updated")
-
-						$('#addPlacementSelectApplication').trigger("chosen:updated")
-						$('#myPlacementsSelectApplication').trigger("chosen:updated")
-
-						fillTable(totalPlacementsArray)
-
-						if (localStorage.getItem('myApplicationSelectPlacement')) {
-							var appName = localStorage.getItem('myApplicationSelectPlacement')
-							$("#myPlacementsSelectApplication").selectpicker('val', appName).selectpicker('refresh')
-							localStorage.removeItem("myApplicationSelectPlacement")
-						}
-					},
-					error: function (xhr, status, error) {
-						$('.page-loader-wrapper').fadeOut();
-						alert(xhr.responseText);
+			success: function (applications) {
+				clientsArray = []
+				applicationsArray = []
+				placementsArray = []
+				
+				$('#myPlacementsClients').find('option').remove()
+				$('#myPlacementsSelectApplication').find('option').remove()
+				$('#selectSettingSelect').find('option').remove()
+				$('#editPlacementSelect').find('option').remove()
+				for (var i = 0; i < applications.length; i++) {
+					if (clientsArray.indexOf(applications[i].clientId) == -1) {
+						clientsArray.push(applications[i].clientId)
+						$('#myPlacementsClients').append($('<option>', {
+							value: applications[i].clientId,
+							text: applications[i].clientId
+						})).selectpicker('refresh');
 					}
-				});
-				$("#publisherUsername").html(localStorage.getItem('publisherCompanyName'));
-				$("#publisherEmail").html(localStorage.getItem('publisherEmail'));
+					$('#myPlacementsSelectApplication').append($('<option>', {
+						value: applications[i].id,
+						text: applications[i].name
+					})).selectpicker('refresh');
+					applicationsArray.push(applications[i])
+				}
+
+				for (var i = 0; i < applications.length; i++) {
+					var group = $('<optgroup label="' + applications[i].name + '"/>');
+					for (j = 0; j < applications[i].placements.length; j++) {
+						$('<option />').html(applications[i].placements[j].name).appendTo(group);
+						placementsArray.push(applications[i].placements[j])
+					}
+					group.appendTo('#editPlacementSelect');
+					$('#editPlacementSelect').selectpicker('refresh');
+				}
+				for (var i = 0; i < applications.length; i++) {
+					var group = $('<optgroup label="' + applications[i].name + '"/>');
+					for (j = 0; j < applications[i].placements.length; j++) {
+						$('<option />').html(applications[i].placements[j].name).appendTo(group);
+					}
+					group.appendTo('#selectSettingSelect');
+					$('#selectSettingSelect').selectpicker('refresh');
+				}
+
+				$('#editPlacementSelect').trigger("chosen:updated")
+				$('#selectSettingSelect').trigger("chosen:updated")
+
+				$('#myPlacementsClients').trigger("chosen:updated")
+				$('#myPlacementsSelectApplication').trigger("chosen:updated")
+
+				fillTable(placementsArray)
+
+				$("#adminUsername").html(localStorage.getItem('AdminCompanyName'));
+				$("#adminEmail").html(localStorage.getItem('adminEmail'));
 
 				$("#sharedBudget").html('Budget: $' + accountResult.publisherAccount.budget);
 				$('.page-loader-wrapper').fadeOut();
@@ -269,12 +260,10 @@ $(document).ready(function () {
 			$('#addr' + i).html(
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].id + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].applicationId + '</td>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].clientId + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 10%;">' + placementsArray[i].name + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].style + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + placementsArray[i].minCredit + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].priority + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + dateConvertor(placementsArray[i].beginningTime) + '<br>' + dateConvertor(placementsArray[i].endingTime) + '</td>' +
-				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + placementsArray[i].onlineCapacity + '<br>' + placementsArray[i].offlineCapacity + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;"><span class="label font-13 ' + statusColor + '">' + placementsArray[i].status + '</span></td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 1%;">' +
 				'<button type="button" class="placementEdit m-l-5 m-r-5 btn bg-green waves-effect"><i class="material-icons">mode_edit</i></button>' +
@@ -290,16 +279,13 @@ $(document).ready(function () {
 		NProgress.start();
 		var appId = $(this).parent().siblings().eq(1).text()
 		var placementId = $(this).parent().siblings().eq(0).text()
-		var placementName, appName
-		for (var i = 0; i < totalPlacementsArray.length; i++)
-			if (totalPlacementsArray[i].id == placementId)
-				placementName = totalPlacementsArray[i].name
-		for (var i = 0; i < clientInstance.applications.length; i++)
-			if (clientInstance.applications[i].id == appId)
-				appName = clientInstance.applications[i].name
+		var placementName
+		for (var i = 0; i < placementsArray.length; i++)
+			if (placementsArray[i].id == placementId)
+				placementName = placementsArray[i].name
 		localStorage.setItem('editablePlacementName', placementName)
+		$('.nav-tabs a[id="nav2"]').tab('show');
 		NProgress.done();
-		$('.nav-tabs a[id="nav3"]').tab('show');
 	})
 
 	$(document).on("click", ".placementDelete", function (e) {
@@ -334,51 +320,67 @@ $(document).ready(function () {
 						alert(xhr.responseText);
 					}
 				});
-			} else
+			}
+			else 
 				NProgress.done();
 		});
 
 	})
 
-	$("#myPlacementSearch").click(function (e) {
+	$("#myPlacementsSearch").click(function (e) {
 		e.preventDefault();
 		NProgress.start();
 		var style = [],
 			priority = [],
+			application = [],
+			client = [],
 			limit,
 			beginningTime,
 			endingTime
-
-		myPlacementsEndingTime
-		myPlacementsBeginningTime
 
 		if ($('#myPlacementsStyle').val())
 			style = $('#myPlacementsStyle').val()
 		if ($('#myPlacementsPriority').val())
 			priority = $('#myPlacementsPriority').val()
+		if ($('#myPlacementsSelectApplication').val())
+			application = $('#myPlacementsSelectApplication').val()
+		if ($('#myPlacementsClients').val())
+			client = $('#myPlacementsClients').val()
 
 		if ($('#myPlacementsBeginningTime').val())
-			beginningTime = timeConvertor($('#myPlacementsBeginningTime').val())
+			beginningTime = fullTimeConvertor($('#myPlacementsBeginningTime').val())
 
 		if ($('#myPlacementsEndingTime').val())
-			endingTime = timeConvertor($('#myPlacementsEndingTime').val())
+			endingTime = fullTtimeConvertor($('#myPlacementsEndingTime').val())
 
 		var limit = $('#myPlacementssLimit').val()
 
 		var filter = {}
-		if (priority.length > 0 || style.length > 0 || beginningTime || endingTime) {
+		if (priority || style.length > 0  || application.length > 0 || client.length > 0 || beginningTime || endingTime) {
 			filter.where = {}
 			filter.where.and = []
-			if (status.length > 0)
+			if (style.length > 0)
 				filter.where.and.push({
 					'style': {
 						'inq': style
 					}
 				})
-			if (style.length > 0)
+			if (priority)
 				filter.where.and.push({
-					'priority': {
-						'inq': priority
+					'priority': 
+						priority
+					}
+				)
+			if (application.length > 0)
+				filter.where.and.push({
+					'applicationId': {
+						'inq': application
+					}
+				})
+			if (client.length > 0)
+				filter.where.and.push({
+					'clientId': {
+						'inq': client
 					}
 				})
 			if (beginningTime)
@@ -399,7 +401,7 @@ $(document).ready(function () {
 			'settingModel': false
 		}
 
-		var placementURLWithAT = wrapAccessToken(publisher_url + 'placements/getAllPlacements?accountHashId=' + userId, publisherAccessToken)
+		var placementURLWithAT = wrapAccessToken(publisher_url + 'placements', publisherAccessToken)
 		var placementFilterURL = wrapFilter(placementURLWithAT, JSON.stringify(filter))
 		$('.page-loader-wrapper').fadeIn();
 		$.ajax({
@@ -423,15 +425,13 @@ $(document).ready(function () {
 		NProgress.start();
 		var placementName = $('#editPlacementSelect').find('option:selected').text()
 		var appId, placementId
-		for (var i = 0; i < totalPlacementsArray.length; i++)
-			if (totalPlacementsArray[i].name === placementName) {
-				appId = totalPlacementsArray[i].applicationId
-				placementId = totalPlacementsArray[i].id
+		for (var i = 0; i < placementsArray.length; i++)
+			if (placementsArray[i].name === placementName) {
+				appId = placementsArray[i].applicationId
+				placementId = placementsArray[i].id
 			}
-		if (!appId || !placementId || !placementName || !$('#editPlacementName').val() || !$('#editPlacementOnlineCapacity').val() || !$('#editPlacementOfflineCapacity').val() || !$('#editPlacementBeginningTime').val() || !$('#editPlacementEndingTime').val() || !$('#editPlacementStyle').find('option:selected').text() || !$('#editPlacementPriority').find('option:selected').text()) {
-			NProgress.done();
+		if (!appId || !placementId || !placementName || !$('#editPlacementName').val() || !$('#editPlacementOnlineCapacity').val() || !$('#editPlacementOfflineCapacity').val() || !$('#editPlacementBeginningTime').val() || !$('#editPlacementEndingTime').val() || !$('#editPlacementStyle').find('option:selected').text() || !$('#editPlacementPriority').find('option:selected').text())
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
-		}
 		var data = {
 			name: $('#editPlacementName').val(),
 			onlineCapacity: $('#editPlacementOnlineCapacity').val(),
@@ -461,65 +461,24 @@ $(document).ready(function () {
 		});
 	})
 
-	$("#addPlacementButton").click(function (e) {
-		e.preventDefault();
-		NProgress.start();
-		var applicationName = $('#addPlacementSelectApplication').find('option:selected').text()
-		var applicationId
-		for (var i = 0; i < clientInstance.applications.length; i++)
-			if (clientInstance.applications[i].name === applicationName)
-				applicationId = clientInstance.applications[i].id
-		if (!applicationId || !applicationName || !$('#addPlacementName').val() || !$('#addPlacementOnlineCapacity').val() || !$('#addPlacementOfflineCapacity').val() || !$('#addPlacementBeginningTime').val() || !$('#addPlacementEndingTime').val() || !$('#addPlacementStyle').find('option:selected').text() || !$('#addPlacementPriority').find('option:selected').text()) {
-			NProgress.done();
-			return swal("Oops!", "You should enter required field of prepared form.", "warning");
-		}
-		var data = {
-			name: $('#addPlacementName').val(),
-			onlineCapacity: $('#addPlacementOnlineCapacity').val(),
-			offlineCapacity: $('#addPlacementOfflineCapacity').val(),
-			beginningTime: fullTimeConvertor($('#addPlacementBeginningTime').val()),
-			endingTime: fullTimeConvertor($('#addPlacementEndingTime').val()),
-			style: $('#addPlacementStyle').find('option:selected').text(),
-			priority: $('#addPlacementPriority').find('option:selected').text(),
-		}
-		var placementURL = wrapAccessToken(publisher_url + 'applications/' + applicationId + '/placements', publisherAccessToken);
-		$.ajax({
-			url: placementURL,
-			data: JSON.stringify(data),
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			type: "POST",
-			success: function (placementResult) {
-				localStorage.setItem("newAddedPlacement", placementResult.name)
-				localStorage.setItem('newAddedPlacementApplication', applicationName)
-				getAccountModel()
-				NProgress.done();
-				swal("Congrates!", "You have successfuly created a placement. Lets go for adding setting and content.", "success");
-			},
-			error: function (xhr, status, error) {
-				NProgress.done();
-				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
-				alert(xhr.responseText);
-			}
-		});
-	})
-
 	$("#saveSettingButton").click(function (e) {
 		e.preventDefault();
 		NProgress.start();
 		var placementName = $('#selectSettingSelect').find('option:selected').text()
 		var applicationId, placementId
-		for (var i = 0; i < totalPlacementsArray.length; i++)
-			if (totalPlacementsArray[i].name === placementName) {
-				applicationId = totalPlacementsArray[i].applicationId
-				placementId = totalPlacementsArray[i].id
+		for (var i = 0; i < placementsArray.length; i++)
+			if (placementsArray[i].name === placementName) {
+				applicationId = placementsArray[i].applicationId
+				placementId = placementsArray[i].id
 			}
 		if (!applicationId || !placementName || !placementId ||
 			$('#selectSettingCategory').find('option:selected').text().length == 0 ||
 			$('#selectSettingCountry').find('option:selected').text().length == 0 ||
 			$('#selectSettingUserLabel').find('option:selected').text().length == 0
-		)
+		){
+			NProgress.done();
 			return swal("Oops!", "You should enter required field of prepared form.", "warning");
+		}
 
 		var data = {
 			category: $('#selectSettingCategory').find('option:selected').map(function () {
