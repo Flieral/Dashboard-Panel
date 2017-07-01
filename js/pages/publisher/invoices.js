@@ -161,7 +161,15 @@ $(document).ready(function () {
 					}
 				}
 
-				fillTable(responseArray)
+				var finalResult = []
+				for (var i = 0; i < responseArray.length; i++) {
+					if (finalResult.length == limit)
+						break
+					finalResult.push(responseArray[i])
+				}
+
+				fillTable(finalResult)
+
 				NProgress.done();
 				$('.page-loader-wrapper').fadeOut();
 			},
