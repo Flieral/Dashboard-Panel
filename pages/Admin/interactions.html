@@ -293,7 +293,7 @@
 							<br>
 							<div class="col-md-10 col-md-offset-1">
 								<!-- Exportable Table -->
-								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+								<table class="table table-bordered table-striped table-hover dataTable js-basic-example" id="rate_tab_logic" style="vertical-align:middle;">
 									<thead>
 										<tr>
 											<th>Identifier</th>
@@ -312,7 +312,7 @@
 				<div class="card">
 					<div class="header">
 						<h2>
-							Rate Searches
+							Most Searches
 						</h2>
 					</div>
 					<div class="body">
@@ -339,7 +339,7 @@
 							<br>
 							<div class="col-md-10 col-md-offset-1">
 								<!-- Exportable Table -->
-								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+								<table class="table table-bordered table-striped table-hover dataTable js-basic-example" id="most_tab_logic" style="vertical-align:middle;">
 									<thead>
 										<tr>
 											<th>Identifier</th>
@@ -401,7 +401,7 @@
 						<div class="row clearfix">
 							<div class="col-md-10 col-md-offset-1">
 								<!-- Exportable Table -->
-								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+								<table class="table table-bordered table-striped table-hover dataTable js-basic-example" id="similar_tab_logic" style="vertical-align:middle;">
 									<thead>
 										<tr>
 											<th>Identifier</th>
@@ -465,7 +465,7 @@
 						<div class="row clearfix">
 							<div class="col-md-10 col-md-offset-1">
 								<!-- Exportable Table -->
-								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+								<table class="table table-bordered table-striped table-hover dataTable js-basic-example" id="recom_tab_logic" style="vertical-align:middle;">
 									<thead>
 										<tr>
 											<th>Identifier</th>
@@ -532,70 +532,7 @@
 							<br>
 							<div class="col-md-10 col-md-offset-1">
 								<!-- Exportable Table -->
-								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
-									<thead>
-										<tr>
-											<th>Identifier</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-								<!-- #END# Exportable Table -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-				<div class="card">
-					<div class="header">
-						<h2>
-							By Queries
-						</h2>
-					</div>
-					<div class="body">
-						<div class="row clearfix">
-							<div class="col-md-10 col-md-offset-1">
-								<p>
-									<b>Query Type</b>
-								</p>
-								<select id="byQuery" class="form-control show-tick">
-									<option>Liked By</option>
-									<option>Disliked By</option>
-									<option>Reported By</option>
-									<option>Shared By</option>
-								</select>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<div class="col-md-10 col-md-offset-1">
-								<p>
-									<b>Content Identifier</b>
-								</p>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">next_week</i>
-									</span>
-									<div class="form-line">
-										<input type="text" id="byContentIdentifier" class="form-control key" placeholder="Sample Identifier" required>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<div class="col-md-4 col-md-offset-4">
-								<p>
-									<b></b>
-								</p>
-								<button type="button" id="bySearchButton" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<br>
-							<div class="col-md-10 col-md-offset-1">
-								<!-- Exportable Table -->
-								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+								<table class="table table-bordered table-striped table-hover dataTable js-basic-example" id="all_for_tab_logic" style="vertical-align:middle;">
 									<thead>
 										<tr>
 											<th>Identifier</th>
@@ -658,7 +595,70 @@
 							<br>
 							<div class="col-md-10 col-md-offset-1">
 								<!-- Exportable Table -->
-								<table class="table table-bordered table-striped table-hover dataTable js-exportable" id="tab_logic" style="vertical-align:middle;">
+								<table class="table table-bordered table-striped table-hover dataTable js-basic-example" id="count_tab_logic" style="vertical-align:middle;">
+									<thead>
+										<tr>
+											<th>Count</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<!-- #END# Exportable Table -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<div class="card">
+					<div class="header">
+						<h2>
+							By Queries
+						</h2>
+					</div>
+					<div class="body">
+						<div class="row clearfix">
+							<div class="col-md-10 col-md-offset-1">
+								<p>
+									<b>Query Type</b>
+								</p>
+								<select id="byQuery" class="form-control show-tick">
+									<option>Liked By</option>
+									<option>Disliked By</option>
+									<option>Reported By</option>
+									<option>Shared By</option>
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-10 col-md-offset-1">
+								<p>
+									<b>Content Identifier</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="byContentIdentifier" class="form-control key" placeholder="Sample Identifier" required>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-4 col-md-offset-4">
+								<p>
+									<b></b>
+								</p>
+								<button type="button" id="bySearchButton" class="btn bg-cyan btn-block btn-lg waves-effect">Search</button>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
+							<div class="col-md-10 col-md-offset-1">
+								<!-- Exportable Table -->
+								<table class="table table-bordered table-striped table-hover dataTable js-basic-example" id="by_tab_logic" style="vertical-align:middle;">
 									<thead>
 										<tr>
 											<th>Identifier</th>
