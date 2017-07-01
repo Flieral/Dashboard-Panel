@@ -190,7 +190,7 @@
 			<!-- Menu -->
 			<div class="menu">
 				<ul class="list">
-					<li class="active">
+					<li>
 						<a href="users.html">
 							<i class="material-icons col-red">person</i>
 							<span>Users</span>
@@ -209,15 +209,39 @@
 						</a>
 					</li>
 					<li>
-						<a href="activity-monitor.html">
+						<a href="application.html">
 							<i class="material-icons col-light-green" >notifications_active</i>
 							<span>Applications</span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0);">
+						<a href="placement.html">
 							<i class="material-icons col-light-blue">notifications_active</i>
 							<span>Placements</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="statistics.html">
+							<i class="material-icons col-amber" >dashboard</i>
+							<span>Statistics</span>
+						</a>
+					</li>
+					<li>
+						<a href="transactions.html">
+							<i class="material-icons col-deep-purple">dashboard</i>
+							<span>Transactions</span>
+						</a>
+					</li>
+					<li>
+						<a href="invoices.html">
+							<i class="material-icons col-light-green" >dashboard</i>
+							<span>Invoices</span>
+						</a>
+					</li>
+					<li>
+						<a href="interactions.html">
+							<i class="material-icons col-light-blue">dashboard</i>
+							<span>Interactions</span>
 						</a>
 					</li>
 				</ul>
@@ -382,6 +406,120 @@
 			</div>
 		</div>
 
+		<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">User General Information</h4>
+					</div>
+					<div id="generalInfo" class="row clearfix">
+						<br>
+						<div class="row clearfix">
+							<div class="col-md-6 col-md-offset-3">
+								<p>
+									<b>UUID</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myInfoID" class="form-control key" placeholder="Sample Identifier" required disabled>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-4 col-md-offset-1">
+								<p>
+									<b>Operating System</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myInfoOS" class="form-control key" placeholder="Sample OS" required disabled>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Country</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myInfoCountry" class="form-control key" placeholder="Sample Country" required disabled>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Language</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myInfoLanguage" class="form-control key" placeholder="Sample Language" required disabled>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<div class="col-md-4 col-md-offset-1">
+								<p>
+									<b>Device</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myInfoDevice" class="form-control key" placeholder="Sample Device" required disabled>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>User Label</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myInfoUserLabel" class="form-control key" placeholder="Sample User" required disabled>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<b>Connection</b>
+								</p>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">next_week</i>
+									</span>
+									<div class="form-line">
+										<input type="text" id="myInfoConnection" class="form-control key" placeholder="Sample Connection" required disabled>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	</section>
 
 	<!-- Jquery Core Js -->
@@ -434,7 +572,7 @@
 
 	<!-- Custom Js -->
 	<script src="../../js/admin.js"></script>
-	<script src="../../js/pages/admin/transactions.js"></script>
+	<script src="../../js/pages/admin/statistics.js"></script>
 
 	<!-- Jquery DataTable Plugin Js -->
 	<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>

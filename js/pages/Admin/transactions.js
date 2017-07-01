@@ -274,7 +274,7 @@ $(document).ready(function () {
 			endingTime = timeConvertor($('#transactionEndingTime').val())
 
 		if ($('#transactionAnnouncer').val())
-			accountFilter = $('#transactionAnnouncer').val()
+			announcerFilter = $('#transactionAnnouncer').val()
 
 		if ($('#transactionCampaign').val())
 			campaignFilter = $('#transactionCampaign').val()
