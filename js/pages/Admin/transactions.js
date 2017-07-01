@@ -50,28 +50,27 @@ $(document).ready(function () {
 	var applications = [];
 	var placements = [];
 
-	var userId, announcerAccessToken, coreAccessToken
-	if (localStorage.getItem('userId'))
-		userId = localStorage.getItem('userId')
+	var adminId, coreAccessToken, announcerAccessToken, publisherAccessToken
+	if (localStorage.getItem('adminId'))
+		adminId = localStorage.getItem('adminId')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-	if (localStorage.getItem('announcerAccessToken'))
-		announcerAccessToken = localStorage.getItem('announcerAccessToken')
+	if (localStorage.getItem('adminCoreAccessToken'))
+		coreAccessToken = localStorage.getItem('adminCoreAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-	if (localStorage.getItem('coreAccessToken'))
-		coreAccessToken = localStorage.getItem('coreAccessToken')
+	if (localStorage.getItem('adminAnnouncerAccessToken'))
+		announcerAccessToken = localStorage.getItem('adminAnnouncerAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-	if (localStorage.getItem('publisherAccessToken'))
-		publisherAccessToken = localStorage.getItem('publisherAccessToken')
+	if (localStorage.getItem('adminPublisherAccessToken'))
+		publisherAccessToken = localStorage.getItem('adminPublisherAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-
 
 	initDateTimePicker();
 	initJQueryTable();
-	getAccountModel();
+	getAllInfo();
 
 	function initDateTimePicker() {
 		//Textare auto growth
@@ -107,35 +106,6 @@ $(document).ready(function () {
 		});
 	}
 
-	$("#announcerUsername").html(localStorage.getItem('announcerCompanyName'));
-	$("#announcerEmail").html(localStorage.getItem('announcerEmail'));
-
-	$('.page-loader-wrapper').fadeOut();
-
-	function getAccountModel() {
-		var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', announcerAccessToken)
-		var campaignURL = wrapFilter(campaignURLWithAT, '{"include":["subcampaigns"]}')
-		$.ajax({
-			url: campaignURL,
-			type: "GET",
-			success: function (campaignResult) {
-				$('#transactionSubcampaign').find('option').remove()
-				for (var i = 0; i < campaignResult.length; i++) {
-					var group = $('<optgroup label="' + campaignResult[i].name + '"/>');
-					for (j = 0; j < campaignResult[i].subcampaigns.length; j++)
-						$('<option />').html(campaignResult[i].subcampaigns[j].name).appendTo(group);
-					group.appendTo('#transactionSubcampaign');
-					$('#transactionSubcampaign').selectpicker('refresh');
-				}
-				$('#transactionSubcampaign').trigger("chosen:updated")
-			},
-			error: function (xhr, status, error) {
-				$('.page-loader-wrapper').fadeOut();
-				alert(xhr.responseText);
-			}
-		});
-	}
-
 	function getAllInfo() {
 		var getClient_url = announcer_url + "clients?access_token=" + announcerAccessToken;
 		ajaxHelper(getClient_url, null, "GET", function (err, result_Clients) {
@@ -143,40 +113,11 @@ $(document).ready(function () {
 				$('.page-loader-wrapper').fadeOut();
 				return alert(err);
 			}
-			$('#transactionAnnouncer').find('option').remove()
-			$('#transactionPublisher').find('option').remove()
-			for (var i = 0; i < result_Clients.lenght; i++) {
-				var itemToPush = {
-					id: result_clients[i].id,
-					name: result_clients[i].username
-				};
-				$('#transactionAnnouncer').append($('<option>', {
-					value: itemToPush.id,
-					text: itemToPush.id
-				})).selectpicker('refresh');
-				$('#transactionPublisher').append($('<option>', {
-					value: itemToPush.id,
-					text: itemToPush.id
-				})).selectpicker('refresh');
-				clients.push(itemToPush);
-			}
 			var getCampaign_url = announcer_url + "campaigns?access_token=" + announcerAccessToken;
 			ajaxHelper(getCampaign_url, null, "GET", function (err, result_Campaigns) {
 				if (err) {
 					$('.page-loader-wrapper').fadeOut();
 					return alert(err);
-				}
-				$('#transactionCampaign').find('option').remove();
-				for (var i = 0; i < result_Campaigns.lenght; i++) {
-					var itemToPush = {
-						id: result_Campaigns[i].id,
-						name: result_Campaigns[i].name
-					};
-					$('#transactionCampaign').append($('<option>', {
-						value: itemToPush.id,
-						text: itemToPush.id
-					})).selectpicker('refresh');
-					campaings.push(itemToPush);
 				}
 				var getSubcampaign_url = announcer_url + "subcampaigns?access_token=" + announcerAccessToken;
 				ajaxHelper(getSubcampaign_url, null, "GET", function (err, result_Subcampaigns) {
@@ -184,35 +125,11 @@ $(document).ready(function () {
 						$('.page-loader-wrapper').fadeOut();
 						return alert(err);
 					}
-					$('#transactionSubcampaign').find('option').remove();
-					for (var i = 0; i < result_Subcampaigns.lenght; i++) {
-						var itemToPush = {
-							id: result_Subcampaigns[i].id,
-							name: result_Subcampaigns[i].name
-						};
-						$('#transactionSubcampaign').append($('<option>', {
-							value: itemToPush.id,
-							text: itemToPush.id
-						})).selectpicker('refresh');
-						subcampaigns.push(itemToPush);
-					}
 					var getApplications_url = publisher_url + "applications?access_token=" + publisherAccessToken;
 					ajaxHelper(getApplications_url, null, "GET", function (err, result_Applications) {
 						if (err) {
 							$('.page-loader-wrapper').fadeOut();
 							return alert(err);
-						}
-						$('#transactionApplication').find('option').remove();
-						for (var i = 0; i < result_Applications.lenght; i++) {
-							var itemToPush = {
-								id: result_Applications[i].id,
-								name: result_Applications[i].name
-							};
-							$('#transactionApplication').append($('<option>', {
-								value: itemToPush.id,
-								text: itemToPush.id
-							})).selectpicker('refresh');
-							applications.push(itemToPush);
 						}
 						var getPlacements_url = publisher_url + "placements?access_token=" + publisherAccessToken;
 						ajaxHelper(getPlacements_url, null, "GET", function (err, result_Placements) {
@@ -220,25 +137,84 @@ $(document).ready(function () {
 								$('.page-loader-wrapper').fadeOut();
 								return alert(err);
 							}
-							$('#transactionPlacement').find('option').remove();
-							for (var i = 0; i < result_Placements.lenght; i++) {
-								var itemToPush = {
-									id: result_Placements[i].id,
-									name: result_Placements[i].name
-								};
-								$('#transactionPlacement').append($('<option>', {
-									value: itemToPush.id,
-									text: itemToPush.id
-								})).selectpicker('refresh');
-								placements.push(itemToPush);
-							}
 							var getAllTransactions_url = coreEngine_url + "transactions?access_token=" + coreAccessToken;
 							ajaxHelper(getAllTransactions_url, null, "GET", function (err, resultAll) {
 								if (err) {
 									$('.page-loader-wrapper').fadeOut();
 									return alert(err);
 								}
+								$('#transactionAnnouncer').find('option').remove()
+								$('#transactionPublisher').find('option').remove()
+								for (var i = 0; i < result_Clients.length; i++) {
+									var itemToPush = {
+										id: result_Clients[i].id,
+										name: result_Clients[i].username
+									};
+									$('#transactionAnnouncer').append($('<option>', {
+										value: itemToPush.id,
+										text: itemToPush.id
+									})).selectpicker('refresh');
+									$('#transactionPublisher').append($('<option>', {
+										value: itemToPush.id,
+										text: itemToPush.id
+									})).selectpicker('refresh');
+									clients.push(itemToPush);
+								}
+								$('#transactionCampaign').find('option').remove();
+								for (var i = 0; i < result_Campaigns.length; i++) {
+									var itemToPush = {
+										id: result_Campaigns[i].id,
+										name: result_Campaigns[i].name
+									};
+									$('#transactionCampaign').append($('<option>', {
+										value: itemToPush.id,
+										text: itemToPush.id
+									})).selectpicker('refresh');
+									campaings.push(itemToPush);
+								}
+								$('#transactionSubcampaign').find('option').remove();
+								for (var i = 0; i < result_Subcampaigns.length; i++) {
+									var itemToPush = {
+										id: result_Subcampaigns[i].id,
+										name: result_Subcampaigns[i].name
+									};
+									$('#transactionSubcampaign').append($('<option>', {
+										value: itemToPush.id,
+										text: itemToPush.id
+									})).selectpicker('refresh');
+									subcampaigns.push(itemToPush);
+								}
+								$('#transactionApplication').find('option').remove();
+								for (var i = 0; i < result_Applications.length; i++) {
+									var itemToPush = {
+										id: result_Applications[i].id,
+										name: result_Applications[i].name
+									};
+									$('#transactionApplication').append($('<option>', {
+										value: itemToPush.id,
+										text: itemToPush.id
+									})).selectpicker('refresh');
+									applications.push(itemToPush);
+								}
+								$('#transactionPlacement').find('option').remove();
+								for (var i = 0; i < result_Placements.length; i++) {
+									var itemToPush = {
+										id: result_Placements[i].id,
+										name: result_Placements[i].name
+									};
+									$('#transactionPlacement').append($('<option>', {
+										value: itemToPush.id,
+										text: itemToPush.id
+									})).selectpicker('refresh');
+									placements.push(itemToPush);
+								}
+
 								fillTable(resultAll);
+
+								$("#adminUsername").html(localStorage.getItem('AdminCompanyName'));
+								$("#adminEmail").html(localStorage.getItem('adminEmail'));
+
+								$('.page-loader-wrapper').fadeOut();
 							})
 						})
 					})
@@ -298,7 +274,7 @@ $(document).ready(function () {
 			endingTime = timeConvertor($('#transactionEndingTime').val())
 
 		if ($('#transactionAnnouncer').val())
-			announcerFilter = $('#transactionAnnouncer').val()
+			accountFilter = $('#transactionAnnouncer').val()
 
 		if ($('#transactionCampaign').val())
 			campaignFilter = $('#transactionCampaign').val()
@@ -314,7 +290,6 @@ $(document).ready(function () {
 
 		if ($('#transactionPlacement').val())
 			placementFilter = $('#transactionPlacement').val()
-
 
 		var transactionURLWithAT = wrapAccessToken(coreEngine_url + 'transactions', coreAccessToken)
 		if (events.length > 0)
@@ -362,18 +337,65 @@ $(document).ready(function () {
 					}
 				}
 
-				var finalResult = []
-				if (subcampaignFilter.length > 0) {
-					for (var i = 0; i < responseArray.length; i++) {
-						if (finalResult.length == limit)
-							break
+				if (responseArray.length > 0 && announcerFilter.length > 0) {
+					var innerResult = []
+					for (var i = 0; i < responseArray.length; i++)
+						if (announcerFilter.indexOf(responseArray[i].announcerHashId) >= 0)
+							innerResult.push(responseArray[i])
+					responseArray = innerResult
+				}
+
+				if (responseArray.length > 0 && campaignFilter.length > 0) {
+					var innerResult = []
+					for (var i = 0; i < responseArray.length; i++)
+						if (campaignFilter.indexOf(responseArray[i].campaignHashId) >= 0)
+							innerResult.push(responseArray[i])
+					responseArray = innerResult
+				}
+
+				if (responseArray.length > 0 && subcampaignFilter.length > 0) {
+					var innerResult = []
+					for (var i = 0; i < responseArray.length; i++)
 						if (subcampaignFilter.indexOf(responseArray[i].subcampaignHashId) >= 0)
-							finalResult.push(responseArray[i]);
-					}
+							innerResult.push(responseArray[i])
+					responseArray = innerResult
+				}
+
+				if (responseArray.length > 0 && publisherFilter.length > 0) {
+					var innerResult = []
+					for (var i = 0; i < responseArray.length; i++)
+						if (publisherFilter.indexOf(responseArray[i].publisherHashId) >= 0)
+							innerResult.push(responseArray[i])
+					responseArray = innerResult
+				}
+
+				if (responseArray.length > 0 && applicationFilter.length > 0) {
+					var innerResult = []
+					for (var i = 0; i < responseArray.length; i++)
+						if (applicationFilter.indexOf(responseArray[i].applicationHashId) >= 0)
+							innerResult.push(responseArray[i])
+					responseArray = innerResult
+				}
+
+				if (responseArray.length > 0 && placementFilter.length > 0) {
+					var innerResult = []
+					for (var i = 0; i < responseArray.length; i++)
+						if (placementFilter.indexOf(responseArray[i].placementHashId) >= 0)
+							innerResult.push(responseArray[i])
+					responseArray = innerResult
+				}
+
+				var finalResult = []
+				for (var i = 0; i < responseArray.length; i++) {
+					if (finalResult.length == limit)
+						break
+					finalResult.push(responseArray[i])
 				}
 
 				fillTable(finalResult)
+				
 				NProgress.done();
+				
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
