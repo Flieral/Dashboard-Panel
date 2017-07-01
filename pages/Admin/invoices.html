@@ -190,7 +190,7 @@
 			<!-- Menu -->
 			<div class="menu">
 				<ul class="list">
-					<li class="active">
+					<li>
 						<a href="users.html">
 							<i class="material-icons col-red">person</i>
 							<span>Users</span>
@@ -209,15 +209,39 @@
 						</a>
 					</li>
 					<li>
-						<a href="activity-monitor.html">
+						<a href="application.html">
 							<i class="material-icons col-light-green" >notifications_active</i>
 							<span>Applications</span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0);">
+						<a href="placement.html">
 							<i class="material-icons col-light-blue">notifications_active</i>
 							<span>Placements</span>
+						</a>
+					</li>
+					<li>
+						<a href="statistics.html">
+							<i class="material-icons col-amber" >dashboard</i>
+							<span>Statistics</span>
+						</a>
+					</li>
+					<li>
+						<a href="transactions.html">
+							<i class="material-icons col-deep-purple">dashboard</i>
+							<span>Transactions</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="invoices.html">
+							<i class="material-icons col-light-green" >dashboard</i>
+							<span>Invoices</span>
+						</a>
+					</li>
+					<li>
+						<a href="interactions.html">
+							<i class="material-icons col-light-blue">dashboard</i>
+							<span>Interactions</span>
 						</a>
 					</li>
 				</ul>
@@ -286,7 +310,7 @@
 								<p>
 									<b>Account Filter</b>
 								</p>
-								<select id="receiptInformationAnnouncer" class="form-control show-tick" data-live-search="true" data-selected-text-format="count"
+								<select id="receiptInformationAccount" class="form-control show-tick" data-live-search="true" data-selected-text-format="count"
 								    multiple>
 								</select>
 							</div>
@@ -324,9 +348,9 @@
 											<th>Receipt ID</th>
 											<th>Account ID</th>
 											<th>Date</th>
-											<th>Receipt Info</th>
 											<th>Price</th>
 											<th>Status</th>
+											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -335,6 +359,26 @@
 								<!-- #END# Exportable Table -->
 							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">Receipt Info JSON</h4>
+					</div>
+					<pre id="defaultModalLabelText" class="col-md-10 col-md-offset-1">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+						vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+						Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+						nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+						Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+					</pre>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
 					</div>
 				</div>
 			</div>
