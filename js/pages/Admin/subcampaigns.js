@@ -37,25 +37,28 @@ var announcer_url = "http://127.0.0.1:3000/api/";
 var coreEngine_url = "http://127.0.0.1:3015/api/";
 
 $(document).ready(function () {
-	var clientInstance;
-	var fullCampaignResult
+	var clientsArray = [];
 	var campaignsArray = []
-	var totalSubcampaignsArray = []
+	var subcampaignsArray = []
 	var editableSubcampaignId
 	var editableSettingId
 	var prefredSubcampaign
 
-	var userId, announcerAccessToken, coreAccessToken
-	if (localStorage.getItem('userId'))
-		userId = localStorage.getItem('userId')
+	var adminId, coreAccessToken, announcerAccessToken, publisherAccessToken
+	if (localStorage.getItem('adminId'))
+		adminId = localStorage.getItem('adminId')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-	if (localStorage.getItem('announcerAccessToken'))
-		announcerAccessToken = localStorage.getItem('announcerAccessToken')
+	if (localStorage.getItem('adminCoreAccessToken'))
+		coreAccessToken = localStorage.getItem('adminCoreAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
-	if (localStorage.getItem('coreAccessToken'))
-		coreAccessToken = localStorage.getItem('coreAccessToken')
+	if (localStorage.getItem('adminAnnouncerAccessToken'))
+		announcerAccessToken = localStorage.getItem('adminAnnouncerAccessToken')
+	else
+		return window.location.href = '../AAA/sign-in-admin.html';
+	if (localStorage.getItem('adminPublisherAccessToken'))
+		publisherAccessToken = localStorage.getItem('adminPublisherAccessToken')
 	else
 		return window.location.href = '../AAA/sign-in-admin.html';
 
@@ -98,31 +101,29 @@ $(document).ready(function () {
 	}
 
 	function fillEditSubcampaignFields(selected) {
-		for (var i = 0; i < totalSubcampaignsArray.length; i++) {
-			if (totalSubcampaignsArray[i].name === selected) {
-				editableSubcampaignId = totalSubcampaignsArray[i].id
-				$("#editSubcampaignName").val(totalSubcampaignsArray[i].name)
-				$("#editSubcampaignStyle").selectpicker('val', totalSubcampaignsArray[i].style)
-				$("#editSubcampaignMinBudget").val(totalSubcampaignsArray[i].minBudget)
-				$("#editSubcampaignPlan").selectpicker('val', totalSubcampaignsArray[i].plan)
-				$("#editSubcampaignPrice").val(totalSubcampaignsArray[i].price)
+		for (var i = 0; i < subcampaignsArray.length; i++) {
+			if (subcampaignsArray[i].name === selected) {
+				$("#editSubcampaignName").val(subcampaignsArray[i].name)
+				$("#editSubcampaignStyle").selectpicker('val', subcampaignsArray[i].style)
+				$("#editSubcampaignMinBudget").val(subcampaignsArray[i].minBudget)
+				$("#editSubcampaignPlan").selectpicker('val', subcampaignsArray[i].plan)
+				$("#editSubcampaignPrice").val(subcampaignsArray[i].price)
 				break
 			}
 		}
 	}
 
 	function fillSettingSubcampaignFields(selected) {
-		for (var i = 0; i < totalSubcampaignsArray.length; i++) {
-			if (totalSubcampaignsArray[i].name === selected) {
-				editableSettingId = totalSubcampaignsArray[i].id
-				$("#selectSettingPriority").selectpicker('val', totalSubcampaignsArray[i].settingModel.priority)
-				$("#selectSettingUserLabel").selectpicker('val', totalSubcampaignsArray[i].settingModel.userLabel)
-				$("#selectSettingDevice").selectpicker('val', totalSubcampaignsArray[i].settingModel.device)
-				$("#selectSettingCategory").selectpicker('val', totalSubcampaignsArray[i].settingModel.category)
-				$("#selectSettingCountry").selectpicker('val', totalSubcampaignsArray[i].settingModel.country)
-				$("#selectSettingLanguage").selectpicker('val', totalSubcampaignsArray[i].settingModel.language)
-				$("#selectSettingOS").selectpicker('val', totalSubcampaignsArray[i].settingModel.os)
-				$("#selectSettingConnection").selectpicker('val', totalSubcampaignsArray[i].settingModel.connection)
+		for (var i = 0; i < subcampaignsArray.length; i++) {
+			if (subcampaignsArray[i].name === selected) {
+				$("#selectSettingPriority").selectpicker('val', subcampaignsArray[i].settingModel.priority)
+				$("#selectSettingUserLabel").selectpicker('val', subcampaignsArray[i].settingModel.userLabel)
+				$("#selectSettingDevice").selectpicker('val', subcampaignsArray[i].settingModel.device)
+				$("#selectSettingCategory").selectpicker('val', subcampaignsArray[i].settingModel.category)
+				$("#selectSettingCountry").selectpicker('val', subcampaignsArray[i].settingModel.country)
+				$("#selectSettingLanguage").selectpicker('val', subcampaignsArray[i].settingModel.language)
+				$("#selectSettingOS").selectpicker('val', subcampaignsArray[i].settingModel.os)
+				$("#selectSettingConnection").selectpicker('val', subcampaignsArray[i].settingModel.connection)
 				break
 			}
 		}
@@ -132,10 +133,8 @@ $(document).ready(function () {
 		if ($(e.target).attr('id') === 'nav1') {
 			$("#mySubcampaigns").show();
 			$("#editSubcampaign").hide();
-			$("#addSubcampaign").hide();
-			$("#contentProviding").hide();
 			$("#selectSetting").hide();
-		} else if ($(e.target).attr('id') === 'nav3') {
+		} else if ($(e.target).attr('id') === 'nav2') {
 			if (localStorage.getItem('editableSubcampaignName')) {
 				var subcampName = localStorage.getItem('editableSubcampaignName')
 				$("#editSubcampaignSelect").selectpicker('val', subcampName)
@@ -146,20 +145,7 @@ $(document).ready(function () {
 			}
 			$("#mySubcampaigns").hide();
 			$("#selectSetting").show();
-			$("#contentProviding").hide();
 			$("#editSubcampaign").show();
-			$("#addSubcampaign").hide();
-		} else if ($(e.target).attr('id') === 'nav2') {
-			if (localStorage.getItem('newCreatedCampaign')) {
-				var campName = localStorage.getItem('newCreatedCampaign')
-				$("#addSubcampaignSelectCampaign").selectpicker('val', campName)
-				localStorage.removeItem("newCreatedCampaign")
-			}
-			$("#mySubcampaigns").hide();
-			$("#editSubcampaign").hide();
-			$("#addSubcampaign").show();
-			$("#contentProviding").show();
-			$("#selectSetting").show();
 		}
 	}
 
@@ -170,13 +156,9 @@ $(document).ready(function () {
 	if (!window.location.hash) {
 		$("#mySubcampaigns").show();
 		$("#editSubcampaign").hide();
-		$("#addSubcampaign").hide();
-		$("#contentProviding").hide();
 		$("#selectSetting").hide();
-	} else if (window.location.hash === '#addSubcampaign')
+	} else if (window.location.hash === '#editSubcampaign')
 		$('.nav-tabs a[id="nav2"]').tab('show');
-	else if (window.location.hash === '#editSubcampaign')
-		$('.nav-tabs a[id="nav3"]').tab('show');
 	else if (window.location.hash === '#mySubcampaigns')
 		$('.nav-tabs a[id="nav1"]').tab('show');
 
@@ -191,104 +173,63 @@ $(document).ready(function () {
 	});
 
 	function getAccountModel() {
-		var accountURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId, announcerAccessToken)
-		var accountURL = wrapFilter(accountURLWithAT, '{"include":["announcerAccount", "campaigns"]}')
+		var accountURLWithAT = wrapAccessToken(announcer_url + 'campaigns', announcerAccessToken)
+		var accountURL = wrapFilter(accountURLWithAT, '{"include":["subcampaigns"]}')
 		$.ajax({
 			url: accountURL,
 			type: "GET",
-			success: function (accountResult) {
-				clientInstance = accountResult
-				var campaignURLWithAT = wrapAccessToken(announcer_url + 'clients/' + userId + '/campaigns', announcerAccessToken)
-				var campaignURL = wrapFilter(campaignURLWithAT, '{"include":["subcampaigns"]}')
-				$.ajax({
-					url: campaignURL,
-					type: "GET",
-					success: function (campaignResult) {
-						totalSubcampaignsArray = []
-						fullCampaignResult = campaignResult
-						$('#addSubcampaignSelectCampaign').find('option').remove()
-						$('#mySubcampaignSelectCampaign').find('option').remove()
-						$('#selectSettingSelect').find('option').remove()
-						$('#contentProvidingSelect').find('option').remove()
-						$('#editSubcampaignSelect').find('option').remove()
-						for (var i = 0; i < accountResult.campaigns.length; i++) {
-							$('#addSubcampaignSelectCampaign').append($('<option>', {
-								value: accountResult.campaigns[i].id,
-								text: accountResult.campaigns[i].name
-							})).selectpicker('refresh');
-							$('#mySubcampaignSelectCampaign').append($('<option>', {
-								value: accountResult.campaigns[i].id,
-								text: accountResult.campaigns[i].name
-							})).selectpicker('refresh');
-						}
-
-						for (var i = 0; i < campaignResult.length; i++) {
-							var group = $('<optgroup label="' + campaignResult[i].name + '"/>');
-							for (j = 0; j < campaignResult[i].subcampaigns.length; j++) {
-								$('<option />').html(campaignResult[i].subcampaigns[j].name).appendTo(group);
-								totalSubcampaignsArray.push(campaignResult[i].subcampaigns[j])
-							}
-							group.appendTo('#editSubcampaignSelect');
-							$('#editSubcampaignSelect').selectpicker('refresh');
-						}
-						for (var i = 0; i < campaignResult.length; i++) {
-							var group = $('<optgroup label="' + campaignResult[i].name + '"/>');
-							for (j = 0; j < campaignResult[i].subcampaigns.length; j++) {
-								$('<option />').html(campaignResult[i].subcampaigns[j].name).appendTo(group);
-							}
-							group.appendTo('#selectSettingSelect');
-							$('#selectSettingSelect').selectpicker('refresh');
-						}
-						for (var i = 0; i < campaignResult.length; i++) {
-							var group = $('<optgroup label="' + campaignResult[i].name + '"/>');
-							for (j = 0; j < campaignResult[i].subcampaigns.length; j++) {
-								$('<option />').html(campaignResult[i].subcampaigns[j].name).appendTo(group);
-							}
-							group.appendTo('#contentProvidingSelect');
-							$('#contentProvidingSelect').selectpicker('refresh');
-						}
-
-						$('#editSubcampaignSelect').trigger("chosen:updated")
-						$('#selectSettingSelect').trigger("chosen:updated")
-						$('#contentProvidingSelect').trigger("chosen:updated")
-
-						if (localStorage.getItem("newAddedSubcampaign")) {
-							var subcampName = localStorage.getItem("newAddedSubcampaign")
-							var campaignName = localStorage.getItem("newAddedSubcampaignCampaign")
-							$("#selectSettingSelect").selectpicker('val', subcampName)
-							$("#selectSettingSelect").selectpicker('refresh');
-							$("#contentProvidingSelect").selectpicker('val', subcampName)
-							$("#contentProvidingSelect").selectpicker('refresh');
-							$("#addSubcampaignSelectCampaign").selectpicker('val', campaignName)
-							$("#addSubcampaignSelectCampaign").selectpicker('refresh');
-							$('#selectSettingSelect').selectpicker('render')
-							$('#contentProvidingSelect').selectpicker('render')
-							$('#addSubcampaignSelectCampaign').selectpicker('render')
-							fillSettingSubcampaignFields(subcampName);
-							localStorage.removeItem("newAddedSubcampaignCampaign")
-							localStorage.removeItem("newAddedSubcampaign")
-						}
-
-						$('#addSubcampaignSelectCampaign').trigger("chosen:updated")
-						$('#mySubcampaignSelectCampaign').trigger("chosen:updated")
-
-						fillTable(totalSubcampaignsArray)
-
-						if (localStorage.getItem('myCampaignSelectSubcampaign')) {
-							var campName = localStorage.getItem('myCampaignSelectSubcampaign')
-							$("#mySubcampaignSelectCampaign").selectpicker('val', campName).selectpicker('refresh')
-							localStorage.removeItem("myCampaignSelectSubcampaign")
-						}
-					},
-					error: function (xhr, status, error) {
-						$('.page-loader-wrapper').fadeOut();
-						alert(xhr.responseText);
+			success: function (campaigns) {
+				clientsArray = []
+				campaignsArray = []
+				subcampaignsArray = []
+				$('#mySubcampaignsClients').find('option').remove()
+				$('#mySubcampaignSelectCampaign').find('option').remove()
+				$('#selectSettingSelect').find('option').remove()
+				$('#editSubcampaignSelect').find('option').remove()
+				for (var i = 0; i < campaigns.length; i++) {
+					if (clientsArray.indexOf(campaigns[i].clientId) == -1) {
+						clientsArray.push(campaigns[i].clientId)
+						$('#mySubcampaignsClients').append($('<option>', {
+							value: campaigns[i].clientId,
+							text: campaigns[i].clientId
+						})).selectpicker('refresh');
 					}
-				});
-				$("#announcerUsername").html(localStorage.getItem('announcerCompanyName'));
-				$("#announcerEmail").html(localStorage.getItem('announcerEmail'));
 
-				$("#sharedBudget").html('Budget: $' + accountResult.announcerAccount.budget);
+					$('#mySubcampaignSelectCampaign').append($('<option>', {
+						value: campaigns[i].id,
+						text: campaigns[i].name
+					})).selectpicker('refresh');
+					campaignsArray.push(campaigns[i])
+				}
+
+				for (var i = 0; i < campaigns.length; i++) {
+					var group = $('<optgroup label="' + campaigns[i].name + '"/>');
+					for (j = 0; j < campaigns[i].subcampaigns.length; j++) {
+						$('<option />').html(campaigns[i].subcampaigns[j].name).appendTo(group);
+						subcampaignsArray.push(campaigns[i].subcampaigns[j])
+					}
+					group.appendTo('#editSubcampaignSelect');
+					$('#editSubcampaignSelect').selectpicker('refresh');
+				}
+				for (var i = 0; i < campaigns.length; i++) {
+					var group = $('<optgroup label="' + campaigns[i].name + '"/>');
+					for (j = 0; j < campaigns[i].subcampaigns.length; j++) {
+						$('<option />').html(campaigns[i].subcampaigns[j].name).appendTo(group);
+					}
+					group.appendTo('#selectSettingSelect');
+					$('#selectSettingSelect').selectpicker('refresh');
+				}
+
+				$('#editSubcampaignSelect').trigger("chosen:updated")
+				$('#selectSettingSelect').trigger("chosen:updated")
+				$('#mySubcampaignSelectCampaign').trigger("chosen:updated")
+				$('#mySubcampaignsClients').trigger("chosen:updated")
+
+				fillTable(subcampaignsArray)
+
+				$("#adminUsername").html(localStorage.getItem('AdminCompanyName'));
+				$("#adminEmail").html(localStorage.getItem('adminEmail'));
+
 				$('.page-loader-wrapper').fadeOut();
 			},
 			error: function (xhr, status, error) {
@@ -315,6 +256,7 @@ $(document).ready(function () {
 			$('#addr' + i).html(
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + subcampaignsArray[i].id + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + subcampaignsArray[i].campaignId + '</td>' +
+				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + subcampaignsArray[i].clientId + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 10%;">' + subcampaignsArray[i].name + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">' + subcampaignsArray[i].style + '</td>' +
 				'<td align="center" style="vertical-align: middle; white-space: nowrap; width: 5%;">$' + subcampaignsArray[i].minBudget + '</td>' +
@@ -335,16 +277,13 @@ $(document).ready(function () {
 		NProgress.start();
 		var campId = $(this).parent().siblings().eq(1).text()
 		var subcampId = $(this).parent().siblings().eq(0).text()
-		var subcampaignName, campaignName
-		for (var i = 0; i < totalSubcampaignsArray.length; i++)
-			if (totalSubcampaignsArray[i].id == subcampId)
-				subcampaignName = totalSubcampaignsArray[i].name
-		for (var i = 0; i < clientInstance.campaigns.length; i++)
-			if (clientInstance.campaigns[i].id == campId)
-				campaignName = clientInstance.campaigns[i].name
+		var subcampaignName
+		for (var i = 0; i < subcampaignsArray.length; i++)
+			if (subcampaignsArray[i].id == subcampId)
+				subcampaignName = subcampaignsArray[i].name
 		localStorage.setItem('editableSubcampaignName', subcampaignName)
 		NProgress.done();
-		$('.nav-tabs a[id="nav3"]').tab('show');
+		$('.nav-tabs a[id="nav2"]').tab('show');
 	})
 
 	$(document).on("click", ".subcampaignDelete", function (e) {
@@ -382,7 +321,6 @@ $(document).ready(function () {
 			} else
 				NProgress.done();
 		});
-
 	})
 
 	$("#mySubcampaignsSearch").click(function (e) {
@@ -392,8 +330,11 @@ $(document).ready(function () {
 			style = [],
 			plan = [],
 			campaign = [],
+			client = [],
 			limit
 
+		if ($('#mySubcampaignsClients').val())
+			client = $('#mySubcampaignsClients').val()
 		if ($('#mySubcampaignSelectCampaign').val())
 			campaign = $('#mySubcampaignSelectCampaign').val()
 		if ($('#mySubcampaignStatus').val())
@@ -406,7 +347,7 @@ $(document).ready(function () {
 		var limit = $('#mySubcampaignLimit').val()
 
 		var filter = {}
-		if (status.length > 0 || style.length > 0 || plan.length > 0 || campaign.length > 0) {
+		if (status.length > 0 || style.length > 0 || plan.length > 0 || campaign.length > 0 || client.length) {
 			filter.where = {}
 			filter.where.and = []
 			if (status.length > 0)
@@ -433,13 +374,19 @@ $(document).ready(function () {
 						'inq': campaign
 					}
 				})
+			if (client.length > 0)
+				filter.where.and.push({
+					'clientId': {
+						'inq': client
+					}
+				})
 		}
 		filter.limit = limit
 		filter.fields = {
 			'settingModel': false
 		}
 
-		var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns/getAllSubcampaigns?accountHashId=' + userId, announcerAccessToken)
+		var subcampaignURLWithAT = wrapAccessToken(announcer_url + 'subcampaigns', announcerAccessToken)
 		var subcampaignFilterURL = wrapFilter(subcampaignURLWithAT, JSON.stringify(filter))
 		$('.page-loader-wrapper').fadeIn();
 		$.ajax({
@@ -463,10 +410,10 @@ $(document).ready(function () {
 		NProgress.start();
 		var subcampaignName = $('#editSubcampaignSelect').find('option:selected').text()
 		var campaignId, subcampaignId
-		for (var i = 0; i < totalSubcampaignsArray.length; i++)
-			if (totalSubcampaignsArray[i].name === subcampaignName) {
-				campaignId = totalSubcampaignsArray[i].campaignId
-				subcampaignId = totalSubcampaignsArray[i].id
+		for (var i = 0; i < subcampaignsArray.length; i++)
+			if (subcampaignsArray[i].name === subcampaignName) {
+				campaignId = subcampaignsArray[i].campaignId
+				subcampaignId = subcampaignsArray[i].id
 			}
 		if (!campaignId || !subcampaignId || !subcampaignName || !$('#editSubcampaignName').val() || !$('#editSubcampaignMinBudget').val() || !$('#editSubcampaignPrice').val() || !$('#editSubcampaignStyle').find('option:selected').text() || !$('#editSubcampaignPlan').find('option:selected').text()) {
 			NProgress.done();
@@ -499,110 +446,15 @@ $(document).ready(function () {
 		});
 	})
 
-	$("#addSubcamapignButton").click(function (e) {
-		e.preventDefault();
-		NProgress.start();
-		var campaignName = $('#addSubcampaignSelectCampaign').find('option:selected').text()
-		var campaignId
-		for (var i = 0; i < clientInstance.campaigns.length; i++)
-			if (clientInstance.campaigns[i].name === campaignName)
-				campaignId = clientInstance.campaigns[i].id
-		if (!campaignId || !campaignName || !$('#addSubcampaignName').val() || !$('#addSubcampaignMinBudget').val() || !$('#addSubcampaignPrice').val() || !$('#addSubcampaignStyle').find('option:selected').text() || !$('#addSubcampaignPlan').find('option:selected').text()) {
-			NProgress.done();
-			return swal("Oops!", "You should enter required field of prepared form.", "warning");
-		}
-		var data = {
-			name: $('#addSubcampaignName').val(),
-			minBudget: Number($('#addSubcampaignMinBudget').val()),
-			style: $('#addSubcampaignStyle').find('option:selected').text(),
-			plan: $('#addSubcampaignPlan').find('option:selected').text(),
-			price: Number($('#addSubcampaignPrice').val())
-		}
-		var subcampaignURL = wrapAccessToken(announcer_url + 'campaigns/' + campaignId + '/subcampaigns', announcerAccessToken);
-		$.ajax({
-			url: subcampaignURL,
-			data: JSON.stringify(data),
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			type: "POST",
-			success: function (subcampaignResult) {
-				localStorage.setItem("newAddedSubcampaign", subcampaignResult.name)
-				localStorage.setItem('newAddedSubcampaignCampaign', campaignName)
-				getAccountModel()
-				NProgress.done();
-				swal("Congrates!", "You have successfuly created a subcampaign. Lets go for adding setting and content.", "success");
-			},
-			error: function (xhr, status, error) {
-				NProgress.done();
-				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
-				alert(xhr.responseText);
-			}
-		});
-	})
-
-	$("#sendContentButton").click(function (e) {
-		e.preventDefault();
-		NProgress.start();
-		var subcampaignName = $('#contentProvidingSelect').find('option:selected').text()
-		var campaignId, subcampaignId
-		for (var i = 0; i < totalSubcampaignsArray.length; i++)
-			if (totalSubcampaignsArray[i].name === subcampaignName) {
-				campaignId = totalSubcampaignsArray[i].campaignId
-				subcampaignId = totalSubcampaignsArray[i].id
-			}
-		if (!campaignId || !subcampaignName || !subcampaignId || !$('#contentProvidingHeader').val() || !$('#contentProvidingHolding').val() || !$('#contentProvidingSubtitle').val() || !$('#contentProvidingTemplate').find('option:selected').text() || !$('#contentProvidingType').find('option:selected').text()) {
-			NProgress.done();
-			return swal("Oops!", "You should enter required field of prepared form.", "warning");
-		}
-		var isStatic = false
-		if ($('#contentProvidingType').find('option:selected').text() === 'Static')
-			isStatic = true
-		var templateId = $('#contentProvidingTemplate').find('option:selected').text()
-		var data = {
-			header: $('#contentProvidingHeader').val(),
-			time: (new Date()).toLocaleString(),
-			holding: $('#contentProvidingHolding').val(),
-			subtitle: $('#contentProvidingSubtitle').val(),
-		}
-		var queryData = {
-			campaignHashId: campaignId,
-			subcampaignHashId: subcampaignId,
-			isStatic: isStatic,
-			templateId: templateId,
-			data: JSON.stringify(data)
-		}
-		var queryString = generateQueryString(queryData)
-		var subcampaignURL = wrapAccessToken(announcer_url + 'containers/uploadFile?' + queryString, announcerAccessToken);
-		$.ajax({
-			url: subcampaignURL,
-			data: JSON.stringify(data),
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			type: "POST",
-			success: function (subcampaignResult) {
-				getAccountModel()
-				NProgress.done();
-				$("#selectSettingSelect").selectpicker('val', subcampaignResult.name)
-				$("#contentProvidingSelect").selectpicker('val', subcampaignResult.name)
-				swal("Congrates!", "You have successfuly added a content to a subcampaign.", "success");
-			},
-			error: function (xhr, status, error) {
-				NProgress.done();
-				swal("Oops!", "Something went wrong, Please try again somehow later.", "error");
-				alert(xhr.responseText);
-			}
-		});
-	})
-
 	$("#saveSettingButton").click(function (e) {
 		e.preventDefault();
 		NProgress.start();
 		var subcampaignName = $('#selectSettingSelect').find('option:selected').text()
 		var campaignId, subcampaignId
-		for (var i = 0; i < totalSubcampaignsArray.length; i++)
-			if (totalSubcampaignsArray[i].name === subcampaignName) {
-				campaignId = totalSubcampaignsArray[i].campaignId
-				subcampaignId = totalSubcampaignsArray[i].id
+		for (var i = 0; i < subcampaignsArray.length; i++)
+			if (subcampaignsArray[i].name === subcampaignName) {
+				campaignId = subcampaignsArray[i].campaignId
+				subcampaignId = subcampaignsArray[i].id
 			}
 		if (!campaignId || !subcampaignName || !subcampaignId ||
 			!$('#selectSettingPriority').find('option:selected').text() ||
