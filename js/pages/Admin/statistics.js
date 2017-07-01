@@ -138,8 +138,8 @@ $(document).ready(function () {
 								$('.page-loader-wrapper').fadeOut();
 								return alert(err);
 							}
-							var getAllTransactions_url = coreEngine_url + "statistics?access_token=" + coreAccessToken;
-							ajaxHelper(getAllTransactions_url, null, "GET", function (err, resultAll) {
+							var getAllStatistics_url = coreEngine_url + "statistics?access_token=" + coreAccessToken;
+							ajaxHelper(getAllStatistics_url, null, "GET", function (err, resultAll) {
 								if (err) {
 									$('.page-loader-wrapper').fadeOut();
 									return alert(err);
@@ -315,7 +315,7 @@ $(document).ready(function () {
 				}
 			})
 		$.ajax({
-			url: transactionURLWithAT,
+			url: statisticURLWithAT,
 			type: "GET",
 			success: function (statisticsResult) {
 				var responseArray = []
