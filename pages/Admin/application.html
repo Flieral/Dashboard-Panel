@@ -172,8 +172,8 @@
 					<img src="../../images/user.png" width="48" height="48" alt="User" />
 				</div>
 				<div class="info-container">
-					<div id="publisherUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-					<div id="publisherEmail" class="email">john.doe@example.com</div>
+					<div id="adminUsername" class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
+					<div id="adminEmail" class="email">john.doe@example.com</div>
 					<div class="btn-group user-helper-dropdown">
 						<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 						<ul class="dropdown-menu pull-right">
@@ -196,7 +196,7 @@
 							<span>Users</span>
 						</a>
 					</li>
-					<li class="active">
+					<li>
 						<a href="campaign.html">
 							<i class="material-icons col-amber">notifications_active</i>
 							<span>Campaigns</span>
@@ -208,16 +208,40 @@
 							<span>Subcampaigns</span>
 						</a>
 					</li>
-					<li>
-						<a href="activity-monitor.html">
+					<li class="active">
+						<a href="application.html">
 							<i class="material-icons col-light-green" >notifications_active</i>
 							<span>Applications</span>
 						</a>
 					</li>
 					<li>
-						<a href="javascript:void(0);">
+						<a href="placement.html">
 							<i class="material-icons col-light-blue">notifications_active</i>
 							<span>Placements</span>
+						</a>
+					</li>
+					<li>
+						<a href="statistics.html">
+							<i class="material-icons col-amber" >dashboard</i>
+							<span>Statistics</span>
+						</a>
+					</li>
+					<li>
+						<a href="transactions.html">
+							<i class="material-icons col-deep-purple">dashboard</i>
+							<span>Transactions</span>
+						</a>
+					</li>
+					<li>
+						<a href="invoices.html">
+							<i class="material-icons col-light-green">dashboard</i>
+							<span>Invoices</span>
+						</a>
+					</li>
+					<li>
+						<a href="interactions.html">
+							<i class="material-icons col-light-blue">dashboard</i>
+							<span>Interactions</span>
 						</a>
 					</li>
 				</ul>
@@ -250,10 +274,7 @@
 										<a href="#home_md_col_1" id="nav1" data-toggle="tab">My Applications</a>
 									</li>
 									<li role="presentation">
-										<a href="#profile_md_col_1" id="nav2" data-toggle="tab">New Application</a>
-									</li>
-									<li role="presentation">
-										<a href="#messages_md_col_1" id="nav3" data-toggle="tab">Edit Application</a>
+										<a href="#messages_md_col_1" id="nav2" data-toggle="tab">Edit Application</a>
 									</li>
 								</ul>
 							</div>
@@ -273,6 +294,17 @@
 					</div>
 					<div class="body">
 						<div class="row clearfix">
+							<div class="col-md-6 col-md-offset-3">
+								<p>
+									<b>Publisher Clients</b>
+								</p>
+								<select id="myApplicationsClients" class="form-control show-tick" title="Nothing selected" data-actions-box="true" data-live-search="true" data-size=5
+								    data-actionsBox=true multiple>
+								</select>
+							</div>
+						</div>
+						<div class="row clearfix">
+							<br>
 							<div class="col-md-2 col-md-offset-2">
 								<p>
 									<b>Status</b>
@@ -329,6 +361,7 @@
 									<thead>
 										<tr>
 											<th>ID</th>
+											<th>Client ID</th>
 											<th>Name</th>
 											<th>OS</th>
 											<th>Credit</th>
@@ -346,66 +379,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Masked Input -->
-		<div id="newApplication" class="row clearfix">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="header">
-						<h2>
-							New Application
-						</h2>
-						<br>
-						<small>In this step you need to define the basic information of application.</small>
-					</div>
-					<div class="body">
-						<div class="row clearfix">
-							<div class="col-md-4 col-md-offset-2">
-								<p>
-									<b>Application Name</b>
-								</p>
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="material-icons">next_week</i>
-									</span>
-									<div class="form-line">
-										<input type="text" id="newApplicationName" class="form-control key" placeholder="Ex: My Sample Application Name" required>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3 col-md-offset-1">
-								<p>
-									<b>Operating System Types</b>
-								</p>
-								<select id="newApplicationOSSelect" class="form-control show-tick" title="Nothing selected">
-									<optgroup label="Mobile">
-										<option>Mobile: Android</option>
-										<option>Mobile: iOS</option>
-										<option>Mobile: Windows Phone</option>
-									</optgroup>
-									<optgroup label="Website">
-										<option>Website: HTML</option>
-									</optgroup>
-									<optgroup label="Application">
-										<option>Application: Windows</option>
-										<option>Application: Unix</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<div class="col-md-2 col-md-offset-4">
-								<button type="button" id="newApplicationAddApplication" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Add Application</button>
-							</div>
-							<div class="col-md-2">
-								<button type="button" id="newApplicationAddPlacement" class="btn bg-cyan btn-block m-t-10 m-b-15 btn-lg waves-effect">Add Placement</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- #END# Masked Input -->
 
 		<!-- Masked Input -->
 		<div id="editApplication" class="row clearfix">
@@ -463,7 +436,6 @@
 			</div>
 		</div>
 		<!-- #END# Masked Input -->
-
 	</section>
 
 	<!-- Jquery Core Js -->
@@ -522,7 +494,7 @@
 
 	<!-- Custom Js -->
 	<script src="../../js/admin.js"></script>
-	<script src="../../js/pages/publisher/application.js"></script>
+	<script src="../../js/pages/admin/application.js"></script>
 
 	<!-- Jquery DataTable Plugin Js -->
 	<script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
