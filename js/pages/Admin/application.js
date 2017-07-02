@@ -320,7 +320,7 @@ $(document).ready(function () {
 		NProgress.start();
 		var appName = $('#editApplicationSelect').find('option:selected').text()
 		var appId, userId
-		for (var i = 0; applicationsArray.length; i++)
+		for (var i = 0; i < applicationsArray.length; i++)
 			if (applicationsArray[i].name === appName) {
 				appId = applicationsArray[i].id
 				userId = applicationsArray[i].clientId

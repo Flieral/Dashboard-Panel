@@ -366,7 +366,7 @@ $(document).ready(function () {
 		NProgress.start();
 		var campaignName = $('#editCampaignSelect').find('option:selected').text()
 		var campaignId, userId
-		for (var i = 0; campaigns.length; i++)
+		for (var i = 0; i < campaigns.length; i++)
 			if (campaigns[i].name === campaignName){
 				campaignId = campaigns[i].id
 				userId = campaigns[i].clientId

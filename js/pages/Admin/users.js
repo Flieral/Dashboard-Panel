@@ -376,7 +376,7 @@ $(document).ready(function () {
 			contentType: "application/json; charset=utf-8",
 			type: "PUT",
 			success: function (announcerResult) {
-				var publisherURL = wrapAccessToken(publisher_url + 'clients/' + userId + '/pubisherAccount', publisherAccessToken);
+				var publisherURL = wrapAccessToken(publisher_url + 'clients/' + userId + '/publisherAccount', publisherAccessToken);
 				$.ajax({
 					url: publisherURL,
 					data: JSON.stringify(publisherData),
